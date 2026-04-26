@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h2 {
+            font-size: 22px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 6px;
+        }
+
+        .login-header p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #1d9e75;
+        }
+
+        .forgot {
+            text-align: right;
+        }
+
+        .forgot a {
+            font-size: 13px;
+            color: #1d9e75;
+            text-decoration: none;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 10px;
+            background-color: #1d9e75;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background-color: #178a63;
+        }
+
+        .signup-link {
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .signup-link a {
+            color: #1d9e75;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="login-header">
+        <h2>Welcome back</h2>
+        <p>Sign in to your account</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+
+            <div class="form-field">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
+            </div>
+
+            <div class="form-field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+            </div>
+
+            <div class="forgot">
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-login">Sign in</button>
+
+            <p class="signup-link">
+                Don't have an account? <a href="/student-signup">Sign up</a>
+            </p>
+
+        </div>
+    </form>
+</div>
+<button><a href="/show-data/">show data</a></button>
+
+</body>
+</html>

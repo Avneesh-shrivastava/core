@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f0c29;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            max-width: 1500px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead tr {
+            background: linear-gradient(90deg, #fc466b, #3f5efb);
+        }
+
+        thead th {
+            padding: 16px 20px;
+            text-align: left;
+            color: #fff;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #1a1a2e;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #16213e;
+        }
+
+        tbody tr:hover {
+            background-color: #0f3460;
+            transition: background 0.25s;
+        }
+
+        tbody td {
+            padding: 14px 20px;
+            color: #cdd3f0;
+            border-bottom: 1px solid #ffffff10;
+        }
+
+        tbody td:first-child {
+            color: #fc466b;
+            font-weight: 500;
+        }
+
+        .btn-edit {
+            background: #3f5efb20;
+            color: #7b9cfc;
+            border: 1px solid #3f5efb50;
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background: #fc466b20;
+            color: #fc8a9a;
+            border: 1px solid #fc466b50;
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-left: 6px;
+        }
+
+        .btn-edit:hover {
+            background: #3f5efb40;
+        }
+
+        .btn-delete:hover {
+            background: #fc466b40;
+        }
+    </style>
+</head>
+<body>
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>sno.</th>
+                <th>name</th>
+                <th>email</th>
+                <th>username</th>
+                <th>password</th>
+                <th>confirmation_password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for students in students_data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{students.st_name}}</td>
+                <td>{{students.st_email}}</td>
+                <td>{{students.st_username}}</td>
+                <td>{{students.st_password}}</td>
+                <td>{{students.st_confirm_pass}}</td>
+                <td>
+                   <!-- <button class="btn btn-edit">Update</button> -->
+                    <a href="/delete-data/{{students.id}}/"><button class="btn btn-delete">Delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+           
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
