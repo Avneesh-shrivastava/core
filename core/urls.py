@@ -38,6 +38,7 @@ urlpatterns = [
     path('student-signup/', student_signup, name='student_signup'),
     path('show-data/', show_data, name='show_data'),
     path('delete-data/<id>/', delete_data, name='delete_data'),
+    path('home-page', home_page, name='home_page'),
 ]
 
 if settings.DEBUG:

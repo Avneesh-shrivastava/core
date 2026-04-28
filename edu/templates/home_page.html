@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightMind Coaching Classes</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4ff;
+            color: #333;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ffd700;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #cdd3f0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .nav-btn {
+            background: #ffd700;
+            color: #1a1a6e;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: #ffec6e;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #1a1a6e 0%, #3f5efb 60%, #fc466b 100%);
+            padding: 90px 60px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #ffd700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #cdd3f0;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #ffd700;
+            color: #1a1a6e;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover { background: #ffec6e; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* ── STATS ── */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat-item {
+            padding: 28px 50px;
+            text-align: center;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .stat-item:last-child { border-right: none; }
+
+        .stat-item h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #3f5efb;
+        }
+
+        .stat-item p {
+            font-size: 13px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        /* ── COURSES ── */
+        .section {
+            padding: 70px 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a6e;
+        }
+
+        .section-title p {
+            font-size: 15px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-top {
+            padding: 28px 24px 20px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+
+        .icon-blue   { background: #e3f2fd; }
+        .icon-purple { background: #ede7f6; }
+        .icon-green  { background: #e8f5e9; }
+        .icon-orange { background: #fff3e0; }
+        .icon-pink   { background: #fce4ec; }
+        .icon-teal   { background: #e0f2f1; }
+
+        .course-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a6e;
+            margin-bottom: 8px;
+        }
+
+        .course-card p {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            padding: 14px 24px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-footer span {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .card-btn {
+            background: #3f5efb;
+            color: #fff;
+            border: none;
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .card-btn:hover { background: #2748e8; }
+
+        /* ── WHY US ── */
+        .why-section {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 70px 60px;
+        }
+
+        .why-section .section-title h2 { color: #fff; }
+        .why-section .section-title p  { color: #cdd3f0; }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .why-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .why-card .w-icon {
+            font-size: 32px;
+            margin-bottom: 14px;
+        }
+
+        .why-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .why-card p {
+            font-size: 13px;
+            color: #cdd3f0;
+            line-height: 1.6;
+        }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials {
+            background: #f0f4ff;
+            padding: 70px 60px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 28px 24px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-card p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .av1 { background: #3f5efb; }
+        .av2 { background: #fc466b; }
+        .av3 { background: #1d9e75; }
+
+        .reviewer-info strong {
+            font-size: 14px;
+            color: #1a1a6e;
+            display: block;
+        }
+
+        .reviewer-info span {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        /* ── CTA ── */
+        .cta {
+            background: linear-gradient(135deg, #fc466b, #3f5efb);
+            padding: 70px 60px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .cta p {
+            font-size: 16px;
+            color: #e0e0ff;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            background: #ffd700;
+            color: #1a1a6e;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover { background: #ffec6e; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #1a1a6e;
+            color: #cdd3f0;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">CLARITY <span>EDGE</span></div>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Faculty</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="nav-btn">Enroll Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Unlock Your <span>Potential</span><br>with Expert Coaching</h1>
+    <p>Join thousands of students achieving their academic goals with our proven teaching methods and experienced faculty.</p>
+    <div class="hero-btns">
+        <button class="btn-primary">Get Started</button>
+        <button class="btn-secondary">View Courses</button>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+    <div class="stat-item">
+        <h3>5000+</h3>
+        <p>Students Enrolled</p>
+    </div>
+    <div class="stat-item">
+        <h3>98%</h3>
+        <p>Success Rate</p>
+    </div>
+    <div class="stat-item">
+        <h3>50+</h3>
+        <p>Expert Faculty</p>
+    </div>
+    <div class="stat-item">
+        <h3>10+</h3>
+        <p>Years of Excellence</p>
+    </div>
+</div>
+
+<!-- COURSES -->
+<section class="section">
+    <div class="section-title">
+        <h2>Our Popular Courses</h2>
+        <p>Choose from a wide range of courses designed for your success</p>
+    </div>
+    <div class="courses-grid">
+        <div class="course-card">
+            <div class="card-top">
+                <div class="card-icon icon-blue">📐</div>
+                <h3>cbse class 11</h3>
+                <p>From basics to advanced calculus — master every concept with structured practice and problem solving.</p>
+            </div>
+            <div class="card-footer">
+                <span>120 Students</span>
+                <button class="card-btn">Enroll</button>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="card-top">
+                <div class="card-icon icon-purple">🔬</div>
+                <h3>cbse class 12</h3>
+                <p>Physics, Chemistry, Biology — learn through real-world experiments and concept-based teaching.</p>
+            </div>
+            <div class="card-footer">
+                <span>98 Students</span>
+                <button class="card-btn">Enroll</button>
+            </div>
+    <!--    </div>
+        <div class="course-card">
+            <div class="card-top">
+                <div class="card-icon icon-green">💻</div>
+                <h3>Computer Science</h3>
+                <p>Programming, data structures, and algorithms — build a strong foundation for engineering entrance exams.</p>
+            </div>
+            <div class="card-footer">
+                <span>85 Students</span>
+                <button class="card-btn">Enroll</button>
+            </div>
+        </div> 
+        <div class="course-card">
+            <div class="card-top">
+                <div class="card-icon icon-orange">📚</div>
+                <h3>English</h3>
+                <p>Grammar, comprehension, writing skills — score high in boards and competitive exams with confidence.</p>
+            </div>
+            <div class="card-footer">
+                <span>110 Students</span>
+                <button class="card-btn">Enroll</button>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="card-top">
+                <div class="card-icon icon-pink">🗺️</div>
+                <h3>Social Studies</h3>
+                <p>History, Geography, Civics — understand the world around you and score big in your exams.</p>
+            </div>
+            <div class="card-footer">
+                <span>76 Students</span>
+                <button class="card-btn">Enroll</button>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="card-top">
+                <div class="card-icon icon-teal">🎯</div>
+                <h3>JEE / NEET Prep</h3>
+                <p>Dedicated entrance exam preparation with mock tests, doubt sessions, and expert mentoring.</p>
+            </div>
+            <div class="card-footer">
+                <span>200 Students</span>
+                <button class="card-btn">Enroll</button>
+            </div>
+        </div>
+    </div>  -->
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+    <div class="section-title">
+        <h2>Why Choose BrightMind?</h2>
+        <p>We go beyond textbooks to shape future leaders</p>
+    </div>
+    <div class="why-grid">
+        <div class="why-card">
+            <div class="w-icon">🏆</div>
+            <h4>Proven Results</h4>
+            <p>Our students consistently top board exams and crack competitive entrance tests.</p>
+        </div>
+        <div class="why-card">
+            <div class="w-icon">👨‍🏫</div>
+            <h4>Expert Faculty</h4>
+            <p>Learn from experienced teachers with decades of teaching and mentoring experience.</p>
+        </div>
+        <div class="why-card">
+            <div class="w-icon">📝</div>
+            <h4>Regular Tests</h4>
+            <p>Weekly tests and detailed feedback help students track progress and improve continuously.</p>
+        </div>
+        <div class="why-card">
+            <div class="w-icon">💬</div>
+            <h4>Doubt Sessions</h4>
+            <p>Dedicated doubt-clearing sessions ensure no student is left behind on any topic.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <div class="section-title">
+        <h2>What Our Students Say</h2>
+        <p>Real stories from students who achieved their dreams</p>
+    </div>
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"BrightMind completely changed how I study. The faculty is incredibly supportive and the doubt sessions are a lifesaver. I scored 94% in my boards!"</p>
+            <div class="reviewer">
+                <div class="avatar av1">AK</div>
+                <div class="reviewer-info">
+                    <strong>Aryan Kulkarni</strong>
+                    <span>Class 12 Student</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"I cracked JEE Advanced after joining BrightMind's entrance prep batch. The mock tests and personal mentoring made all the difference."</p>
+            <div class="reviewer">
+                <div class="avatar av2">PS</div>
+                <div class="reviewer-info">
+                    <strong>Priya Sharma</strong>
+                    <span>JEE Advanced Qualifier</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"The teachers here don't just teach — they inspire. My confidence has grown so much since joining. Highly recommend to every student in Pune!"</p>
+            <div class="reviewer">
+                <div class="avatar av3">RM</div>
+                <div class="reviewer-info">
+                    <strong>Rohan Mehta</strong>
+                    <span>Class 10 Student</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Ready to Start Your Journey?</h2>
+    <p>Join BrightMind today and take the first step towards academic excellence.</p>
+    <button class="cta-btn">Enroll Now — It's Free to Start</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 BrightMind Coaching Classes. All rights reserved.</p>
+    <p>Made with ❤️ in Pune | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+</footer>
+
+</body>
+</html>

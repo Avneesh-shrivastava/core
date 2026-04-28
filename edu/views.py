@@ -19,27 +19,29 @@ def student_signup(request):
         st_password = data.get('password')
         st_confirm_pass = data.get('confirm_password')
 
-        if st_password == st_confirm_pass:
-            student_signup_data.objects.create(
-                st_name = st_name,
-                st_email = st_email,
-                st_username = st_username,
-                st_password = st_password,
-                st_confirm_pass = st_confirm_pass
-                )
+        if st_password and st_confirm_pass:
+            if st_password == st_confirm_pass:
+                student_signup_data.objects.create(
+                    st_name = st_name,
+                    st_email = st_email,
+                    st_username = st_username,
+                    st_password = st_password,
+                    st_confirm_pass = st_confirm_pass
+                    )
 
             view_data = student_signup_data.objects.all().values()
             print(view_data)
 
         if st_password != st_confirm_pass:
             messages.error(request, "Password did not matched")
-            print(st_password)
-            print(st_confirm_pass)
+            return render(request, 'signup.html')
+        
+        username_column = student_signup_data.objects.values('st_username')
+
+        if {'st_username':f'{st_username}'} in username_column :
+            messages.error(request, "This username already exist's")
             return render(request, 'signup.html')
 
-        print(st_password)
-        print(st_confirm_pass)
-        
         return redirect('/student-login/')
     return render(request, 'signup.html')
 
@@ -55,8 +57,19 @@ def delete_data(request, id):
 
 def student_login(request):
     if request.method == 'POST':
+        global st_username
+        global st_password
         data = request.POST
         log_username = data.get('username')
         log_password = data.get('password')
         
+        username_list = student_signup_data.objects.values('st_username')
+        password_list = student_signup_data.objects.values('st_password')
+
+        if {'st_username': f'{log_username}'} in username_list and {'st_password': f'{log_password}'} in password_list :
+            return render(request, 'home_page.html')       
+        
     return render(request, 'login.html')
+
+def home_page(request):
+    return render(request, 'home_page.html')
