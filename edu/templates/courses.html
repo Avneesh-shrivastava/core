@@ -358,22 +358,53 @@
             color: #ffd700;
             text-decoration: none;
         }
+
+        .curved-search {
+            width: 300px;
+            height: 25px;
+            padding: 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 20px; /* This creates the curve */
+            outline: none;       /* Removes the blue outline on click */
+            }
+        .button {
+            height:25px;
+            width:80px;
+            border-radius: 20px;
+            background-color: #1a1a6e;
+            color: white;
+            border: none;
+            font-size: 13px;
+        }
+
+/* Optional: Hover effect */
+        .button:hover {
+        background-color: #270ffc;
+        }
+
     </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav>
-    <div class="logo">Bright<span>Mind</span></div>
+    <div class="logo">CLARITY<span>EDGE</span></div>
     <ul class="nav-links">
         <li><a href="/home-page">Home</a></li>
         <li><a href="#" class="active">Courses</a></li>
         <li><a href="#">Faculty</a></li>
         <li><a href="#">Results</a></li>
         <li><a href="#">Contact</a></li>
+        <li>    
+        <div class="search-container">
+        <input class='curved-search' type="text" placeholder="Search here..." />
+        <button class="button">Search</button>
+    </div></li>
     </ul>
     <button class="nav-btn">Enroll Now</button>
 </nav>
+
+
 
 <!-- PAGE HERO -->
 <div class="page-hero">
@@ -638,7 +669,7 @@
 
     </div> -->
 </div> 
-
+<br>
 <!-- CTA BANNER -->
 <div class="cta-banner">
     <h2>Not sure which course to pick?</h2>
