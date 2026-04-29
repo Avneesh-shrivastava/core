@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses — Clarity Edge Coaching Classes</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4ff;
+            color: #333;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: #ffd700; }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #cdd3f0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #ffd700; }
+
+        .nav-links a.active { color: #ffd700; font-weight: 700; }
+
+        .nav-btn {
+            background: #ffd700;
+            color: #1a1a6e;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover { background: #ffec6e; }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            background: linear-gradient(135deg, #1a1a6e 0%, #3f5efb 60%, #fc466b 100%);
+            padding: 60px 60px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .page-hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .page-hero h1 span { color: #ffd700; }
+
+        .page-hero p {
+            font-size: 16px;
+            color: #cdd3f0;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* ── FILTER BAR ── */
+        .filter-bar {
+            background: #fff;
+            padding: 20px 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+
+        .filter-bar span {
+            font-size: 13px;
+            color: #888;
+            margin-right: 4px;
+        }
+
+        .filter-btn {
+            background: #f0f4ff;
+            color: #3f5efb;
+            border: 1px solid #d0d8ff;
+            padding: 7px 18px;
+            border-radius: 999px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #3f5efb;
+            color: #fff;
+            border-color: #3f5efb;
+        }
+
+        /* ── COURSES SECTION ── */
+        .courses-section {
+            padding: 50px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-meta h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a6e;
+        }
+
+        .section-meta span {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .course-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(63, 94, 251, 0.12);
+        }
+
+        .card-banner {
+            height: 8px;
+        }
+
+        .banner-blue   { background: linear-gradient(90deg, #3f5efb, #6a8afc); }
+        .banner-purple { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+        .banner-green  { background: linear-gradient(90deg, #1d9e75, #34d399); }
+        .banner-orange { background: linear-gradient(90deg, #f97316, #fb923c); }
+        .banner-pink   { background: linear-gradient(90deg, #fc466b, #f9a8c9); }
+        .banner-teal   { background: linear-gradient(90deg, #0891b2, #22d3ee); }
+        .banner-red    { background: linear-gradient(90deg, #dc2626, #f87171); }
+        .banner-yellow { background: linear-gradient(90deg, #d97706, #fbbf24); }
+        .banner-indigo { background: linear-gradient(90deg, #4338ca, #818cf8); }
+
+        .card-body {
+            padding: 22px 22px 16px;
+        }
+
+        .card-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .icon-blue   { background: #e3f2fd; }
+        .icon-purple { background: #ede7f6; }
+        .icon-green  { background: #e8f5e9; }
+        .icon-orange { background: #fff3e0; }
+        .icon-pink   { background: #fce4ec; }
+        .icon-teal   { background: #e0f2f1; }
+        .icon-red    { background: #ffebee; }
+        .icon-yellow { background: #fffde7; }
+        .icon-indigo { background: #e8eaf6; }
+
+        .badge {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .badge-popular  { background: #fff3e0; color: #e65100; }
+        .badge-new      { background: #e8f5e9; color: #1b5e20; }
+        .badge-trending { background: #fce4ec; color: #880e4f; }
+
+        .card-body h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a6e;
+            margin-bottom: 8px;
+        }
+
+        .card-body p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            font-size: 11px;
+            background: #f0f4ff;
+            color: #3f5efb;
+            border: 1px solid #d0d8ff;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+
+        .card-stats {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .card-stats span {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .card-stats span b {
+            color: #333;
+        }
+
+        .card-footer {
+            padding: 14px 22px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1a1a6e;
+        }
+
+        .price span {
+            font-size: 12px;
+            color: #aaa;
+            font-weight: 400;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        .enroll-btn {
+            background: linear-gradient(135deg, #3f5efb, #fc466b);
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .enroll-btn:hover { opacity: 0.9; }
+
+        /* ── CTA BANNER ── */
+        .cta-banner {
+            background: linear-gradient(135deg, #fc466b, #3f5efb);
+            margin: 0 60px 60px;
+            border-radius: 16px;
+            padding: 50px 60px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-banner h2 {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .cta-banner p {
+            font-size: 15px;
+            color: #e0e0ff;
+            margin-bottom: 24px;
+        }
+
+        .cta-btn {
+            background: #ffd700;
+            color: #1a1a6e;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover { background: #ffec6e; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #1a1a6e;
+            color: #cdd3f0;
+            padding: 28px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Bright<span>Mind</span></div>
+    <ul class="nav-links">
+        <li><a href="/home-page">Home</a></li>
+        <li><a href="#" class="active">Courses</a></li>
+        <li><a href="#">Faculty</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="nav-btn">Enroll Now</button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <h1>Explore Our <span>Courses</span></h1>
+    <p>Find the right course for your academic goals — from school subjects to competitive entrance exams.</p>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+    <span>Filter by:</span>
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">School</button>
+    <button class="filter-btn">Entrance Exam</button>
+    <button class="filter-btn">Science</button>
+    <button class="filter-btn">Maths</button>
+    <button class="filter-btn">Language</button>
+    <button class="filter-btn">Competitive</button>
+</div>
+
+<!-- COURSES -->
+<div class="courses-section">
+    <div class="section-meta">
+        <h2>All Courses</h2>
+        <span>9 courses available</span>
+    </div>
+
+    <div class="courses-grid">
+
+        <!-- Card 1 -->
+        <div class="course-card">
+            <div class="card-banner banner-blue"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-blue">📐</div>
+                    <span class="badge badge-popular">Popular</span>
+                </div>
+                <h3>Accountancy</h3>
+                <p>From basic journal entries to financial statements — master every concept through structured practice and real-world examples.</p>
+                <div class="card-tags">
+                    <span class="tag">Class 8–12</span>
+                    <span class="tag">Board Exam</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>120</b> Students</span>
+                    <span>⏱ <b>6</b> Months</span>
+                    <span>⭐ <b>4.9</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹3,500 <span>₹5,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="course-card">
+            <div class="card-banner banner-purple"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-purple">🔬</div>
+                    <span class="badge badge-popular">Popular</span>
+                </div>
+                <h3>Business Studies</h3>
+                <p>From business fundamentals to advanced management — master every concept through structured learning and real-world case studies</p>
+                <div class="card-tags">
+                    <span class="tag">Class 9–10</span>
+                    <span class="tag">Board Exam</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>98</b> Students</span>
+                    <span>⏱ <b>6</b> Months</span>
+                    <span>⭐ <b>4.8</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹4,000 <span>₹6,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="course-card">
+            <div class="card-banner banner-green"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-green">💻</div>
+                    <span class="badge badge-new">New</span>
+                </div>
+                <h3>Economics</h3>
+                <p>From supply and demand to macroeconomic policies — master every concept through structured analysis and real-world applications.</p>
+                <div class="card-tags">
+                    <span class="tag">Class 11–12</span>
+                    <span class="tag">Practical</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>85</b> Students</span>
+                    <span>⏱ <b>5</b> Months</span>
+                    <span>⭐ <b>4.7</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹4,500 <span>₹7,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="course-card">
+            <div class="card-banner banner-orange"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-orange">📚</div>
+                    <span class="badge badge-new">New</span>
+                </div>
+                <h3>English</h3>
+                <p>Grammar, comprehension, writing, and communication — score high in boards and competitive exams with full confidence.</p>
+                <div class="card-tags">
+                    <span class="tag">Class 8–12</span>
+                    <span class="tag">Language</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>110</b> Students</span>
+                    <span>⏱ <b>4</b> Months</span>
+                    <span>⭐ <b>4.6</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹2,500 <span>₹4,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+       <!-- Card 5 -->
+<!--        <div class="course-card">
+            <div class="card-banner banner-pink"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-pink">🗺️</div>
+                    <span class="badge" style="background:#f3e5f5; color:#6a1b9a;">Core</span>
+                </div>
+                <h3>Social Studies</h3>
+                <p>History, Geography, and Civics — understand the world around you and score big in your board examinations.</p>
+                <div class="card-tags">
+                    <span class="tag">Class 8–10</span>
+                    <span class="tag">Board Exam</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>76</b> Students</span>
+                    <span>⏱ <b>4</b> Months</span>
+                    <span>⭐ <b>4.5</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹2,000 <span>₹3,500</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div> -->
+
+        <!-- Card 6 -->
+        <!-- <div class="course-card">
+            <div class="card-banner banner-teal"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-teal">🎯</div>
+                    <span class="badge badge-trending">Trending</span>
+                </div>
+                <h3>JEE / NEET Prep</h3>
+                <p>Dedicated entrance exam preparation with weekly mock tests, doubt-clearing sessions, and personal expert mentoring.</p>
+                <div class="card-tags">
+                    <span class="tag">Class 11–12</span>
+                    <span class="tag">Entrance Exam</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>200</b> Students</span>
+                    <span>⏱ <b>12</b> Months</span>
+                    <span>⭐ <b>5.0</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹8,000 <span>₹12,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <!-- <div class="course-card">
+            <div class="card-banner banner-red"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-red">🧮</div>
+                    <span class="badge badge-popular">Popular</span>
+                </div>
+                <h3>Foundation Maths</h3>
+                <p>A strong foundation in numbers, fractions, and basic algebra for younger students preparing for competitive olympiads.</p>
+                <div class="card-tags">
+                    <span class="tag">Class 5–7</span>
+                    <span class="tag">Olympiad</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>65</b> Students</span>
+                    <span>⏱ <b>3</b> Months</span>
+                    <span>⭐ <b>4.8</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹1,800 <span>₹3,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div> -->
+
+        <!-- Card 8 -->
+        <!-- <div class="course-card">
+            <div class="card-banner banner-yellow"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-yellow">📊</div>
+                    <span class="badge badge-new">New</span>
+                </div>
+                <h3>Commerce & Accounts</h3>
+                <p>Accountancy, Business Studies, and Economics — build strong concepts for boards and future commerce careers.</p>
+                <div class="card-tags">
+                    <span class="tag">Class 11–12</span>
+                    <span class="tag">Commerce</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>55</b> Students</span>
+                    <span>⏱ <b>6</b> Months</span>
+                    <span>⭐ <b>4.7</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹3,200 <span>₹5,500</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div> -->
+
+        <!-- Card 9 -->
+        <!-- <div class="course-card">
+            <div class="card-banner banner-indigo"></div>
+            <div class="card-body">
+                <div class="card-top-row">
+                    <div class="card-icon icon-indigo">🏅</div>
+                    <span class="badge badge-trending">Trending</span>
+                </div>
+                <h3>Spoken English & GK</h3>
+                <p>Build confidence in communication, vocabulary, and general knowledge — essential for any competitive exam or interview.</p>
+                <div class="card-tags">
+                    <span class="tag">All Classes</span>
+                    <span class="tag">Competitive</span>
+                </div>
+                <div class="card-stats">
+                    <span>👥 <b>90</b> Students</span>
+                    <span>⏱ <b>3</b> Months</span>
+                    <span>⭐ <b>4.9</b></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">₹1,500 <span>₹2,500</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+    </div> -->
+</div> 
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+    <h2>Not sure which course to pick?</h2>
+    <p>Talk to our counselors and get a personalized course recommendation for free.</p>
+    <button class="cta-btn">Book Free Counselling</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Clarity edge Coaching Classes. All rights reserved.</p>
+    <p>Made with ❤️ in Pune | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+</footer>
+
+</body>
+</html>

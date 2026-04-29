@@ -73,3 +73,6 @@ def student_login(request):
 
 def home_page(request):
     return render(request, 'home_page.html')
+
+def courses(request):
+    return render(request, 'courses.html')
