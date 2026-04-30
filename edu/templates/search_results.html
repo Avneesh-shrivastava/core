@@ -454,6 +454,7 @@
         <li><a href="#">Results</a></li>
         <li><a href="#">Contact</a></li>
     </ul>
+
     <div class="nav-right">
         <div class="search-wrapper">
             <div class="search-bar" id="searchBar">
@@ -500,32 +501,35 @@
 
     <div class="results-list">
 
+
+
+    {% for course in course_data %}
         <!-- Result 1 -->
         <div class="result-card">
             <div class="result-icon icon-orange">📚</div>
             <div class="result-info">
-                <h3>English</h3>
-                <p>Grammar, comprehension, writing, and communication — score high in boards and competitive exams with full confidence.</p>
+                <h3>{{course.course_name}}</h3>
+                <p>{{course.course_desc}}</p>
                 <div class="result-tags">
-                    <span class="tag">Class 8–12</span>
+                    <span class="tag">Class 11–12</span>
                     <span class="tag">Language</span>
                     <span class="tag">Board Exam</span>
                 </div>
             </div>
-            <div class="result-right">
+             <div class="result-right">
                 <span class="badge badge-new">New</span>
                 <div class="result-stats">
-                    <span>👥 <b>110</b></span>
-                    <span>⏱ <b>4 Months</b></span>
-                    <span>⭐ <b>4.6</b></span>
+                    <span>👥 <b>{{course.no_of_students}}</b></span>
+                    <span>⏱ <b>{{course.months}}</b></span>
+                    <span>⭐ <b>{{course.Rating}}</b></span>
                 </div>
-                <div class="price">₹2,500 <span>₹4,000</span></div>
+                <div class="price">{{course.price}} <span>₹4,000</span></div>
                 <button class="enroll-btn">Enroll Now</button>
             </div>
-        </div>
+        </div> 
 
         <!-- Result 2 -->
-        <div class="result-card">
+        <!-- <div class="result-card">
             <div class="result-icon icon-teal">🏅</div>
             <div class="result-info">
                 <h3>Spoken English & GK</h3>
@@ -546,10 +550,10 @@
                 <div class="price">₹1,500 <span>₹2,500</span></div>
                 <button class="enroll-btn">Enroll Now</button>
             </div>
-        </div>
+        </div> -->
 
         <!-- Result 3 -->
-        <div class="result-card">
+        <!-- <div class="result-card">
             <div class="result-icon icon-blue">📐</div>
             <div class="result-info">
                 <h3>Accountancy</h3>
@@ -569,10 +573,10 @@
                 <div class="price">₹3,500 <span>₹5,000</span></div>
                 <button class="enroll-btn">Enroll Now</button>
             </div>
-        </div>
+        </div> -->
 
         <!-- Result 4 -->
-        <div class="result-card">
+        <!-- <div class="result-card">
             <div class="result-icon icon-green">💻</div>
             <div class="result-info">
                 <h3>Economics</h3>
@@ -592,8 +596,8 @@
                 <div class="price">₹4,500 <span>₹7,000</span></div>
                 <button class="enroll-btn">Enroll Now</button>
             </div>
-        </div>
-
+        </div> -->
+    {% endfor %}
     </div>
 
     <!-- NO RESULTS (shown when nothing found) -->
@@ -602,6 +606,8 @@
         <h3>No results found</h3>
         <p>Try searching with different keywords or browse all courses.</p>
     </div>
+
+    
 
 </div>
 

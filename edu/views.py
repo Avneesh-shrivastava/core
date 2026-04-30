@@ -78,4 +78,6 @@ def courses(request):
     return render(request, 'courses.html')
 
 def search_results(request):
-    return render(request, 'search_results.html')
+    course_data =  Subjects_details.objects.all().values()
+    context = {'course_data' : course_data}
+    return render(request, 'search_results.html', context)
