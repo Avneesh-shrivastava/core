@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results — Clarity Edge Coaching Classes</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4ff;
+            color: #333;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: #ffd700; }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #cdd3f0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #ffd700; }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: width 0.35s ease, opacity 0.3s ease;
+            position: absolute;
+            right: 36px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .search-bar.open {
+            width: 200px;
+            opacity: 1;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-bar input::placeholder { color: #cdd3f0; }
+        .search-bar input:focus { background: rgba(255, 255, 255, 0.25); }
+
+        .search-icon-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #cdd3f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background 0.2s, color 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffd700;
+        }
+
+        .nav-btn {
+            background: #ffd700;
+            color: #1a1a6e;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover { background: #ffec6e; }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            background: linear-gradient(135deg, #1a1a6e 0%, #3f5efb 60%, #fc466b 100%);
+            padding: 50px 60px;
+            color: #fff;
+        }
+
+        .page-hero p {
+            font-size: 14px;
+            color: #cdd3f0;
+            margin-bottom: 10px;
+        }
+
+        .page-hero p a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .page-hero h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .page-hero h1 span { color: #ffd700; }
+
+        .page-hero small {
+            font-size: 14px;
+            color: #cdd3f0;
+        }
+
+        /* ── SEARCH BOX IN PAGE ── */
+        .search-section {
+            background: #fff;
+            padding: 20px 60px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f0f4ff;
+            border: 2px solid #3f5efb;
+            border-radius: 999px;
+            padding: 8px 18px;
+            width: 450px;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .search-box input::placeholder { color: #aaa; }
+
+        .search-box svg { flex-shrink: 0; }
+
+        .search-box-btn {
+            background: #3f5efb;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .search-box-btn:hover { background: #2748e8; }
+
+        /* ── RESULTS SECTION ── */
+        .results-section {
+            padding: 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .results-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .results-meta h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a6e;
+        }
+
+        .results-meta h2 span { color: #3f5efb; }
+
+        .results-meta small {
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* ── RESULT CARD ── */
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .result-card {
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(63, 94, 251, 0.1);
+        }
+
+        .result-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue   { background: #e3f2fd; }
+        .icon-purple { background: #ede7f6; }
+        .icon-green  { background: #e8f5e9; }
+        .icon-orange { background: #fff3e0; }
+        .icon-pink   { background: #fce4ec; }
+        .icon-teal   { background: #e0f2f1; }
+
+        .result-info {
+            flex: 1;
+        }
+
+        .result-info h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a6e;
+            margin-bottom: 5px;
+        }
+
+        .result-info p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .result-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 11px;
+            background: #f0f4ff;
+            color: #3f5efb;
+            border: 1px solid #d0d8ff;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+
+        .result-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .badge-popular  { background: #fff3e0; color: #e65100; }
+        .badge-new      { background: #e8f5e9; color: #1b5e20; }
+        .badge-trending { background: #fce4ec; color: #880e4f; }
+
+        .result-stats {
+            display: flex;
+            gap: 14px;
+        }
+
+        .result-stats span {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .result-stats span b { color: #333; }
+
+        .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1a1a6e;
+        }
+
+        .price span {
+            font-size: 12px;
+            color: #aaa;
+            font-weight: 400;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        .enroll-btn {
+            background: linear-gradient(135deg, #3f5efb, #fc466b);
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .enroll-btn:hover { opacity: 0.9; }
+
+        /* ── NO RESULTS ── */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .no-results .emoji { font-size: 48px; margin-bottom: 16px; }
+
+        .no-results h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a6e;
+            margin-bottom: 8px;
+        }
+
+        .no-results p {
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* ── CTA BANNER ── */
+        .cta-banner {
+            background: linear-gradient(135deg, #fc466b, #3f5efb);
+            margin: 20px 60px 60px;
+            border-radius: 16px;
+            padding: 50px 60px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-banner h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .cta-banner p {
+            font-size: 15px;
+            color: #e0e0ff;
+            margin-bottom: 24px;
+        }
+
+        .cta-btn {
+            background: #ffd700;
+            color: #1a1a6e;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover { background: #ffec6e; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #1a1a6e;
+            color: #cdd3f0;
+            padding: 28px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">CLARITY <span>EDGE</span></div>
+    <ul class="nav-links">
+        <li><a href="/home-page">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li><a href="#">Faculty</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+        <div class="search-wrapper">
+            <div class="search-bar" id="searchBar">
+                <input type="text" placeholder="Search courses..." id="searchInput" />
+            </div>
+            <button class="search-icon-btn" onclick="toggleSearch()" id="searchBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+            </button>
+        </div>
+        <button class="nav-btn">Enroll Now</button>
+    </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <p><a href="/courses">← Back to Courses</a></p>
+    <h1>Search Results for <span>"English"</span></h1>
+    <small>4 results found</small>
+</div>
+
+<!-- SEARCH BOX -->
+<div class="search-section">
+    <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="#3f5efb" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" placeholder="Search courses, subjects, topics..." value="English" id="mainSearch" />
+    </div>
+    <button class="search-box-btn">Search</button>
+</div>
+
+<!-- RESULTS -->
+<div class="results-section">
+    <div class="results-meta">
+        <h2>Showing results for <span>"English"</span></h2>
+        <small>4 results found</small>
+    </div>
+
+    <div class="results-list">
+
+        <!-- Result 1 -->
+        <div class="result-card">
+            <div class="result-icon icon-orange">📚</div>
+            <div class="result-info">
+                <h3>English</h3>
+                <p>Grammar, comprehension, writing, and communication — score high in boards and competitive exams with full confidence.</p>
+                <div class="result-tags">
+                    <span class="tag">Class 8–12</span>
+                    <span class="tag">Language</span>
+                    <span class="tag">Board Exam</span>
+                </div>
+            </div>
+            <div class="result-right">
+                <span class="badge badge-new">New</span>
+                <div class="result-stats">
+                    <span>👥 <b>110</b></span>
+                    <span>⏱ <b>4 Months</b></span>
+                    <span>⭐ <b>4.6</b></span>
+                </div>
+                <div class="price">₹2,500 <span>₹4,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+        <!-- Result 2 -->
+        <div class="result-card">
+            <div class="result-icon icon-teal">🏅</div>
+            <div class="result-info">
+                <h3>Spoken English & GK</h3>
+                <p>Build confidence in communication, vocabulary, and general knowledge — essential for any competitive exam or interview.</p>
+                <div class="result-tags">
+                    <span class="tag">All Classes</span>
+                    <span class="tag">Competitive</span>
+                    <span class="tag">Language</span>
+                </div>
+            </div>
+            <div class="result-right">
+                <span class="badge badge-trending">Trending</span>
+                <div class="result-stats">
+                    <span>👥 <b>90</b></span>
+                    <span>⏱ <b>3 Months</b></span>
+                    <span>⭐ <b>4.9</b></span>
+                </div>
+                <div class="price">₹1,500 <span>₹2,500</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+        <!-- Result 3 -->
+        <div class="result-card">
+            <div class="result-icon icon-blue">📐</div>
+            <div class="result-info">
+                <h3>Accountancy</h3>
+                <p>From basic journal entries to financial statements — master every concept through structured practice and real-world examples.</p>
+                <div class="result-tags">
+                    <span class="tag">Class 8–12</span>
+                    <span class="tag">Board Exam</span>
+                </div>
+            </div>
+            <div class="result-right">
+                <span class="badge badge-popular">Popular</span>
+                <div class="result-stats">
+                    <span>👥 <b>120</b></span>
+                    <span>⏱ <b>6 Months</b></span>
+                    <span>⭐ <b>4.9</b></span>
+                </div>
+                <div class="price">₹3,500 <span>₹5,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+        <!-- Result 4 -->
+        <div class="result-card">
+            <div class="result-icon icon-green">💻</div>
+            <div class="result-info">
+                <h3>Economics</h3>
+                <p>From supply and demand to macroeconomic policies — master every concept through structured analysis and real-world applications.</p>
+                <div class="result-tags">
+                    <span class="tag">Class 11–12</span>
+                    <span class="tag">Practical</span>
+                </div>
+            </div>
+            <div class="result-right">
+                <span class="badge badge-new">New</span>
+                <div class="result-stats">
+                    <span>👥 <b>85</b></span>
+                    <span>⏱ <b>5 Months</b></span>
+                    <span>⭐ <b>4.7</b></span>
+                </div>
+                <div class="price">₹4,500 <span>₹7,000</span></div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NO RESULTS (shown when nothing found) -->
+    <div class="no-results" id="noResults">
+        <div class="emoji">🔍</div>
+        <h3>No results found</h3>
+        <p>Try searching with different keywords or browse all courses.</p>
+    </div>
+
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+    <h2>Not sure which course to pick?</h2>
+    <p>Talk to our counselors and get a personalized course recommendation for free.</p>
+    <button class="cta-btn">Book Free Counselling</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Clarity Edge Coaching Classes. All rights reserved.</p>
+    <p>Made with ❤️ in Pune | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+</footer>
+
+<script>
+    function toggleSearch() {
+        const bar = document.getElementById('searchBar');
+        const input = document.getElementById('searchInput');
+        bar.classList.toggle('open');
+        if (bar.classList.contains('open')) {
+            setTimeout(() => input.focus(), 350);
+        } else {
+            input.value = '';
+        }
+    }
+
+    document.addEventListener('click', function(e) {
+        const bar = document.getElementById('searchBar');
+        const btn = document.getElementById('searchBtn');
+        if (!bar.contains(e.target) && !btn.contains(e.target)) {
+            bar.classList.remove('open');
+            document.getElementById('searchInput').value = '';
+        }
+    });
+</script>
+
+</body>
+</html>

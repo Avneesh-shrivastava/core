@@ -76,3 +76,6 @@ def home_page(request):
 
 def courses(request):
     return render(request, 'courses.html')
+
+def search_results(request):
+    return render(request, 'search_results.html')
