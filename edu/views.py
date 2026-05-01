@@ -42,6 +42,7 @@ def student_signup(request):
             messages.error(request, "This username already exist's")
             return render(request, 'signup.html')
 
+
         return redirect('/student-login/')
     return render(request, 'signup.html')
 
@@ -78,6 +79,11 @@ def courses(request):
     return render(request, 'courses.html')
 
 def search_results(request):
-    course_data =  Subjects_details.objects.all().values()
-    context = {'course_data' : course_data}
+    
+    if request.GET.get('search'):
+        search_query = request.GET.get('search')
+        results = Subjects_details.objects.filter(course_name__icontains=search_query)
+        print(results)
+    # course_data =  Subjects_details.objects.all().values()
+    context = {'course_data' : results}
     return render(request, 'search_results.html', context)

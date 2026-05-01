@@ -440,6 +440,31 @@
             color: #ffd700;
             text-decoration: none;
         }
+
+        .curved-search {
+            width: 200px;
+            height: 25px;
+            padding: 0 20px;
+            border: 2px solid #3f5efb;
+            border-radius: 20px; /* This creates the curve */
+            outline: none;       /* Removes the blue outline on click */
+            }
+        .button {
+            height:25px;
+            width:80px;
+            border-radius: 20px;
+            background: #3f5efb;
+            color: white;
+            border: none;
+            font-size: 13px;
+        }
+
+/* Optional: Hover effect */
+        .button:hover {
+        background-color: #2748e8;;
+        }
+
+
     </style>
 </head>
 <body>
@@ -453,9 +478,17 @@
         <li><a href="#">Faculty</a></li>
         <li><a href="#">Results</a></li>
         <li><a href="#">Contact</a></li>
+                <li>
+            <form>
+                <div class="search-container">
+                    <input class='curved-search' name='search' type="search" placeholder="Search here..." />
+                    <button type='submit' class="button">Search</button>
+                </div>
+            </form>
+        </li>
     </ul>
 
-    <div class="nav-right">
+    <!-- <div class="nav-right">
         <div class="search-wrapper">
             <div class="search-bar" id="searchBar">
                 <input type="text" placeholder="Search courses..." id="searchInput" />
@@ -466,7 +499,7 @@
                     <circle cx="11" cy="11" r="8"/>
                     <path d="m21 21-4.35-4.35"/>
                 </svg>
-            </button>
+            </button> -->
         </div>
         <button class="nav-btn">Enroll Now</button>
     </div>
@@ -480,7 +513,7 @@
 </div>
 
 <!-- SEARCH BOX -->
-<div class="search-section">
+<!-- <div class="search-section">
     <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
              stroke="#3f5efb" stroke-width="2">
@@ -490,7 +523,7 @@
         <input type="text" placeholder="Search courses, subjects, topics..." value="English" id="mainSearch" />
     </div>
     <button class="search-box-btn">Search</button>
-</div>
+</div>  -->
 
 <!-- RESULTS -->
 <div class="results-section">
@@ -500,8 +533,6 @@
     </div>
 
     <div class="results-list">
-
-
 
     {% for course in course_data %}
         <!-- Result 1 -->
@@ -527,78 +558,9 @@
                 <button class="enroll-btn">Enroll Now</button>
             </div>
         </div> 
-
-        <!-- Result 2 -->
-        <!-- <div class="result-card">
-            <div class="result-icon icon-teal">🏅</div>
-            <div class="result-info">
-                <h3>Spoken English & GK</h3>
-                <p>Build confidence in communication, vocabulary, and general knowledge — essential for any competitive exam or interview.</p>
-                <div class="result-tags">
-                    <span class="tag">All Classes</span>
-                    <span class="tag">Competitive</span>
-                    <span class="tag">Language</span>
-                </div>
-            </div>
-            <div class="result-right">
-                <span class="badge badge-trending">Trending</span>
-                <div class="result-stats">
-                    <span>👥 <b>90</b></span>
-                    <span>⏱ <b>3 Months</b></span>
-                    <span>⭐ <b>4.9</b></span>
-                </div>
-                <div class="price">₹1,500 <span>₹2,500</span></div>
-                <button class="enroll-btn">Enroll Now</button>
-            </div>
-        </div> -->
-
-        <!-- Result 3 -->
-        <!-- <div class="result-card">
-            <div class="result-icon icon-blue">📐</div>
-            <div class="result-info">
-                <h3>Accountancy</h3>
-                <p>From basic journal entries to financial statements — master every concept through structured practice and real-world examples.</p>
-                <div class="result-tags">
-                    <span class="tag">Class 8–12</span>
-                    <span class="tag">Board Exam</span>
-                </div>
-            </div>
-            <div class="result-right">
-                <span class="badge badge-popular">Popular</span>
-                <div class="result-stats">
-                    <span>👥 <b>120</b></span>
-                    <span>⏱ <b>6 Months</b></span>
-                    <span>⭐ <b>4.9</b></span>
-                </div>
-                <div class="price">₹3,500 <span>₹5,000</span></div>
-                <button class="enroll-btn">Enroll Now</button>
-            </div>
-        </div> -->
-
-        <!-- Result 4 -->
-        <!-- <div class="result-card">
-            <div class="result-icon icon-green">💻</div>
-            <div class="result-info">
-                <h3>Economics</h3>
-                <p>From supply and demand to macroeconomic policies — master every concept through structured analysis and real-world applications.</p>
-                <div class="result-tags">
-                    <span class="tag">Class 11–12</span>
-                    <span class="tag">Practical</span>
-                </div>
-            </div>
-            <div class="result-right">
-                <span class="badge badge-new">New</span>
-                <div class="result-stats">
-                    <span>👥 <b>85</b></span>
-                    <span>⏱ <b>5 Months</b></span>
-                    <span>⭐ <b>4.7</b></span>
-                </div>
-                <div class="price">₹4,500 <span>₹7,000</span></div>
-                <button class="enroll-btn">Enroll Now</button>
-            </div>
-        </div> -->
     {% endfor %}
     </div>
+
 
     <!-- NO RESULTS (shown when nothing found) -->
     <div class="no-results" id="noResults">

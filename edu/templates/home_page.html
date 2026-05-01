@@ -443,7 +443,7 @@
 
 /* Optional: Hover effect */
         .button:hover {
-        background-color: #2748e8;;
+        background-color: #2748e8;
         }
 
 
@@ -461,15 +461,14 @@
         <li><a href="#">Results</a></li>
         <li><a href="#">Contact</a></li>
         <li>
+            <form action="{% url 'search_results' %}">
             <div class="search-container">
-        <input class='curved-search' name='search' type="text" placeholder="Search here..." />
-        <button class="button">Search</button>
+                <input class='curved-search' name='search' type="text" placeholder="Search here..." />
+                <button class="button" type="submit">Search</button>
             </div>
+            </form>
         </li>   
-    </ul> 
-    </div>
-        </li>
-    
+    </ul>
 
     <button class="nav-btn">Enroll Now</button>
 </nav>
