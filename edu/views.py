@@ -79,11 +79,15 @@ def courses(request):
     return render(request, 'courses.html')
 
 def search_results(request):
-    
+    queryset =  Subjects_details.objects.all()
     if request.GET.get('search'):
         search_query = request.GET.get('search')
-        results = Subjects_details.objects.filter(course_name__icontains=search_query)
-        print(results)
+        # if search_query == 'accounts' or search_query == 'acc' or search_query == 'accountancy' or search_query == 'Accountancy':
+        #     proper_search_name = 'Accountancy'
+
+        queryset = queryset.filter(course_name__icontains = search_query)
+        print(queryset)
     # course_data =  Subjects_details.objects.all().values()
-    context = {'course_data' : results}
+    context = {'search_name' : search_query, 'course_data' : queryset}
+
     return render(request, 'search_results.html', context)

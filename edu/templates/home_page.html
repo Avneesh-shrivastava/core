@@ -461,7 +461,7 @@
         <li><a href="#">Results</a></li>
         <li><a href="#">Contact</a></li>
         <li>
-            <form action="{% url 'search_results' %}">
+            <form action="{% url 'search_results' %}" method="GET">
             <div class="search-container">
                 <input class='curved-search' name='search' type="text" placeholder="Search here..." />
                 <button class="button" type="submit">Search</button>
