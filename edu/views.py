@@ -79,15 +79,24 @@ def courses(request):
     return render(request, 'courses.html')
 
 def search_results(request):
+    
     queryset =  Subjects_details.objects.all()
+    search_query = ''
     if request.GET.get('search'):
         search_query = request.GET.get('search')
         # if search_query == 'accounts' or search_query == 'acc' or search_query == 'accountancy' or search_query == 'Accountancy':
         #     proper_search_name = 'Accountancy'
 
-        queryset = queryset.filter(course_name__icontains = search_query)
+        from django.db.models import Q
+        queryset = queryset.filter(Q(course_name__icontains = search_query))
         print(queryset)
-    # course_data =  Subjects_details.objects.all().values()
+        if not queryset:
+            queryset =  Subjects_details.objects.all()
+            search_query = 'Not Found'
+
+    # course_data =  Subjects_details.objects.all().values('course_name')
+    # print(course_data)
+
     context = {'search_name' : search_query, 'course_data' : queryset}
 
     return render(request, 'search_results.html', context)
