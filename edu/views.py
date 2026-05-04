@@ -82,6 +82,8 @@ def search_results(request):
     
     queryset =  Subjects_details.objects.all()
     search_query = ''
+    message = ''
+
     if request.GET.get('search'):
         search_query = request.GET.get('search')
         # if search_query == 'accounts' or search_query == 'acc' or search_query == 'accountancy' or search_query == 'Accountancy':
@@ -90,13 +92,21 @@ def search_results(request):
         from django.db.models import Q
         queryset = queryset.filter(Q(course_name__icontains = search_query))
         print(queryset)
-        if not queryset:
-            queryset =  Subjects_details.objects.all()
-            search_query = 'Not Found'
 
+        results_no = len(queryset)
+        print(results_no)
     # course_data =  Subjects_details.objects.all().values('course_name')
     # print(course_data)
 
-    context = {'search_name' : search_query, 'course_data' : queryset}
+    message = 'Showing results for '
+    if not queryset:
+        queryset =  Subjects_details.objects.all()
+        message = 'Result not found for '
+    if not search_query :
+        queryset =  Subjects_details.objects.all()
+        message = 'Result not found'
+
+    print(search_query)
+    context = {'search_name' : search_query, 'course_data' : queryset, 'message' : message, 'results_no' : results_no}
 
     return render(request, 'search_results.html', context)

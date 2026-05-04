@@ -508,8 +508,8 @@
 <!-- PAGE HERO -->
 <div class="page-hero">
     <p><a href="/courses">← Back to Courses</a></p>
-    <h1>Search Results for <span>{{search_name}}</span></h1>
-    <small>4 results found</small>
+    <h1>{{message}}<span>{{search_name}}</span></h1>
+    <small>{{results_no}} results found</small>
 </div>
 
 <!-- SEARCH BOX -->
@@ -528,8 +528,11 @@
 <!-- RESULTS -->
 <div class="results-section">
     <div class="results-meta">
-        <h2>Showing results for <span>{{search_name}}</span></h2>
+
+        <h2>{{message}} <span>{{search_name}}</span></h2>
         <small>4 results found</small>
+        
+
     </div>
 
     <div class="results-list">
