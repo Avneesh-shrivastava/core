@@ -417,13 +417,31 @@
 <!-- FILTER BAR -->
 <div class="filter-bar">
     <span>Filter by:</span>
+    <form action="{% url 'courses' %}" method="GET">
     <button class="filter-btn active">All</button>
-    <button class="filter-btn">School</button>
-    <button class="filter-btn">Entrance Exam</button>
-    <button class="filter-btn">Science</button>
-    <button class="filter-btn">Maths</button>
-    <button class="filter-btn">Language</button>
-    <button class="filter-btn">Competitive</button>
+
+    <input type="hidden" name="Accountancy" value="Accountancy">
+    <button class="filter-btn" type="submit">Accountancy</button>
+    </form>
+
+    <form action="{% url 'courses' %}" method="GET">
+    <input type="hidden" name="Business Studies" value="Business Studies">
+    <button class="filter-btn" type="submit">Business Studies</button>
+    </form>
+
+    <form action="{% url 'courses' %}" method="GET">
+    <input type="hidden" name="Economics" value="Economics">
+    <button class="filter-btn">Economics</button>
+    </form>
+
+    <form action="{% url 'courses' %}" method="GET">
+    <input type="hidden" name="English" value="English">
+    <button class="filter-btn">English</button>
+    </form>
+
+    <!-- <button class="filter-btn">Language</button>
+    <button class="filter-btn">Competitive</button> -->
+    
 </div>
 
 <!-- COURSES -->
