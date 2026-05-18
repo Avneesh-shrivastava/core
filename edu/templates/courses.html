@@ -418,7 +418,9 @@
 <div class="filter-bar">
     <span>Filter by:</span>
     <form action="{% url 'courses' %}" method="GET">
-    <button class="filter-btn active">All</button>
+    
+    <input type="hidden" name="" value="">
+    <button class="filter-btn" type="submit">All</button>
 
     <input type="hidden" name="Accountancy" value="Accountancy">
     <button class="filter-btn" type="submit">Accountancy</button>
@@ -453,6 +455,7 @@
 
     <div class="courses-grid">
 
+    {% for subject in subjects %}
         <!-- Card 1 -->
         <div class="course-card">
             <div class="card-banner banner-blue"></div>
@@ -461,26 +464,27 @@
                     <div class="card-icon icon-blue">📐</div>
                     <span class="badge badge-popular">Popular</span>
                 </div>
-                <h3>Accountancy</h3>
-                <p>From basic journal entries to financial statements — master every concept through structured practice and real-world examples.</p>
+                <h3>{{subject.course_name}}</h3>
+                <p>{{subject.course_desc}}</p>
                 <div class="card-tags">
                     <span class="tag">Class 8–12</span>
                     <span class="tag">Board Exam</span>
                 </div>
                 <div class="card-stats">
-                    <span>👥 <b>120</b> Students</span>
-                    <span>⏱ <b>6</b> Months</span>
-                    <span>⭐ <b>4.9</b></span>
+                    <span>👥 <b>120</b> {{subject.no_of_students}}</span>
+                    <span>⏱ <b>6</b> {{subject.months}}</span>
+                    <span>⭐ <b>{{subject.Rating}}</b></span>
                 </div>
             </div>
             <div class="card-footer">
-                <div class="price">₹3,500 <span>₹5,000</span></div>
+                <div class="price">{{subject.price}} <span>₹5,000</span></div>
                 <button class="enroll-btn">Enroll Now</button>
             </div>
         </div>
+    {% endfor %}    
 
         <!-- Card 2 -->
-        <div class="course-card">
+        <!-- <div class="course-card">
             <div class="card-banner banner-purple"></div>
             <div class="card-body">
                 <div class="card-top-row">
@@ -503,10 +507,10 @@
                 <div class="price">₹4,000 <span>₹6,000</span></div>
                 <button class="enroll-btn">Enroll Now</button>
             </div>
-        </div>
+        </div> -->
 
         <!-- Card 3 -->
-        <div class="course-card">
+        <!-- <div class="course-card">
             <div class="card-banner banner-green"></div>
             <div class="card-body">
                 <div class="card-top-row">
@@ -529,10 +533,10 @@
                 <div class="price">₹4,500 <span>₹7,000</span></div>
                 <button class="enroll-btn">Enroll Now</button>
             </div>
-        </div>
+        </div> -->
 
         <!-- Card 4 -->
-        <div class="course-card">
+        <!-- <div class="course-card">
             <div class="card-banner banner-orange"></div>
             <div class="card-body">
                 <div class="card-top-row">
@@ -555,7 +559,7 @@
                 <div class="price">₹2,500 <span>₹4,000</span></div>
                 <button class="enroll-btn">Enroll Now</button>
             </div>
-        </div>
+        </div> -->
 
        <!-- Card 5 -->
 <!--        <div class="course-card">

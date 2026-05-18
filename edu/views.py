@@ -76,19 +76,29 @@ def home_page(request):
     return render(request, 'home_page.html')
 
 def courses(request):
+    sub = ''
+
     if request.GET.get('Accountancy'):
-        print(request.GET.get('Accountancy'))
+        sub = request.GET.get('Accountancy')
 
     if request.GET.get('Business Studies'):
-        print(request.GET.get('Business Studies'))
+        sub = request.GET.get('Business Studies')
 
     if request.GET.get('Economics'):
-        print(request.GET.get('Economics'))
+        sub = request.GET.get('Economics')
 
     if request.GET.get('English'):
-        print(request.GET.get('English'))
+        sub = request.GET.get('English')
+    
+    if request.GET.get(''):
+        sub = ''
 
-    return render(request, 'courses.html')
+    subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
+
+    context = {'subjects': subjects }
+    
+
+    return render(request, 'courses.html', context)
 
 def search_results(request):
     queryset =  Subjects_details.objects.all()
