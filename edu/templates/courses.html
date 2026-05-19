@@ -388,7 +388,7 @@
 
 <!-- NAVBAR -->
 <nav>
-    <div class="logo">CLARITY<span>EDGE</span></div>
+    <div class="logo">CLARITY<span> EDGE</span></div>
     <ul class="nav-links">
         <li><a href="/home-page">Home</a></li>
         <li><a href="/course" class="active">Courses</a></li>
@@ -417,11 +417,13 @@
 <!-- FILTER BAR -->
 <div class="filter-bar">
     <span>Filter by:</span>
-    <form action="{% url 'courses' %}" method="GET">
-    
-    <input type="hidden" name="" value="">
-    <button class="filter-btn" type="submit">All</button>
 
+    <form action="{% url 'courses' %}" method="GET">
+    <input type="hidden" name="All" value="All">
+    <button class="filter-btn" type="submit">All</button>
+    </form>
+
+    <form action="{% url 'courses' %}" method="GET">
     <input type="hidden" name="Accountancy" value="Accountancy">
     <button class="filter-btn" type="submit">Accountancy</button>
     </form>
@@ -478,7 +480,7 @@
             </div>
             <div class="card-footer">
                 <div class="price">{{subject.price}} <span>₹5,000</span></div>
-                <button class="enroll-btn">Enroll Now</button>
+                <a href='/enrollment'><button class="enroll-btn">Enroll Now</button></a>
             </div>
         </div>
     {% endfor %}    

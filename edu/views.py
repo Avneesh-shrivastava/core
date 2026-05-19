@@ -89,11 +89,8 @@ def courses(request):
 
     if request.GET.get('English'):
         sub = request.GET.get('English')
-    
-    if sub == '' :
-        subjects = Subjects_details.objects.all() 
-    else:
-        subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
+
+    subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
 
     context = {'subjects': subjects }
     
