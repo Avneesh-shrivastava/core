@@ -40,7 +40,8 @@ urlpatterns = [
     path('delete-data/<id>/', delete_data, name='delete_data'),
     path('home-page/', home_page, name='home_page'),
     path('course/', courses, name='courses'),
-    path('search-results/', search_results , name='search_results')
+    path('search-results/', search_results , name='search_results'),
+    path('enrollment/', enrollment_form, name='enrollment_form')
 ]
 
 if settings.DEBUG:

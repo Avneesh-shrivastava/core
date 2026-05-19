@@ -90,14 +90,13 @@ def courses(request):
     if request.GET.get('English'):
         sub = request.GET.get('English')
     
-    if request.GET.get(''):
-        sub = ''
-
-    subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
+    if sub == '' :
+        subjects = Subjects_details.objects.all() 
+    else:
+        subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
 
     context = {'subjects': subjects }
     
-
     return render(request, 'courses.html', context)
 
 def search_results(request):
@@ -131,3 +130,6 @@ def search_results(request):
     context = {'search_name' : search_query, 'course_data' : queryset, 'message' : message, 'results_no' : results_no}
 
     return render(request, 'search_results.html', context)
+
+def enrollment_form(request):
+    return render(request, 'enrollment.html')
