@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Create your views here.
 def student_login(request):
@@ -19,18 +20,18 @@ def student_signup(request):
         st_password = data.get('password')
         st_confirm_pass = data.get('confirm_password')
 
-        if st_password and st_confirm_pass:
-            if st_password == st_confirm_pass:
-                student_signup_data.objects.create(
-                    st_name = st_name,
-                    st_email = st_email,
-                    st_username = st_username,
-                    st_password = st_password,
-                    st_confirm_pass = st_confirm_pass
-                    )
 
-            view_data = student_signup_data.objects.all().values()
-            print(view_data)
+        user = User.objects.create(
+            first_name = st_name,
+            email = st_email,
+            username = st_username,
+            )
+        
+        user.set_password(st_password)
+        user.save()
+
+        view_data = student_signup_data.objects.all().values()
+        print(view_data)
 
         if st_password != st_confirm_pass:
             messages.error(request, "Password did not matched")
@@ -130,3 +131,4 @@ def search_results(request):
 
 def enrollment_form(request):
     return render(request, 'enrollment.html')
+

@@ -1,7 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
 
 # Create your models here.
 class student_signup_data(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     st_name = models.CharField()
     st_email = models.EmailField()
     st_username = models.CharField()
