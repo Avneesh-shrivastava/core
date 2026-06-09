@@ -22,15 +22,16 @@
         }
 
         .table-wrapper {
+            overflow-x : auto;
             width: 100%;
             max-width: 1500px;
             border-radius: 16px;
-            overflow: hidden;
+            /* overflow: hidden; */
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
         table {
-            width: 100%;
+            min-width: 1000px;
             border-collapse: collapse;
             font-size: 14px;
         }
@@ -101,6 +102,25 @@
         .btn-delete:hover {
             background: #fc466b40;
         }
+
+
+
+
+
+
+
+        /* .scroll-container {
+            width: 100%;            
+            max-width: 500px;       
+            border: 2px solid #333;
+            padding: 15px;
+            
+           
+            overflow-x: auto;       
+            overflow-y: hidden;     
+            white-space: nowrap;    Keeps text on a single line without wrapping
+        } */
+
     </style>
 </head>
 <body>
@@ -114,26 +134,27 @@
                 <th>email</th>
                 <th>username</th>
                 <th>password</th>
-                <th>confirmation_password</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+        
             {% for students in students_data %}
+            
             <tr>
                 <td>{{forloop.counter}}</td>
-                <td>{{students.st_name}}</td>
-                <td>{{students.st_email}}</td>
-                <td>{{students.st_username}}</td>
-                <td>{{students.st_password}}</td>
-                <td>{{students.st_confirm_pass}}</td>
+                <td>{{students.first_name}}</td>
+                <td>{{students.email}}</td>
+                <td>{{students.username}}</td>
+                <td>{{students.password}}</td>
                 <td>
                    <!-- <button class="btn btn-edit">Update</button> -->
                     <a href="/delete-data/{{students.id}}/"><button class="btn btn-delete">Delete</button></a>
                 </td>
             </tr>
+             
             {% endfor %}
-           
+
         </tbody>
     </table>
 </div>
