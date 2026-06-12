@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 # Create your views here.
 def student_login(request):
@@ -55,17 +56,20 @@ def delete_data(request, id):
 
 def student_login(request):
     if request.method == 'POST':
-        global st_username
-        global st_password
         data = request.POST
-        log_username = data.get('username')
-        log_password = data.get('password')
+        username = data.get('username')
+        password = data.get('password')
         
-        username_list = student_signup_data.objects.values('st_username')
-        password_list = student_signup_data.objects.values('st_password')
+        if not User.objects.filter(username = username).exists() :
+            print("not logged in")
 
-        if {'st_username': f'{log_username}'} in username_list and {'st_password': f'{log_password}'} in password_list :
-            return render(request, 'home_page.html')       
+        user = authenticate(request, username = username, password = password) 
+        #this authincate code will check from the database by running (User.objects.get(username=username) and will return True if exists and false if not) 
+
+        if user:
+            return redirect('/home-page/')
+        
+        return redirect('/student-login/')        
         
     return render(request, 'login.html')
 
