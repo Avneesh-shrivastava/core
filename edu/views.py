@@ -61,10 +61,15 @@ def student_login(request):
         password = data.get('password')
         
         if not User.objects.filter(username = username).exists() :
-            print("not logged in")
+            messages.info(request, "Username does not exists")
+            return redirect('/student-login/')
 
         user = authenticate(request, username = username, password = password) 
         #this authincate code will check from the database by running (User.objects.get(username=username) and will return True if exists and false if not) 
+
+        if user is None:
+            messages.info(request, "            Invalid password")
+            return redirect('/student-login/')
 
         if user:
             return redirect('/home-page/')

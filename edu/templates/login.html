@@ -150,6 +150,13 @@
                 Don't have an account? <a href="/student-signup">Sign up</a>
             </p>
 
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:red; padding:20px 0 0 65px;">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+
+
         </div>
     </form>
 </div>
