@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def student_login(request):
@@ -68,10 +68,10 @@ def student_login(request):
         #this authincate code will check from the database by running (User.objects.get(username=username) and will return True if exists and false if not) 
 
         if user is None:
-            messages.info(request, "            Invalid password")
+            messages.info(request, "Invalid password")
             return redirect('/student-login/')
-
-        if user:
+        else:
+            login(request, user)
             return redirect('/home-page/')
         
         return redirect('/student-login/')        
@@ -137,3 +137,5 @@ def search_results(request):
 def enrollment_form(request):
     return render(request, 'enrollment.html')
 
+def log_out(request):
+    return redirect('/student-login/')
