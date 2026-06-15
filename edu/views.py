@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
-def student_login(request):
-    return render(request, 'login.html')
+# def student_login(request):
+#     return render(request, 'login.html')
 
 def student_signup(request):
     if request.method == 'POST':
@@ -78,9 +80,11 @@ def student_login(request):
         
     return render(request, 'login.html')
 
+@login_required(login_url='/student-login/')
 def home_page(request):
     return render(request, 'home_page.html')
 
+@login_required(login_url='/student-login/')
 def courses(request):
     sub = ''
 
@@ -102,6 +106,7 @@ def courses(request):
     
     return render(request, 'courses.html', context)
 
+@login_required(login_url='/student-login/')
 def search_results(request):
     queryset =  Subjects_details.objects.all()
     search_query = ''
@@ -134,8 +139,10 @@ def search_results(request):
 
     return render(request, 'search_results.html', context)
 
+@login_required(login_url='/student-login/')
 def enrollment_form(request):
     return render(request, 'enrollment.html')
 
 def log_out(request):
+    logout(request)
     return redirect('/student-login/')
