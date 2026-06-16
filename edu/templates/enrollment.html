@@ -421,7 +421,7 @@
         <h2>Student Enrollment Details</h2>
         <p>All fields marked with <span style="color:#fc466b;">*</span> are required.</p>
 
-        <form method="POST" action="#">
+        <form method="POST" action="{% url 'enrollment_form' %}">
             {% csrf_token %}
 
             <!-- PERSONAL INFO -->

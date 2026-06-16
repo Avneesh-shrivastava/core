@@ -157,6 +157,21 @@ def enrollment_form(request):
         address = data.get('address')
         message = data.get('message')
 
+        enrollment_data.objects.create(
+            first_name = first_name,
+            last_name = last_name,
+            email = email,
+            phone = phone,
+            dob = dob,
+            gender = gender,
+            current_class = current_class,
+            school = school,
+            course = course,
+            parent_name = parent_name,
+            parent_phone = parent_phone,
+            address = address,
+            message = message
+        )
         print(first_name)
         print(email)
 
