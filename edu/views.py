@@ -141,6 +141,25 @@ def search_results(request):
 
 @login_required(login_url='/student-login/')
 def enrollment_form(request):
+    if request.method == 'POST':
+        data = request.POST
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+        email = data.get('email')
+        phone = data.get('phone')
+        dob = data.get('dob')
+        gender = data.get('gender')
+        current_class = data.get('current_class')
+        school = data.get('school')
+        course = data.get('course')
+        parent_name = data.get('parent_name')
+        parent_phone = data.get('parent_phone')
+        address = data.get('address')
+        message = data.get('message')
+
+        print(first_name)
+        print(email)
+
     return render(request, 'enrollment.html')
 
 def log_out(request):

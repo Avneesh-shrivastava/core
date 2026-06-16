@@ -19,3 +19,18 @@ class Subjects_details(models.Model):
     months = models.IntegerField()
     Rating = models.IntegerField()
     price = models.CharField()
+
+class enrollment_data(models.Model):
+    first_name = models.CharField()
+    last_name = models.CharField()
+    email = models.EmailField()
+    phone = models.CharField()
+    dob = models.CharField()
+    gender = models.CharField()
+    current_class = models.IntegerField()
+    school = models.CharField()
+    course = models.CharField()
+    parent_name = models.CharField()
+    parent_phone = models.CharField()
+    address = models.CharField()
+    message = models.CharField()
