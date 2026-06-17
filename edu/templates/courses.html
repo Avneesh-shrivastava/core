@@ -487,7 +487,12 @@
             </div>
             <div class="card-footer">
                 <div class="price">{{subject.price}} <span>₹5,000</span></div>
+            
+            {% if "Accountancy" in {{subject.course_name}}  %}
+                <a href='/enrollment'><button class="enroll-btn">View course</button></a>
+            {% else %}
                 <a href='/enrollment'><button class="enroll-btn">Enroll Now</button></a>
+            {% endif %}
             </div>
         </div>
     {% endfor %}    
