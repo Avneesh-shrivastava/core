@@ -141,39 +141,45 @@ def search_results(request):
 
 @login_required(login_url='/student-login/')
 def enrollment_form(request):
-    if request.method == 'POST':
-        data = request.POST
-        first_name = data.get('first_name')
-        last_name = data.get('last_name')
-        email = data.get('email')
-        phone = data.get('phone')
-        dob = data.get('dob')
-        gender = data.get('gender')
-        current_class = data.get('current_class')
-        school = data.get('school')
-        course = data.get('course')
-        parent_name = data.get('parent_name')
-        parent_phone = data.get('parent_phone')
-        address = data.get('address')
-        message = data.get('message')
+    try:
+        if request.method == 'POST':
+            data = request.POST
+            first_name = data.get('first_name')
+            last_name = data.get('last_name')
+            email = data.get('email')
+            phone = data.get('phone')
+            dob = data.get('dob')
+            gender = data.get('gender')
+            current_class = data.get('current_class')
+            school = data.get('school')
+            course = data.get('course')
+            parent_name = data.get('parent_name')
+            parent_phone = data.get('parent_phone')
+            address = data.get('address')
+            message = data.get('message')
 
-        enrollment_data.objects.create(
-            first_name = first_name,
-            last_name = last_name,
-            email = email,
-            phone = phone,
-            dob = dob,
-            gender = gender,
-            current_class = current_class,
-            school = school,
-            course = course,
-            parent_name = parent_name,
-            parent_phone = parent_phone,
-            address = address,
-            message = message
-        )
-        print(first_name)
-        print(email)
+            enrollment_data.objects.create(
+                first_name = first_name,
+                last_name = last_name,
+                email = email,
+                phone = phone,
+                dob = dob,
+                gender = gender,
+                current_class = current_class,
+                school = school,
+                course = course,
+                parent_name = parent_name,
+                parent_phone = parent_phone,
+                address = address,
+                message = message
+            )
+            
+            print(enrollment_data.objects.values())
+            
+            return redirect('/home-page/')
+    except ValueError:
+        messages.info(request, "Please Fill the form first")
+        return redirect('/enrollment/')
 
     return render(request, 'enrollment.html')
 

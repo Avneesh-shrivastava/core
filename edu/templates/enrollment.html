@@ -430,22 +430,22 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>First Name <span>*</span></label>
-                    <input type="text" name="first_name" placeholder="Enter first name">
+                    <input type="text" name="first_name" placeholder="Enter first name" required>
                 </div>
                 <div class="form-group">
                     <label>Last Name <span>*</span></label>
-                    <input type="text" name="last_name" placeholder="Enter last name">
+                    <input type="text" name="last_name" placeholder="Enter last name" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label>Email Address <span>*</span></label>
-                    <input type="email" name="email" placeholder="Enter email address">
+                    <input type="email" name="email" placeholder="Enter email address" required>
                 </div>
                 <div class="form-group">
                     <label>Phone Number <span>*</span></label>
-                    <input type="tel" name="phone" placeholder="Enter phone number">
+                    <input type="tel" name="phone" placeholder="Enter phone number" required>
                 </div>
             </div>
 
@@ -458,13 +458,13 @@
                     <label>Gender <span>*</span></label>
                     <div class="radio-group">
                         <label class="radio-option">
-                            <input type="radio" name="gender" value="male"> Male
+                            <input type="radio" name="gender" value="male" required> Male
                         </label>
                         <label class="radio-option">
-                            <input type="radio" name="gender" value="female"> Female
+                            <input type="radio" name="gender" value="female" required> Female
                         </label>
                         <label class="radio-option">
-                            <input type="radio" name="gender" value="other"> Other
+                            <input type="radio" name="gender" value="other" required> Other
                         </label>
                     </div>
                 </div>
@@ -478,8 +478,8 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Current Class <span>*</span></label>
-                    <select name="current_class">
-                        <option>Select class</option>
+                    <select name="current_class" required>
+                        <option disabled selected hidden>Select class</option>
                         <option value="8">Class 8</option>
                         <option value="9">Class 9</option>
                         <option value="10">Class 10</option>
@@ -495,8 +495,8 @@
 
             <div class="form-group">
                 <label>Course You Want to Enroll In <span>*</span></label>
-                <select name="course">
-                    <option>Select a course</option>
+                <select name="course" required>
+                    <option disabled selected hidden>Select a course</option>
                     <option value="Accountancy">Accountancy</option>
                     <option value="Business Studies">Business Studies</option>
                     <option value="Economics">Economics</option>
@@ -527,11 +527,11 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Parent Name <span>*</span></label>
-                    <input type="text" name="parent_name" placeholder="Enter parent name">
+                    <input type="text" name="parent_name" placeholder="Enter parent name" required>
                 </div>
                 <div class="form-group">
                     <label>Parent Phone <span>*</span></label>
-                    <input type="tel" name="parent_phone" placeholder="Enter parent phone">
+                    <input type="tel" name="parent_phone" placeholder="Enter parent phone" required>
                 </div>
             </div>
 
@@ -553,6 +553,12 @@
             <button type="submit" class="submit-btn">Submit Enrollment Request</button>
 
         </form>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:red; padding:20px 0 0 65px;">{{message}}</p>
+                 {% endfor %}
+            {% endif %}
     </div>
 
     <!-- SIDE INFO -->
