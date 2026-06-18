@@ -295,6 +295,7 @@
         }
 
         .enroll-btn {
+            
             background: linear-gradient(135deg, #3f5efb, #fc466b);
             color: #fff;
             border: none;
@@ -305,6 +306,25 @@
             cursor: pointer;
             transition: opacity 0.2s;
         }
+
+/* ----------------------------------------- this code contains the style for the view_course button ------------------------------------------------ */
+
+        .enroll-btn_view_course {
+            
+            background: linear-gradient(135deg, #f7f312, #f34418);
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+/* --------------------------------------------------------------------------------------------------------------------------------*/
+
+
 
         .enroll-btn:hover { opacity: 0.9; }
 
@@ -488,11 +508,13 @@
             <div class="card-footer">
                 <div class="price">{{subject.price}} <span>₹5,000</span></div>
             
-            {% if "Accountancy" in {{subject.course_name}}  %}
-                <a href='/enrollment'><button class="enroll-btn">View course</button></a>
-            {% else %}
-                <a href='/enrollment'><button class="enroll-btn">Enroll Now</button></a>
-            {% endif %}
+            
+                
+                {% if subject.course_name in enrolled_subject %}
+                    <a href='/enrollment'><button class="enroll-btn_view_course">View course</button></a> 
+                {% else %}
+                    <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
+                {% endif %}
             </div>
         </div>
     {% endfor %}    

@@ -102,12 +102,10 @@ def courses(request):
 
     subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
 
-    enroll_subject = enrollment_data.objects.values_list('course', flat=True)
-    if "Accountancy" in enroll_subject:
-        enroll_status = "Accountancy"
-
+    enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
     
-    context = {'subjects': subjects, "enrolled_subject" : enroll_status }
+
+    context = {'subjects': subjects, "enrolled_subject" : enrolled_subject }
 
     
     return render(request, 'courses.html', context)
