@@ -446,6 +446,23 @@
         background-color: #2748e8;
         }
 
+/* ----------------------------------------- this code contains the style for the view_course button ------------------------------------------------ */
+
+        .enroll-btn_view_course {
+            
+            background: linear-gradient(135deg, #f7f312, #f34418);
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+/* --------------------------------------------------------------------------------------------------------------------------------*/
+
 
     </style>
 </head>
@@ -486,8 +503,8 @@
     <h1>Unlock Your <span>Potential</span><br>with Expert Coaching</h1>
     <p>Join thousands of students achieving their academic goals with our proven teaching methods and experienced faculty.</p>
     <div class="hero-btns">
-        <button class="btn-primary">Get Started</button>
-        <button class="btn-secondary">View Courses</button>
+        <!-- <a href=""><button class="btn-primary">Get Started</button></a> -->
+       <a href="/course"> <button class="btn-primary">View Courses</button> </a>
     </div>
 </section>
 
@@ -496,7 +513,7 @@
 <!-- STATS -->
 <div class="stats">
     <div class="stat-item">
-        <h3>5000+</h3>
+        <h3>{{no_of_enrolled}}</h3>
         <p>Students Enrolled</p>
     </div>
     <div class="stat-item">
@@ -513,6 +530,7 @@
     </div>
 </div>
 
+
 <!-- COURSES -->
 <section class="section">
     <div class="section-title">
@@ -528,7 +546,13 @@
             </div>
             <div class="card-footer">
                 <span>120 Students</span>
-                <a href="/enrollment"><button class="card-btn">Enroll</button></a>
+
+            {% if subjects in enrolled_subjects %}
+                <a href="/curriculum"><button class="enroll-btn_view_course">View course</button></a>
+            {% else %}
+                <a href="/enrollment"><button class="card-btn">Coming Soon</button></a>
+            {% endif %}
+
             </div>
         </div>
         <div class="course-card">
@@ -539,7 +563,14 @@
             </div>
             <div class="card-footer">
                 <span>98 Students</span>
-                <a href="/enrollment"><button class="card-btn">Enroll</button></a>
+
+            {% if subjects in enrolled_subjects %}
+                <a href="/curriculum"><button class="enroll-btn_view_course">View course</button></a>
+            {% else %}
+                <a href="/enrollment"><button class="card-btn">Coming soon</button></a>
+            {% endif %}
+
+                
             </div>
     <!--    </div>
         <div class="course-card">

@@ -82,7 +82,14 @@ def student_login(request):
 
 @login_required(login_url='/student-login/')
 def home_page(request):
-    return render(request, 'home_page.html')
+    no_of_enrolled = enrollment_data.objects.all()
+    no_of_enrolled = len(no_of_enrolled)
+
+    subjects = Subjects_details.objects.values_list('course_name', flat=True)
+    enrolled_subjects = enrollment_data.objects.values_list('course', flat=True)
+
+    context = {"no_of_enrolled" : no_of_enrolled, "subjects" : subjects, "enrolled_subjects": enrolled_subjects}
+    return render(request, 'home_page.html', context)
 
 @login_required(login_url='/student-login/')
 def courses(request):
@@ -190,3 +197,6 @@ def enrollment_form(request):
 def log_out(request):
     logout(request)
     return redirect('/student-login/')
+
+def curriculum(request):
+    return render(request, 'curriculum.html')
