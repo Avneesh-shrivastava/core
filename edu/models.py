@@ -34,3 +34,29 @@ class enrollment_data(models.Model):
     parent_phone = models.CharField()
     address = models.CharField()
     message = models.CharField()
+
+class Curriculum_data(models.Model):
+    subject_name = models.CharField()
+    subject_desc =  models.CharField()
+    skill_1 =  models.CharField()
+    skill_2 =  models.CharField()
+    skill_3 =  models.CharField()
+    skill_4 =  models.CharField()
+    skill_5 =  models.CharField()
+    skill_6 =  models.CharField()
+
+    skills_desc_1 =  models.CharField()
+    skills_desc_2 =  models.CharField()
+    skills_desc_3 =  models.CharField()
+    skills_desc_4 =  models.CharField()
+    skills_desc_5 =  models.CharField()
+    skills_desc_6 =  models.CharField()
+
+    curriculum_module_heading_1 =  models.CharField()
+    curriculum_module_heading_2 =  models.CharField()
+    curriculum_module_heading_3 =  models.CharField()
+    curriculum_module_heading_4 =  models.CharField()
+    curriculum_module_heading_5 =  models.CharField()
+    curriculum_module_heading_6 =  models.CharField()
+
+    curriculum_topic_names =  models.CharField()
