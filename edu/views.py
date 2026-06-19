@@ -199,4 +199,9 @@ def log_out(request):
     return redirect('/student-login/')
 
 def curriculum(request):
-    return render(request, 'curriculum.html')
+    students_enrolled = enrollment_data.objects.all()
+    students_enrolled = len(students_enrolled)
+
+    context = {"students_enrolled" : students_enrolled}
+
+    return render(request, 'curriculum.html', context)
