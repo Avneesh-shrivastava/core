@@ -38,25 +38,11 @@ class enrollment_data(models.Model):
 class Curriculum_data(models.Model):
     subject_name = models.CharField()
     subject_desc =  models.CharField()
-    skill_1 =  models.CharField()
-    skill_2 =  models.CharField()
-    skill_3 =  models.CharField()
-    skill_4 =  models.CharField()
-    skill_5 =  models.CharField()
-    skill_6 =  models.CharField()
 
-    skills_desc_1 =  models.CharField()
-    skills_desc_2 =  models.CharField()
-    skills_desc_3 =  models.CharField()
-    skills_desc_4 =  models.CharField()
-    skills_desc_5 =  models.CharField()
-    skills_desc_6 =  models.CharField()
+class curriculum_topic_name(models.Model):
+    curriculum_topic_names = models.CharField()
 
-    curriculum_module_heading_1 =  models.CharField()
-    curriculum_module_heading_2 =  models.CharField()
-    curriculum_module_heading_3 =  models.CharField()
-    curriculum_module_heading_4 =  models.CharField()
-    curriculum_module_heading_5 =  models.CharField()
-    curriculum_module_heading_6 =  models.CharField()
+class curriculum_topic_videos(models.Model):
+    video = models.CharField()
 
-    curriculum_topic_names =  models.CharField()
+

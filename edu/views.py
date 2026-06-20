@@ -201,7 +201,8 @@ def log_out(request):
 def curriculum(request):
     students_enrolled = enrollment_data.objects.all()
     students_enrolled = len(students_enrolled)
-
-    context = {"students_enrolled" : students_enrolled}
+    ctn = curriculum_topic_name.objects.values_list('curriculum_topic_names', flat=True)
+    print(ctn)
+    context = {"students_enrolled" : students_enrolled, "ctn" : ctn}
 
     return render(request, 'curriculum.html', context)
