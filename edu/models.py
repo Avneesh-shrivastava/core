@@ -35,14 +35,30 @@ class enrollment_data(models.Model):
     address = models.CharField()
     message = models.CharField()
 
-class Curriculum_data(models.Model):
-    subject_name = models.CharField()
-    subject_desc =  models.CharField()
+# class Curriculum_data(models.Model):
+#     subject_name = models.CharField()
+#     subject_desc =  models.CharField()
 
-class curriculum_topic_name(models.Model):
-    curriculum_topic_names = models.CharField()
+# class curriculum_topic_name(models.Model):
+#     curriculum_topic_names = models.CharField()
 
-class curriculum_topic_videos(models.Model):
-    video = models.CharField()
+# class curriculum_topic_videos(models.Model):
+#     v = models.CharField()
+    
+class Course(models.Model):
+    subject_name = models.CharField(max_length=200)
+    subject_desc = models.TextField()
+    skills = models.CharField(max_length=300)
+    skills_desc = models.TextField()
+
+class Module(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
+    heading = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0) 
+
+class Topic(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='topics')
+    name = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0)
 
 

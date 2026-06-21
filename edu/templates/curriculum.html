@@ -417,7 +417,7 @@
         <div class="module">
             <div class="module-header" onclick="toggleModule(this)">
                 <div class="module-left">
-                    <div class="module-num">01</div>
+                    <div class="module-num">{{forloop.counter}}</div>
                     <div>
                         <div class="module-title">{{a}}</div>
                         <div class="module-sub">14 lectures · 9 hrs</div>
@@ -432,15 +432,19 @@
             
             
             <div class="module-body">
+            {% for v in videos %}
                 <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> hello </div>
+                    <div class="topic-left"><span class="topic-icon video">▶</span> {{v}} </div>
                     <div class="topic-right"><span class="free-badge">FREE</span> 8:30</div>
                 </div>
-                <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> How the Web Works</div>
+            {% endfor %}
+            
+                 <!-- <div class="topic-row">
+                    <div class="topic-left"><span class="topic-icon video">▶</span>{{v}}</div>
                     <div class="topic-right"><span class="free-badge">FREE</span> 12:00</div>
-                </div>
-                <div class="topic-row">
+                </div>  -->
+            
+                <!-- <div class="topic-row">
                     <div class="topic-left"><span class="topic-icon video">▶</span> HTML Document Structure & Semantic Tags</div>
                     <div class="topic-right">45:10</div>
                 </div>
@@ -467,9 +471,9 @@
                 <div class="topic-row">
                     <div class="topic-left"><span class="topic-icon code">💻</span> Project: Build a Portfolio Page</div>
                     <div class="topic-right">Assignment</div>
-                </div>
+                </div> -->   
             </div>
-        </div>
+        </div> 
         {% endfor %}
         
         <!-- Module 2 -->

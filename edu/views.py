@@ -203,6 +203,13 @@ def curriculum(request):
     students_enrolled = len(students_enrolled)
     ctn = curriculum_topic_name.objects.values_list('curriculum_topic_names', flat=True)
     print(ctn)
-    context = {"students_enrolled" : students_enrolled, "ctn" : ctn}
+    curr_data = Curriculum_data.objects.values_list('subject_name', flat=True)
+    print(curr_data)
+
+    videos = curriculum_topic_videos.objects.values_list('v', flat=True)
+
+    context = {"students_enrolled" : students_enrolled, "ctn" : ctn, "curr_data" : curr_data, "videos" : videos}
+
+    
 
     return render(request, 'curriculum.html', context)
