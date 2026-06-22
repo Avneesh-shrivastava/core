@@ -61,4 +61,9 @@ class Topic(models.Model):
     name = models.CharField(max_length=200)
     order = models.PositiveIntegerField(default=0)
 
-
+class concepts_covered(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='concepts_covered')
+    conc_cov = models.CharField(max_length=200)
+    concept_desc = models.TextField()
+    order = models.PositiveIntegerField(default=0)
+    

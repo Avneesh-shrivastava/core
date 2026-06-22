@@ -357,15 +357,18 @@
         <h2>What You'll Learn</h2>
         <p>Skills and concepts covered in this course</p>
     </div>
+    {% for concept in course.concepts_covered.all %}
     <div class="learn-grid">
         <div class="learn-item">
+        
             <div class="learn-icon">🌐</div>
             <div>
-                <h4>HTML5 & CSS3 Fundamentals</h4>
-                <p>Build semantic, accessible web pages with modern layout techniques including Flexbox and Grid.</p>
+                <h4>{{concept.conc_cov}}</h4>
+                <p>{{concept.concept_desc}}</p>
             </div>
+        
         </div>
-
+    {% endfor %}
         <!-- <div class="learn-item">
             <div class="learn-icon">⚡</div>
             <div>
