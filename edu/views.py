@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 # def student_login(request):
@@ -198,17 +198,17 @@ def log_out(request):
     logout(request)
     return redirect('/student-login/')
 
-def curriculum(request):
+def curriculum(request, id):
     students_enrolled = enrollment_data.objects.all()
     students_enrolled = len(students_enrolled)
-    ctn = curriculum_topic_name.objects.values_list('curriculum_topic_names', flat=True)
-    print(ctn)
-    curr_data = Curriculum_data.objects.values_list('subject_name', flat=True)
-    print(curr_data)
 
-    videos = curriculum_topic_videos.objects.values_list('v', flat=True)
+    course = Course.objects.get(id=id)
 
-    context = {"students_enrolled" : students_enrolled, "ctn" : ctn, "curr_data" : curr_data, "videos" : videos}
+     
+
+    
+
+    context = {"students_enrolled" : students_enrolled, "course" : course}
 
     
 

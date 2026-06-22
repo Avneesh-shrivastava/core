@@ -293,10 +293,10 @@
 <!-- COURSE HERO -->
 <section class="course-hero">
     <div class="course-hero-left">
-        <div class="breadcrumb"><a href="/home-page">Home</a> › <a href="/course">Courses</a> › Accountancy</div>
+        <div class="breadcrumb"><a href="/home-page">Home</a> › <a href="/course">Courses</a> › {{course.subject_name}}</div>
         <span class="badge">🔥 BESTSELLER</span>
-        <h1>Complete <span>Accountancy</span> course 2026</h1>
-        <p>Go from zero to accounting expert. Learn journal entries, balance sheets, profit & loss accounts, GST, taxation, and financial reporting through hands-on exercises and practical projects.</p>
+        <h1>Complete <span>{{course.subject_name}}</span> course 2026</h1>
+        <p>{{course.subject_desc}}</p>
         <div class="meta-row">
             <div class="meta-item"><span class="rating-stars">★★★★★</span> <strong>4.9</strong> (12,400 ratings)</div>
             <div class="meta-item">👥 <strong>{{students_enrolled}}</strong> students</div>
@@ -411,16 +411,16 @@
     <div class="curriculum-wrap">
 
 
-        {% for a in ctn %}
         
+        {% for module in course.modules.all %}
         <!-- Module 1 -->
         <div class="module">
             <div class="module-header" onclick="toggleModule(this)">
                 <div class="module-left">
                     <div class="module-num">{{forloop.counter}}</div>
                     <div>
-                        <div class="module-title">{{a}}</div>
-                        <div class="module-sub">14 lectures · 9 hrs</div>
+                        <div class="module-title">{{module.heading}}</div>
+                        <div class="module-sub">{{ module.topics.all|length }} lectures · 9 hrs</div>
                     </div>
                 </div>
                 <div class="module-right">
@@ -429,15 +429,16 @@
                 </div>
                 
             </div>
+        
             
             
             <div class="module-body">
-            {% for v in videos %}
+                {% for topic in module.topics.all %}
                 <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> {{v}} </div>
+                    <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
                     <div class="topic-right"><span class="free-badge">FREE</span> 8:30</div>
                 </div>
-            {% endfor %}
+            
             
                  <!-- <div class="topic-row">
                     <div class="topic-left"><span class="topic-icon video">▶</span>{{v}}</div>
@@ -472,7 +473,9 @@
                     <div class="topic-left"><span class="topic-icon code">💻</span> Project: Build a Portfolio Page</div>
                     <div class="topic-right">Assignment</div>
                 </div> -->   
+                {% endfor %}
             </div>
+            
         </div> 
         {% endfor %}
         
