@@ -97,22 +97,28 @@ def courses(request):
 
     if request.GET.get('Accountancy'):
         sub = request.GET.get('Accountancy')
+    
 
     if request.GET.get('Business Studies'):
         sub = request.GET.get('Business Studies')
+        
 
     if request.GET.get('Economics'):
         sub = request.GET.get('Economics')
+        
 
     if request.GET.get('English'):
         sub = request.GET.get('English')
+        
 
     subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
-
+    
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
     
+    # course = Course.objects.all()
 
-    context = {'subjects': subjects, "enrolled_subject" : enrolled_subject }
+
+    context = {'subjects': subjects, "enrolled_subject" : enrolled_subject}
 
     
     return render(request, 'courses.html', context)
@@ -205,7 +211,8 @@ def curriculum(request, id):
     course = Course.objects.get(id=id)
 
      
-
+    subject_enrolled = enrollment_data.objects.values_list('course', flat=True)
+    print(subject_enrolled)
     
 
     context = {"students_enrolled" : students_enrolled, "course" : course}

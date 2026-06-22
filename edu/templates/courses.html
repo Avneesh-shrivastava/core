@@ -508,10 +508,23 @@
             <div class="card-footer">
                 <div class="price">{{subject.price}} <span>₹5,000</span></div>
             
-            
+        
                 
                 {% if subject.course_name in enrolled_subject %}
-                    <a href='/curriculum/2/'><button class="enroll-btn_view_course">View course</button></a> 
+
+                    {% if subject.course_name == "Accountancy" %}
+                        <a href='/curriculum/2/'><button class="enroll-btn_view_course">View course</button></a> 
+                    {% endif %}
+                    {% if subject.course_name == "Business Studies" %}
+                        <a href='/curriculum/3/'><button class="enroll-btn_view_course">View course</button></a>
+                    {% endif %}
+                    {% if subject.course_name == "Economics" %}
+                        <a href='/curriculum/4/'><button class="enroll-btn_view_course">View course</button></a>
+                    {% endif %}
+                    {% if subject.course_name == "English" %}
+                        <a href='/curriculum/4/'><button class="enroll-btn_view_course">View course</button></a>
+                    {% endif %}
+
                 {% else %}
                     <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
                 {% endif %}
