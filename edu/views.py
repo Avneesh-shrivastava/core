@@ -160,6 +160,7 @@ def search_results(request):
 def enrollment_form(request):
     try:
         if request.method == 'POST':
+    
             data = request.POST
             first_name = data.get('first_name')
             last_name = data.get('last_name')
@@ -176,6 +177,7 @@ def enrollment_form(request):
             message = data.get('message')
 
             enrollment_data.objects.create(
+                user = request.user,
                 first_name = first_name,
                 last_name = last_name,
                 email = email,

@@ -21,6 +21,7 @@ class Subjects_details(models.Model):
     price = models.CharField()
 
 class enrollment_data(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollments')
     first_name = models.CharField()
     last_name = models.CharField()
     email = models.EmailField()
