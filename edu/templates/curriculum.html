@@ -357,8 +357,9 @@
         <h2>What You'll Learn</h2>
         <p>Skills and concepts covered in this course</p>
     </div>
-    {% for concept in course.concepts_covered.all %}
+    
     <div class="learn-grid">
+        {% for concept in course.concepts_covered.all %}
         <div class="learn-item">
         
             <div class="learn-icon">🌐</div>
@@ -368,7 +369,8 @@
             </div>
         
         </div>
-    {% endfor %}
+        {% endfor %}
+    
         <!-- <div class="learn-item">
             <div class="learn-icon">⚡</div>
             <div>
@@ -405,6 +407,7 @@
             </div>
         </div> -->
     </div>
+    
 </section>
 
 <!-- CURRICULUM -->
