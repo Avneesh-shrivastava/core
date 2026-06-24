@@ -508,9 +508,13 @@
             <div class="card-footer">
                 <div class="price">{{subject.price}} <span>₹5,000</span></div>
             
-                
+            {% for a in user_id %}
+                hello
+            {% endfor %}
+            
                 {% if subject.course_name in enrolled_subject %}
                     
+
                         {% if subject.course_name == "Accountancy" %}
                             <a href='/curriculum/2/'><button class="enroll-btn_view_course">View course</button></a> 
                         {% endif %}

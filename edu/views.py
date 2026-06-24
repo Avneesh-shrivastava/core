@@ -114,9 +114,11 @@ def courses(request):
     subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
     
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
-    
+    # enrolled = enrollment_data.objects.values_list('user_id', flat=True)
+    # print(enrolled)
     # course = Course.objects.all()
-
+    # enrolled_course_ids = enrollment_data.objects.filter(user=request.user).values_list('course_id', flat=True)
+    # print(enrolled_course_ids)
 
     context = {'subjects': subjects, "enrolled_subject" : enrolled_subject}
 
@@ -216,9 +218,6 @@ def curriculum(request, id):
     subject_enrolled = enrollment_data.objects.values_list('course', flat=True)
     print(subject_enrolled)
     
-
     context = {"students_enrolled" : students_enrolled, "course" : course}
-
-    
 
     return render(request, 'curriculum.html', context)

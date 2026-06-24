@@ -34,7 +34,7 @@ class enrollment_data(models.Model):
     parent_name = models.CharField()
     parent_phone = models.CharField()
     address = models.CharField()
-    message = models.CharField()
+    message = models.CharField() 
 
 # class Curriculum_data(models.Model):
 #     subject_name = models.CharField()
@@ -67,4 +67,5 @@ class concepts_covered(models.Model):
     conc_cov = models.CharField(max_length=200)
     concept_desc = models.TextField()
     order = models.PositiveIntegerField(default=0)
-    
+
+
