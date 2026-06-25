@@ -36,6 +36,11 @@ class enrollment_data(models.Model):
     address = models.CharField()
     message = models.CharField() 
 
+
+
+
+
+
 # class Curriculum_data(models.Model):
 #     subject_name = models.CharField()
 #     subject_desc =  models.CharField()
@@ -69,3 +74,6 @@ class concepts_covered(models.Model):
     order = models.PositiveIntegerField(default=0)
 
 
+class user_n_course(models.Model):
+    user =  models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_n_course')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='user_n_course')

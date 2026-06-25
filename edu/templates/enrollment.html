@@ -496,11 +496,13 @@
             <div class="form-group">
                 <label>Course You Want to Enroll In <span>*</span></label>
                 <select name="course" required>
+                    {% for course in courses %}
                     <option disabled selected hidden>Select a course</option>
-                    <option value="Accountancy">Accountancy</option>
-                    <option value="Business Studies">Business Studies</option>
+                     <option value="{{course.id}}">{{course.subject_name}}</option>
+                     {% endfor %}
+                    <!--<option value="Business Studies">Business Studies</option>
                     <option value="Economics">Economics</option>
-                    <option value="English">English</option>
+                    <option value="English">English</option> -->
                 </select>
             </div>
 

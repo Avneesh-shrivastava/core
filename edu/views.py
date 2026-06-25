@@ -122,7 +122,6 @@ def courses(request):
 
     context = {'subjects': subjects, "enrolled_subject" : enrolled_subject}
 
-    
     return render(request, 'courses.html', context)
 
 @login_required(login_url='/student-login/')
@@ -160,6 +159,7 @@ def search_results(request):
 
 @login_required(login_url='/student-login/')
 def enrollment_form(request):
+
     try:
         if request.method == 'POST':
     
@@ -172,7 +172,10 @@ def enrollment_form(request):
             gender = data.get('gender')
             current_class = data.get('current_class')
             school = data.get('school')
-            course = data.get('course')
+
+            course_id = data.get('course')
+            course = Course.objects.get(id=course_id)
+
             parent_name = data.get('parent_name')
             parent_phone = data.get('parent_phone')
             address = data.get('address')
@@ -195,6 +198,14 @@ def enrollment_form(request):
                 message = message
             )
             
+            user_n_course.objects.create(
+                user = request.user,
+                course = course
+            )
+
+            u_n_c = user_n_course.objects.values()
+            print(u_n_c)
+
             print(enrollment_data.objects.values())
             
             return redirect('/home-page/')
@@ -202,7 +213,10 @@ def enrollment_form(request):
         messages.info(request, "Please Fill the form first")
         return redirect('/enrollment/')
 
-    return render(request, 'enrollment.html')
+
+    courses = Course.objects.all()
+
+    return render(request, 'enrollment.html', {'courses' : courses})
 
 def log_out(request):
     logout(request)
