@@ -91,6 +91,7 @@ def home_page(request):
     context = {"no_of_enrolled" : no_of_enrolled, "subjects" : subjects, "enrolled_subjects": enrolled_subjects}
     return render(request, 'home_page.html', context)
 
+
 @login_required(login_url='/student-login/')
 def courses(request):
     sub = ''
@@ -114,13 +115,20 @@ def courses(request):
     subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
     
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
-    # enrolled = enrollment_data.objects.values_list('user_id', flat=True)
-    # print(enrolled)
-    # course = Course.objects.all()
-    # enrolled_course_ids = enrollment_data.objects.filter(user=request.user).values_list('course_id', flat=True)
-    # print(enrolled_course_ids)
 
-    context = {'subjects': subjects, "enrolled_subject" : enrolled_subject}
+    course = Course.objects.all()
+
+    list = []
+    enrolled_course_ids = user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True)
+    # print(enrolled_course_ids.values())
+    list.append(enrolled_course_ids)
+    
+    # print(user_n_course.objects.values_list('course_id', flat=True))
+    print(user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True))
+
+    # print(Course.objects.values_list('id', flat=True))
+
+    context = {'subjects': subjects, "enrolled_subject" : enrolled_subject, 'enrolled_course_ids': enrolled_course_ids , 'course' : course}
 
     return render(request, 'courses.html', context)
 
@@ -208,12 +216,13 @@ def enrollment_form(request):
 
             print(enrollment_data.objects.values())
             
+            
             return redirect('/home-page/')
     except ValueError:
         messages.info(request, "Please Fill the form first")
         return redirect('/enrollment/')
 
-
+    print(enrollment_data.objects.values())
     courses = Course.objects.all()
 
     return render(request, 'enrollment.html', {'courses' : courses})

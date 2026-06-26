@@ -513,7 +513,8 @@
             {% endfor %}
             
                 {% if subject.course_name in enrolled_subject %}
-                    
+                    {% for course in courses %}
+                        {% if course.course_id in enrolled_course_ids %}
 
                         {% if subject.course_name == "Accountancy" %}
                             <a href='/curriculum/2/'><button class="enroll-btn_view_course">View course</button></a> 
@@ -528,6 +529,8 @@
                             <a href='/curriculum/4/'><button class="enroll-btn_view_course">View course</button></a>
                         {% endif %}
                     
+                    {% endif %}
+                {% endfor %}
                 {% else %}
                     <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
                 {% endif %}
