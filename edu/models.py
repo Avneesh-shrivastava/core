@@ -37,10 +37,6 @@ class enrollment_data(models.Model):
     message = models.CharField() 
 
 
-
-
-
-
 # class Curriculum_data(models.Model):
 #     subject_name = models.CharField()
 #     subject_desc =  models.CharField()

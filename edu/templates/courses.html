@@ -475,6 +475,14 @@
     
 </div>
 
+
+<!-- {% for course in courses %}
+    {% if course.id in enrolled_course_ids %}
+        yes
+    {% endif %}   
+{% endfor %} -->
+
+
 <!-- COURSES -->
 <div class="courses-section">
     <div class="section-meta">
@@ -508,15 +516,14 @@
             <div class="card-footer">
                 <div class="price">{{subject.price}} <span>₹5,000</span></div>
             
-            {% for a in user_id %}
-                hello
-            {% endfor %}
             
-                {% if subject.course_name in enrolled_subject %}
+            
+                {% if subjects.course_name in enrolled_subject %}
                     {% for course in courses %}
-                        {% if course.course_id in enrolled_course_ids %}
-
-                        {% if subject.course_name == "Accountancy" %}
+                        {% if course.id in enrolled_course_ids %}
+                         yes
+                        
+                        {% if subject.course_name == "Accountancy" and course.id in enrolled_course_ids %}
                             <a href='/curriculum/2/'><button class="enroll-btn_view_course">View course</button></a> 
                         {% endif %}
                         {% if subject.course_name == "Business Studies" %}
@@ -528,9 +535,9 @@
                         {% if subject.course_name == "English" %}
                             <a href='/curriculum/4/'><button class="enroll-btn_view_course">View course</button></a>
                         {% endif %}
-                    
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                        
+                    {% endfor %}
                 {% else %}
                     <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
                 {% endif %}

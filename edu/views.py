@@ -110,25 +110,28 @@ def courses(request):
 
     if request.GET.get('English'):
         sub = request.GET.get('English')
-        
 
-    subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)
-    
+    subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)   
+
+    print("Subjects_details = ",subjects.values())
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
+    print("enrolled_subject = ",enrolled_subject)
+    courses = Course.objects.all()
+    print("courses = ",courses)
 
-    course = Course.objects.all()
 
-    list = []
+    # list = []
     enrolled_course_ids = user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True)
-    # print(enrolled_course_ids.values())
-    list.append(enrolled_course_ids)
-    
+    print(enrolled_course_ids)
+    # print(courses.values())
+    #list.append(enrolled_course_ids)
+    # print(list)
     # print(user_n_course.objects.values_list('course_id', flat=True))
-    print(user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True))
+    # print(user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True))
 
     # print(Course.objects.values_list('id', flat=True))
 
-    context = {'subjects': subjects, "enrolled_subject" : enrolled_subject, 'enrolled_course_ids': enrolled_course_ids , 'course' : course}
+    context = {'subjects': subjects, "enrolled_subject" : enrolled_subject, 'enrolled_course_ids': enrolled_course_ids , 'courses' : courses}
 
     return render(request, 'courses.html', context)
 
