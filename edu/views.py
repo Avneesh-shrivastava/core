@@ -115,9 +115,9 @@ def courses(request):
 
     print("Subjects_details = ",subjects.values())
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
-    print("enrolled_subject = ",enrolled_subject)
+    print("enrollment_data = ",enrolled_subject.values())
     courses = Course.objects.all()
-    print("courses = ",courses)
+    print("Course = ",courses.values())
 
 
     # list = []
@@ -202,7 +202,7 @@ def enrollment_form(request):
                 gender = gender,
                 current_class = current_class,
                 school = school,
-                course = course,
+                course = data.get('course_name'),
                 parent_name = parent_name,
                 parent_phone = parent_phone,
                 address = address,

@@ -481,7 +481,11 @@
         yes
     {% endif %}   
 {% endfor %} -->
-
+{% for subject in subjects %}
+    {% if subjects.course_name in enrolled_subject %}
+    yes
+    {% endif %}
+{% endfor %}
 
 <!-- COURSES -->
 <div class="courses-section">
