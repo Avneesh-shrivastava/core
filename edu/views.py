@@ -116,7 +116,7 @@ def courses(request):
     print("Subjects_details = ",subjects.values_list('course_name', flat=True))
     print('\n')
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
-    print("enrollment_data = ",enrolled_subject)
+    print("enrollment_data = ",enrolled_subject.values())
     print('\n')
     courses = Course.objects.all()
     print("Course = ",courses.values())
@@ -174,6 +174,9 @@ def search_results(request):
 
 @login_required(login_url='/student-login/')
 def enrollment_form(request):
+    # u_n_c = user_n_course.objects.values()
+    enrolled_course_ids = user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True)
+    enrolled_course_ids = list(enrolled_course_ids)
 
     try:
         if request.method == 'POST':
@@ -196,34 +199,42 @@ def enrollment_form(request):
             address = data.get('address')
             message = data.get('message')
 
-            enrollment_data.objects.create(
-                user = request.user,
-                first_name = first_name,
-                last_name = last_name,
-                email = email,
-                phone = phone,
-                dob = dob,
-                gender = gender,
-                current_class = current_class,
-                school = school,
-                course = data.get('course_name'),
-                parent_name = parent_name,
-                parent_phone = parent_phone,
-                address = address,
-                message = message
-            )
             
-            user_n_course.objects.create(
-                user = request.user,
-                course = course
-            )
 
-            u_n_c = user_n_course.objects.values()
-            print(u_n_c)
+            if course_id in enrolled_course_ids:
 
-            print(enrollment_data.objects.values())
+                # enrollment_data.objects.create(
+                #     user = request.user,
+                #     first_name = first_name,
+                #     last_name = last_name,
+                #     email = email,
+                #     phone = phone,
+                #     dob = dob,
+                #     gender = gender,
+                #     current_class = current_class,
+                #     school = school,
+                #     course = data.get('course_name'),
+                #     parent_name = parent_name,
+                #     parent_phone = parent_phone,
+                #     address = address,
+                #     message = message
+                # )
+                
+                # user_n_course.objects.create(
+                #     user = request.user,
+                #     course = course
+                # )
+                print("Data created")
+
+            # u_n_c = user_n_course.objects.values()
+            # print(u_n_c)
+
+            # print(enrollment_data.objects.values())
             
-            
+            else:
+                print("Data not Created") 
+                print(course_id)
+                print(enrolled_course_ids)   
             return redirect('/home-page/')
     except ValueError:
         messages.info(request, "Please Fill the form first")
@@ -231,6 +242,11 @@ def enrollment_form(request):
 
     print(enrollment_data.objects.values())
     courses = Course.objects.all()
+    
+
+    if course_id in enrolled_course_ids:
+        print('yes')
+
 
     return render(request, 'enrollment.html', {'courses' : courses})
 
