@@ -113,16 +113,20 @@ def courses(request):
 
     subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)   
 
-    print("Subjects_details = ",subjects.values())
+    print("Subjects_details = ",subjects.values_list('course_name', flat=True))
+    print('\n')
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
-    print("enrollment_data = ",enrolled_subject.values())
+    print("enrollment_data = ",enrolled_subject)
+    print('\n')
     courses = Course.objects.all()
     print("Course = ",courses.values())
-
-
+    print('\n')
+    print("user_n_courses = ", user_n_course.objects.values())
+    print('\n')
     # list = []
     enrolled_course_ids = user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True)
-    print(enrolled_course_ids)
+    print('enrolled_course_ids = ',enrolled_course_ids)
+    print('\n')
     # print(courses.values())
     #list.append(enrolled_course_ids)
     # print(list)

@@ -476,17 +476,6 @@
 </div>
 
 
-<!-- {% for course in courses %}
-    {% if course.id in enrolled_course_ids %}
-        yes
-    {% endif %}   
-{% endfor %} -->
-{% for subject in subjects %}
-    {% if subjects.course_name in enrolled_subject %}
-    yes
-    {% endif %}
-{% endfor %}
-
 <!-- COURSES -->
 <div class="courses-section">
     <div class="section-meta">
@@ -522,25 +511,23 @@
             
             
             
-                {% if subjects.course_name in enrolled_subject %}
+                {% if subject.course_name in enrolled_subject %}
                     {% for course in courses %}
                         {% if course.id in enrolled_course_ids %}
-                         yes
-                        
-                        {% if subject.course_name == "Accountancy" and course.id in enrolled_course_ids %}
-                            <a href='/curriculum/2/'><button class="enroll-btn_view_course">View course</button></a> 
-                        {% endif %}
-                        {% if subject.course_name == "Business Studies" %}
-                            <a href='/curriculum/3/'><button class="enroll-btn_view_course">View course</button></a>
-                        {% endif %}
-                        {% if subject.course_name == "Economics" %}
-                            <a href='/curriculum/4/'><button class="enroll-btn_view_course">View course</button></a>
-                        {% endif %}
-                        {% if subject.course_name == "English" %}
-                            <a href='/curriculum/4/'><button class="enroll-btn_view_course">View course</button></a>
-                        {% endif %}
-                        {% endif %}
-                        
+                            {% if course.subject_name == subject.course_name %}
+                                
+                                <a href='/curriculum/{{course.id}}/'><button class="enroll-btn_view_course">View course</button></a> 
+                            {% endif %}
+                            <!-- {% if subject.course_name == "Business Studies" %}
+                                <a href='/curriculum/3/'><button class="enroll-btn_view_course">View course</button></a>
+                            {% endif %}
+                            {% if subject.course_name == "Economics" %}
+                                <a href='/curriculum/4/'><button class="enroll-btn_view_course">View course</button></a>
+                            {% endif %}
+                            {% if subject.course_name == "English" %}
+                                <a href='/curriculum/4/'><button class="enroll-btn_view_course">View course</button></a>
+                            {% endif %} -->
+                        {% endif %}     
                     {% endfor %}
                 {% else %}
                     <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
