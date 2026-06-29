@@ -516,11 +516,14 @@
                         {% if course.id in enrolled_course_ids %}
                             {% if course.subject_name == subject.course_name %}
                                 <a href='/curriculum/{{course.id}}/'><button class="enroll-btn_view_course">View course</button></a> 
+                            {% else %}
+                                <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
                             {% endif %}
-                        {% endif %}     
+   
+                        {% endif %} 
+
                     {% endfor %}
-                {% else %}
-                    <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
+
                 {% endif %}
             </div>
         </div>
