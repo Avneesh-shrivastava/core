@@ -113,7 +113,7 @@ def courses(request):
 
     subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)   
 
-    print("Subjects_details = ",Subjects_details.objects.values())
+    print("Subjects_details = ",Course.objects.values_list('subject_name', flat=True))
     print('\n')
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
     print("enrollment_data = ",enrolled_subject.values())
