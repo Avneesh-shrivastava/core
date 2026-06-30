@@ -509,31 +509,24 @@
             <div class="card-footer">
                 <div class="price">{{subject.price}} <span>₹5,000</span></div>
 
-                
-                {% if subject.course_name in enrolled_subject %}
                                        
-                    {% for course in courses|slice:":1" %}                                           
-                        1
-                        {% if course.id in enrolled_course_ids %}
-                            2
-                            {% if course.subject_name == subject.course_name %}
-                                view_course
+                    {% for course in courses|slice:":" %}                                           
+                    
+                        {% if course.subject_name == subject.course_name %}
+                            
+                            {% if course.id in enrolled_course_ids %}                                
                                 <a href='/curriculum/{{course.id}}/'><button class="enroll-btn_view_course">View course</button></a> 
-                          
+                            {% else %}
+                                <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
                             {% endif %}
- 
+                            
                         {% endif %}
                     {% endfor %}
-                    {% else %}
-                    enroll2
-                    <a href='/enrollment'><button class="enroll-btn">Enroll now</button></a>
-                {% endif %}
+
             
-            
- 
             </div>
         </div>
-    {% endfor %}    
+    {% endfor %}   
 
 </div> 
 <br>
