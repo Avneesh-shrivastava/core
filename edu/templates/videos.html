@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountancy – Introduction to Accounting | EduPro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f0f4ff; color: #333; }
+
+        /* ── NAVBAR ── */
+        nav {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+        .logo span { color: #ffd700; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: #cdd3f0; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .nav-links a:hover { color: #ffd700; }
+        .nav-btn {
+            background: #ffd700; color: #1a1a6e; border: none;
+            padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        }
+        .nav-btn:hover { background: #ffec6e; }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb-bar {
+            background: #1a1a6e;
+            padding: 12px 60px;
+            font-size: 13px;
+            color: #cdd3f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .breadcrumb-bar a { color: #ffd700; text-decoration: none; }
+        .breadcrumb-bar a:hover { text-decoration: underline; }
+        .breadcrumb-bar .sep { color: #555; }
+
+        /* ── VIDEO SECTION ── */
+        .video-section {
+            background: #0d0d3a;
+            padding: 32px 60px;
+        }
+        .video-wrap {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .video-embed {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .video-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        .video-info {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .video-info-left { flex: 1; }
+        .video-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ffd700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .video-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        .video-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: #8899cc;
+        }
+        .video-meta span { display: flex; align-items: center; gap: 5px; }
+        .nav-arrows {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .arrow-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .arrow-btn:hover { background: rgba(255,255,255,0.15); }
+        .arrow-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+        /* ── PROGRESS BAR ── */
+        .progress-bar-wrap {
+            max-width: 960px;
+            margin: 16px auto 0;
+        }
+        .progress-label {
+            font-size: 12px;
+            color: #8899cc;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .progress-track {
+            height: 5px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3f5efb, #fc466b);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        /* ── CURRICULUM BELOW VIDEO ── */
+        .curriculum-section {
+            padding: 40px 60px;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+        .curr-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .curr-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a6e;
+        }
+        .curr-header span {
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* ── MODULE BLOCK ── */
+        .module {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .module-header {
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+        }
+        .module-header:hover { background: #f7f9ff; }
+        .module-left { display: flex; align-items: center; gap: 14px; }
+        .module-num {
+            width: 32px; height: 32px;
+            background: #e8ecff;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700; color: #3f5efb;
+            flex-shrink: 0;
+        }
+        .module-title { font-size: 15px; font-weight: 700; color: #1a1a6e; }
+        .module-sub { font-size: 12px; color: #888; margin-top: 2px; }
+        .module-right { display: flex; align-items: center; gap: 10px; }
+        .module-meta { font-size: 12px; color: #aaa; }
+        .toggle-btn {
+            width: 26px; height: 26px; border-radius: 50%;
+            background: #f0f4ff; border: none; cursor: pointer;
+            font-size: 14px; color: #3f5efb;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.25s;
+        }
+        .toggle-btn.open { transform: rotate(180deg); }
+        .module-body { display: none; border-top: 1px solid #f0f0f0; }
+        .module-body.open { display: block; }
+
+        /* ── TOPIC ROW ── */
+        .topic-row {
+            padding: 13px 20px 13px 66px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-size: 13px;
+            color: #444;
+        }
+        .topic-row:last-child { border-bottom: none; }
+        .topic-row:hover { background: #f0f4ff; }
+        .topic-row.active {
+            background: linear-gradient(135deg, #1a1a6e11, #3f5efb18);
+            border-left: 3px solid #3f5efb;
+            padding-left: 63px;
+        }
+        .topic-row.active .topic-name { color: #3f5efb; font-weight: 700; }
+        .topic-left { display: flex; align-items: center; gap: 10px; }
+        .topic-icon { font-size: 14px; color: #3f5efb; }
+        .topic-icon.playing { color: #fc466b; }
+        .topic-right { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #aaa; }
+        .now-playing-badge {
+            background: linear-gradient(135deg, #3f5efb, #fc466b);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        .done-check { color: #1d9e75; font-size: 14px; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #1a1a6e; color: #cdd3f0;
+            padding: 28px 60px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px; margin-top: 20px;
+        }
+        footer a { color: #ffd700; text-decoration: none; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 14px 20px; }
+            .nav-links { display: none; }
+            .breadcrumb-bar { padding: 10px 20px; }
+            .video-section { padding: 20px; }
+            .video-info { flex-direction: column; }
+            .curriculum-section { padding: 24px 16px; }
+            footer { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Edu<span>Pro</span></div>
+    <ul class="nav-links">
+        <li><a href="/home-page">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="nav-btn">My Account</button>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+    <a href="/home-page">Home</a>
+    <span class="sep">›</span>
+    <a href="/course">Courses</a>
+    <span class="sep">›</span>
+    <a href="#">curriculum</a>
+    <span class="sep">›</span>
+    <span id="breadcrumb-topic">Meaning and Objectives of Accounting</span>
+</div>
+
+<!-- VIDEO SECTION -->
+<div class="video-section">
+    <div class="video-wrap">
+        <div class="video-embed">
+            <!-- <iframe
+                id="yt-player"
+                src="https://www.youtube.com/embed/ly36kn0ug4k?si=2pmzZ5vEs0Ej1mQ9"
+                allowfullscreen
+                allow="autoplay; encrypted-media">
+            </iframe> -->
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ly36kn0ug4k?si=2pmzZ5vEs0Ej1mQ9&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+        </div>
+
+        <div class="video-info">
+            <div class="video-info-left">
+                <div class="video-label">📚 Accountancy · Module 1</div>
+                <div class="video-title" id="current-title">Meaning and Objectives of Accounting</div>
+                <div class="video-meta">
+                    <span>⏱ <span id="current-duration">12:30</span></span>
+                    <span>👁 Topic 1 of 18</span>
+                </div>
+            </div>
+            <div class="nav-arrows">
+                <button class="arrow-btn" id="prev-btn" onclick="prevTopic()" disabled>← Prev</button>
+                <button class="arrow-btn" id="next-btn" onclick="nextTopic()">Next →</button>
+            </div>
+        </div>
+
+        <div class="progress-bar-wrap">
+            <div class="progress-label">
+                <span>Course Progress</span>
+                <span id="progress-pct">0% complete</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CURRICULUM LIST -->
+<div class="curriculum-section">
+    <div class="curr-header">
+        <h2>Course Curriculum</h2>
+        <span>5 modules · 18 topics</span>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-left">
+                <div class="module-num">01</div>
+                <div>
+                    <div class="module-title">Introduction to Accounting</div>
+                    <div class="module-sub">4 topics</div>
+                </div>
+            </div>
+            <div class="module-right">
+                <span class="module-meta">~48 min</span>
+                <button class="toggle-btn open">▾</button>
+            </div>
+        </div>
+        <div class="module-body open">
+            <div class="topic-row active" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Meaning and Objectives of Accounting', '12:30', 0)">
+                <div class="topic-left"><span class="topic-icon playing">▶</span><span class="topic-name">Meaning and Objectives of Accounting</span></div>
+                <div class="topic-right"><span class="now-playing-badge">NOW PLAYING</span> 12:30</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Basic Accounting Terms', '10:15', 1)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Basic Accounting Terms</span></div>
+                <div class="topic-right">10:15</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Accounting Principles (GAAP)', '14:00', 2)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Accounting Principles (GAAP)</span></div>
+                <div class="topic-right">14:00</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Double Entry System', '11:45', 3)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Double Entry System</span></div>
+                <div class="topic-right">11:45</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-left">
+                <div class="module-num">02</div>
+                <div>
+                    <div class="module-title">Recording Transactions</div>
+                    <div class="module-sub">4 topics</div>
+                </div>
+            </div>
+            <div class="module-right">
+                <span class="module-meta">~55 min</span>
+                <button class="toggle-btn">▾</button>
+            </div>
+        </div>
+        <div class="module-body">
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Journal Entries', '15:00', 4)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Journal Entries</span></div>
+                <div class="topic-right">15:00</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Ledger Posting', '13:20', 5)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Ledger Posting</span></div>
+                <div class="topic-right">13:20</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Subsidiary Books', '14:40', 6)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Subsidiary Books</span></div>
+                <div class="topic-right">14:40</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Trial Balance', '12:00', 7)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Trial Balance</span></div>
+                <div class="topic-right">12:00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-left">
+                <div class="module-num">03</div>
+                <div>
+                    <div class="module-title">Final Accounts</div>
+                    <div class="module-sub">4 topics</div>
+                </div>
+            </div>
+            <div class="module-right">
+                <span class="module-meta">~60 min</span>
+                <button class="toggle-btn">▾</button>
+            </div>
+        </div>
+        <div class="module-body">
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Trading Account', '16:00', 8)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Trading Account</span></div>
+                <div class="topic-right">16:00</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Profit and Loss Account', '18:00', 9)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Profit and Loss Account</span></div>
+                <div class="topic-right">18:00</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Balance Sheet', '14:30', 10)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Balance Sheet</span></div>
+                <div class="topic-right">14:30</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Adjustments in Final Accounts', '12:00', 11)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Adjustments in Final Accounts</span></div>
+                <div class="topic-right">12:00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-left">
+                <div class="module-num">04</div>
+                <div>
+                    <div class="module-title">Depreciation & Reserves</div>
+                    <div class="module-sub">3 topics</div>
+                </div>
+            </div>
+            <div class="module-right">
+                <span class="module-meta">~40 min</span>
+                <button class="toggle-btn">▾</button>
+            </div>
+        </div>
+        <div class="module-body">
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Depreciation Methods', '14:00', 12)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Depreciation Methods</span></div>
+                <div class="topic-right">14:00</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Provisions and Reserves', '13:00', 13)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Provisions and Reserves</span></div>
+                <div class="topic-right">13:00</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Bad Debts and Provision for Doubtful Debts', '13:00', 14)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Bad Debts and Provision for Doubtful Debts</span></div>
+                <div class="topic-right">13:00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 5 -->
+    <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-left">
+                <div class="module-num">05</div>
+                <div>
+                    <div class="module-title">Bank Reconciliation</div>
+                    <div class="module-sub">3 topics</div>
+                </div>
+            </div>
+            <div class="module-right">
+                <span class="module-meta">~36 min</span>
+                <button class="toggle-btn">▾</button>
+            </div>
+        </div>
+        <div class="module-body">
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Need for Bank Reconciliation Statement', '12:00', 15)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Need for Bank Reconciliation Statement</span></div>
+                <div class="topic-right">12:00</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Causes of Differences', '12:00', 16)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Causes of Differences</span></div>
+                <div class="topic-right">12:00</div>
+            </div>
+            <div class="topic-row" onclick="loadVideo(this, 'dQw4w9WgXcQ', 'Preparation of BRS', '12:00', 17)">
+                <div class="topic-left"><span class="topic-icon">▶</span><span class="topic-name">Preparation of BRS</span></div>
+                <div class="topic-right">12:00</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo" style="font-size:20px;">Edu<span>Pro</span></div>
+    <div>© 2024 EduPro. All rights reserved.</div>
+    <div><a href="#">Privacy Policy</a> · <a href="#">Terms</a></div>
+</footer>
+
+<script>
+    const TOTAL_TOPICS = 18;
+    let currentIndex = 0;
+
+    // Collect all topic rows in order
+    const allTopics = Array.from(document.querySelectorAll('.topic-row'));
+
+    function loadVideo(el, videoId, title, duration, index) {
+        // Remove active state from all rows
+        allTopics.forEach(row => {
+            row.classList.remove('active');
+            const icon = row.querySelector('.topic-icon');
+            icon.classList.remove('playing');
+            icon.textContent = '▶';
+            const badge = row.querySelector('.now-playing-badge');
+            if (badge) badge.remove();
+        });
+
+        // Set active on clicked row
+        el.classList.add('active');
+        const icon = el.querySelector('.topic-icon');
+        icon.classList.add('playing');
+        icon.textContent = '▶';
+
+        // Add "NOW PLAYING" badge
+        const right = el.querySelector('.topic-right');
+        if (!right.querySelector('.now-playing-badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'now-playing-badge';
+            badge.textContent = 'NOW PLAYING';
+            right.prepend(badge);
+        }
+
+        // Update iframe
+        document.getElementById('yt-player').src =
+            `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+
+        // Update info bar
+        document.getElementById('current-title').textContent = title;
+        document.getElementById('current-duration').textContent = duration;
+        document.getElementById('breadcrumb-topic').textContent = title;
+
+        // Update topic counter
+        currentIndex = index;
+        document.querySelector('.video-meta span:nth-child(2)').textContent =
+            `👁 Topic ${index + 1} of ${TOTAL_TOPICS}`;
+
+        // Update progress
+        const pct = Math.round(((index) / TOTAL_TOPICS) * 100);
+        document.getElementById('progress-fill').style.width = pct + '%';
+        document.getElementById('progress-pct').textContent = pct + '% complete';
+
+        // Prev/Next buttons
+        document.getElementById('prev-btn').disabled = index === 0;
+        document.getElementById('next-btn').disabled = index === TOTAL_TOPICS - 1;
+
+        // Scroll to top smoothly
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function prevTopic() {
+        if (currentIndex > 0) allTopics[currentIndex - 1].click();
+    }
+
+    function nextTopic() {
+        if (currentIndex < TOTAL_TOPICS - 1) allTopics[currentIndex + 1].click();
+    }
+
+    function toggleModule(header) {
+        const body = header.nextElementSibling;
+        const btn = header.querySelector('.toggle-btn');
+        const isOpen = body.classList.contains('open');
+        body.classList.toggle('open', !isOpen);
+        btn.classList.toggle('open', !isOpen);
+    }
+</script>
+</body>
+</html>

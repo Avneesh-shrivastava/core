@@ -272,3 +272,6 @@ def curriculum(request, id):
     context = {"students_enrolled" : students_enrolled, "course" : course}
 
     return render(request, 'curriculum.html', context)
+
+def videos(request):
+    return render(request, 'videos.html')
