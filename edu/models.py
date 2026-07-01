@@ -61,3 +61,7 @@ class concepts_covered(models.Model): # This model is used to show the details o
 class user_n_course(models.Model): # This model stores the user_id and course_id of the user who has enrolled 
     user =  models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_n_course')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='user_n_course')
+
+class topic_links(models.Model):
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='topics_links')
+    url = models.CharField()

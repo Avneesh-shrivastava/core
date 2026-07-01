@@ -99,15 +99,12 @@ def courses(request):
     if request.GET.get('Accountancy'):
         sub = request.GET.get('Accountancy')
     
-
     if request.GET.get('Business Studies'):
         sub = request.GET.get('Business Studies')
         
-
     if request.GET.get('Economics'):
         sub = request.GET.get('Economics')
         
-
     if request.GET.get('English'):
         sub = request.GET.get('English')
 
@@ -127,13 +124,6 @@ def courses(request):
     enrolled_course_ids = user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True)
     print('enrolled_course_ids = ',enrolled_course_ids)
     print('\n')
-    # print(courses.values())
-    #list.append(enrolled_course_ids)
-    # print(list)
-    # print(user_n_course.objects.values_list('course_id', flat=True))
-    # print(user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True))
-
-    # print(Course.objects.values_list('id', flat=True))
 
     print("Modules = ", Module.objects.values())
     print("\n")
@@ -265,14 +255,22 @@ def curriculum(request, id):
     students_enrolled = len(students_enrolled)
 
     course = Course.objects.get(id=id)
-
-     
+ 
     subject_enrolled = enrollment_data.objects.values_list('course', flat=True)
     print(subject_enrolled)
-    
-    context = {"students_enrolled" : students_enrolled, "course" : course}
+
+    topic_link = topic_links.objects.get(id=1)
+
+
+
+
+
+
+    context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link}
 
     return render(request, 'curriculum.html', context)
 
 def videos(request):
-    return render(request, 'videos.html')
+    topic_link = topic_links.objects.get(id=1)
+    print(topic_link.url)
+    return render(request, 'videos.html', {"topic_link" : topic_link})
