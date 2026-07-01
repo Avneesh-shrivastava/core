@@ -149,6 +149,7 @@ def search_results(request):
     queryset =  Subjects_details.objects.all()
     search_query = ''
     message = ''
+    results_no = 0
 
     if request.GET.get('search'):
         search_query = request.GET.get('search')

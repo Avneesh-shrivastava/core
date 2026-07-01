@@ -530,7 +530,7 @@
     <div class="results-meta">
 
         <h2>{{message}} <span>{{search_name}}</span></h2>
-        <small>4 results found</small>
+        <small>{{results_no}} results found</small>
         
 
     </div>
@@ -558,7 +558,7 @@
                     <span>⭐ <b>{{course.Rating}}</b></span>
                 </div>
                 <div class="price">{{course.price}} <span>₹4,000</span></div>
-                <button class="enroll-btn">Enroll Now</button>
+                <a href="/course"><button class="enroll-btn">Course - page</button></a>
             </div>
         </div> 
     {% endfor %}
