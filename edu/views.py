@@ -128,7 +128,8 @@ def courses(request):
     print("Modules = ", Module.objects.values())
     print("\n")
     print("Topic = ", Topic.objects.values())
-
+    print("\n")
+    print("Topic_link = ", topic_links.objects.values())
 
     context = {'subjects': subjects, "enrolled_subject" : enrolled_subject, 'enrolled_course_ids': enrolled_course_ids , 'courses' : courses}
 
@@ -262,15 +263,19 @@ def curriculum(request, id):
     topic_link = topic_links.objects.get(id=1)
 
 
-
-
-
-
     context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link}
 
     return render(request, 'curriculum.html', context)
 
 def videos(request):
+    if request.method == "POST":
+        data = request.POST
+        selected_topic = data.get('selected_topic')
+        print("selected topic = ", selected_topic)
+
+     
+    topic_id = Topic.objects.all()
     topic_link = topic_links.objects.get(id=1)
+      
     print(topic_link.url)
     return render(request, 'videos.html', {"topic_link" : topic_link})

@@ -443,8 +443,14 @@
             <div class="module-body">
                 {% for topic in module.topics.all %}
                 <div class="topic-row">
+
+
+                    
                     <a href="/videos"><div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div></a>
                     <div class="topic-right"><span class="free-badge">FREE</span> 8:30</div>
+                    
+
+                
                 </div>
             
             
@@ -486,7 +492,10 @@
             
         </div> 
         {% endfor %}
-        
+
+                            <form action="{% url 'videos' %}" method="GET">
+                    <input type="hidden" name="selected_topic" value="{{topic.name}}">
+                    </form>
         <!-- Module 2 -->
         <!-- <div class="module">
             <div class="module-header" onclick="toggleModule(this)">
