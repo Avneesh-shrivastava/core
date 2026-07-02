@@ -267,15 +267,9 @@ def curriculum(request, id):
 
     return render(request, 'curriculum.html', context)
 
-def videos(request):
-    if request.method == "POST":
-        data = request.POST
-        selected_topic = data.get('selected_topic')
-        print("selected topic = ", selected_topic)
+def videos(request, topic_id):
 
-     
-    topic_id = Topic.objects.all()
-    topic_link = topic_links.objects.get(id=1)
-      
-    print(topic_link.url)
+    topic_link = topic_links.objects.get(id=topic_id)
+    
+    print(topic_id)
     return render(request, 'videos.html', {"topic_link" : topic_link})
