@@ -262,6 +262,27 @@
             .curriculum-section { padding: 24px 16px; }
             footer { flex-direction: column; gap: 10px; text-align: center; }
         }
+
+        .breadcrumb-select {
+    background: transparent;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.breadcrumb-select option {
+    background: #1a1a6e;
+    color: #fff;
+}
+
+.breadcrumb-select:hover {
+    background: rgba(255, 215, 0, 0.15);
+}
     </style>
 </head>
 <body>
@@ -271,7 +292,7 @@
     <div class="logo">CLARITY<span> EDGE</span></div>
     <ul class="nav-links">
         <li><a href="/home-page">Home</a></li>
-        <li><a href="#">Courses</a></li>
+        <li><a href="/course">Courses</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
     </ul>
@@ -284,9 +305,16 @@
     <span class="sep">›</span>
     <a href="/course">Courses</a>
     <span class="sep">›</span>
-    <a href="#">curriculum</a>
+    
+    <select onchange="window.location.href = this.value" class="breadcrumb-select">
+        <option value="">Select a course</option>
+        {% for c in course %}
+            <option value="/curriculum/{{c.id}}">{{c.subject_name}}</option>
+        {% endfor %}
+    </select>
+        
     <span class="sep">›</span>
-    <span id="breadcrumb-topic">Meaning and Objectives of Accounting</span>
+    <span id="breadcrumb-topic">{{topic_link.topic.name}}</span>
 </div>
 
 <!-- VIDEO SECTION -->
@@ -310,8 +338,8 @@
                 <div class="video-label">📚 Accountancy · Module 1</div>
                 <div class="video-title" id="current-title">Meaning and Objectives of Accounting</div>
                 <div class="video-meta">
-                    <span>⏱ <span id="current-duration">12:30</span></span>
-                    <span>👁 Topic 1 of 18</span>
+                    <!-- <span>⏱ <span id="current-duration">12:30</span></span> -->
+                    <span>👁 Topic {{topic_link.id}} of 18</span>
                 </div>
             </div>
             <div class="nav-arrows">

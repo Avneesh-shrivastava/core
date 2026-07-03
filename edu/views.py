@@ -262,14 +262,14 @@ def curriculum(request, id):
 
     topic_link = topic_links.objects.get(id=1)
 
-
     context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link}
 
     return render(request, 'curriculum.html', context)
 
 def videos(request, topic_id):
-
+    # topic = get_object_or_404(Topic, topic_id)
     topic_link = topic_links.objects.get(id=topic_id)
+    course = Course.objects.all()
+    context = {"topic_link" : topic_link, "course" : course}
     
-    print(topic_id)
-    return render(request, 'videos.html', {"topic_link" : topic_link})
+    return render(request, 'videos.html', context)
