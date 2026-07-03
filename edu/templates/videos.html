@@ -343,8 +343,17 @@
                 </div>
             </div>
             <div class="nav-arrows">
-                <button class="arrow-btn" id="prev-btn" onclick="prevTopic()" disabled>← Prev</button>
-                <button class="arrow-btn" id="next-btn" onclick="nextTopic()">Next →</button>
+                {% if prev %}
+                    <a href="{% url 'videos' prev.id %}"><button class="arrow-btn" id="prev-btn" onclick="prevTopic()">← Prev</button></a>
+                {% else %}
+                    <button class="arrow-btn" id="prev-btn" onclick="prevTopic()" disabled>← Prev</button></a>
+                {% endif %}
+
+                {% if next %}
+                    <a href="{% url 'videos' next.id %}"><button class="arrow-btn" id="next-btn" onclick="nextTopic()">Next →</button></a>
+                {% else %}
+                   <button class="arrow-btn" id="next-btn" onclick="nextTopic()" disabled>Next →</button>
+                {% endif %}
             </div>
         </div>
 

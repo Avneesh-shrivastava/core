@@ -270,6 +270,10 @@ def videos(request, topic_id):
     # topic = get_object_or_404(Topic, topic_id)
     topic_link = topic_links.objects.get(id=topic_id)
     course = Course.objects.all()
-    context = {"topic_link" : topic_link, "course" : course}
+
+    next = topic_links.objects.filter(id__gt = topic_id).order_by('id').first()
+    prev = topic_links.objects.filter(id__lt = topic_id).order_by('-id').first()
+
+    context = {"topic_link" : topic_link, "course" : course, 'next' : next, 'prev' : prev}
     
     return render(request, 'videos.html', context)
