@@ -274,6 +274,19 @@ def videos(request, topic_id):
     next = topic_links.objects.filter(id__gt = topic_id).order_by('id').first()
     prev = topic_links.objects.filter(id__lt = topic_id).order_by('-id').first()
 
-    context = {"topic_link" : topic_link, "course" : course, 'next' : next, 'prev' : prev}
+    total_topics = topic_links.objects.count()
+    current_position = topic_links.objects.filter(id__lte=topic_id).count()
+    progress = int((current_position / total_topics) * 100)
+
+
+    context = {
+                "topic_link" : topic_link, 
+                "course" : course, 
+                'next' : next, 
+                'prev' : prev, 
+                "progress": progress,
+                "current_position": current_position,
+                "total_topics": total_topics
+            }
     
     return render(request, 'videos.html', context)

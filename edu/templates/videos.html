@@ -360,10 +360,10 @@
         <div class="progress-bar-wrap">
             <div class="progress-label">
                 <span>Course Progress</span>
-                <span id="progress-pct">0% complete</span>
+                <span id="progress-pct">{{progress}}% complete</span>
             </div>
             <div class="progress-track">
-                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                <div class="progress-fill" id="progress-fill" style="width: {{progress}}%"></div>
             </div>
         </div>
     </div>
@@ -552,7 +552,7 @@
     <div><a href="#">Privacy Policy</a> · <a href="#">Terms</a></div>
 </footer>
 
-<script>
+<!-- <script>
     const TOTAL_TOPICS = 18;
     let currentIndex = 0;
 
@@ -627,6 +627,6 @@
         body.classList.toggle('open', !isOpen);
         btn.classList.toggle('open', !isOpen);
     }
-</script>
+</script> -->
 </body>
 </html>
