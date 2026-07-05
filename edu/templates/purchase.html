@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Course | EduPro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f0f4ff; color: #333; }
+
+        /* ── NAVBAR ── */
+        nav {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+        .logo span { color: #ffd700; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: #cdd3f0; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .nav-links a:hover { color: #ffd700; }
+        .nav-btn {
+            background: #ffd700; color: #1a1a6e; border: none;
+            padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb-bar {
+            background: #1a1a6e;
+            padding: 12px 60px;
+            font-size: 13px;
+            color: #cdd3f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .breadcrumb-bar a { color: #ffd700; text-decoration: none; }
+        .breadcrumb-bar .sep { color: #555; }
+
+        /* ── PAGE WRAPPER ── */
+        .page-wrapper {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* ── LEFT: ORDER SUMMARY ── */
+        .order-summary {
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+        }
+        .order-summary-header {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 24px 28px;
+            color: #fff;
+        }
+        .order-summary-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .order-summary-header p {
+            font-size: 13px;
+            color: #cdd3f0;
+        }
+        .order-body { padding: 24px 28px; }
+
+        /* course row */
+        .course-row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+        .course-icon {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .course-info h3 { font-size: 16px; font-weight: 700; color: #1a1a6e; margin-bottom: 4px; }
+        .course-info p { font-size: 13px; color: #888; line-height: 1.5; }
+        .course-tags { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+        .course-tag {
+            background: #f0f4ff; color: #3f5efb;
+            font-size: 11px; font-weight: 600;
+            padding: 3px 10px; border-radius: 20px;
+        }
+
+        /* includes list */
+        .includes-title {
+            font-size: 13px; font-weight: 700; color: #1a1a6e;
+            margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .includes-list { list-style: none; margin-bottom: 20px; }
+        .includes-list li {
+            font-size: 13px; color: #555;
+            padding: 7px 0;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .includes-list li:last-child { border-bottom: none; }
+        .includes-list li::before { content: "✔"; color: #3f5efb; font-weight: 700; font-size: 12px; }
+
+        /* price breakdown */
+        .price-breakdown { border-top: 1px solid #f0f0f0; padding-top: 18px; }
+        .price-row {
+            display: flex; justify-content: space-between;
+            font-size: 13px; color: #888; margin-bottom: 10px;
+        }
+        .price-row.total {
+            font-size: 16px; font-weight: 700; color: #1a1a6e;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 12px; margin-top: 4px;
+        }
+        .price-row .strike { text-decoration: line-through; color: #bbb; }
+        .price-row .discount { color: #2e7d32; font-weight: 700; }
+
+        /* ── RIGHT: PAYMENT FORM ── */
+        .payment-card {
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            position: sticky;
+            top: 90px;
+        }
+        .payment-header {
+            background: linear-gradient(135deg, #fc466b, #3f5efb);
+            padding: 20px 24px;
+            color: #fff;
+        }
+        .payment-header h3 { font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+        .payment-header p { font-size: 12px; color: #e0e0ff; }
+        .payment-body { padding: 24px; }
+
+        .secure-badge {
+            display: flex; align-items: center; gap: 8px;
+            background: #f0f4ff; border-radius: 8px;
+            padding: 10px 14px; margin-bottom: 20px;
+            font-size: 12px; color: #3f5efb; font-weight: 600;
+        }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block; font-size: 12px; font-weight: 700;
+            color: #555; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px;
+        }
+        .form-group input, .form-group select {
+            width: 100%; padding: 11px 14px;
+            border: 1px solid #e0e0e0; border-radius: 8px;
+            font-size: 14px; color: #333;
+            outline: none; transition: border 0.2s;
+            background: #fff;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #3f5efb;
+            box-shadow: 0 0 0 3px rgba(63,94,251,0.08);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        .divider {
+            display: flex; align-items: center; gap: 10px;
+            margin: 18px 0; font-size: 12px; color: #aaa;
+        }
+        .divider::before, .divider::after {
+            content: ""; flex: 1; height: 1px; background: #e0e0e0;
+        }
+
+        /* coupon */
+        .coupon-row { display: flex; gap: 8px; margin-bottom: 18px; }
+        .coupon-row input {
+            flex: 1; padding: 10px 14px;
+            border: 1px dashed #3f5efb; border-radius: 8px;
+            font-size: 13px; outline: none; color: #333;
+        }
+        .coupon-row input::placeholder { color: #aaa; }
+        .coupon-btn {
+            background: #f0f4ff; color: #3f5efb;
+            border: 1px solid #3f5efb; border-radius: 8px;
+            padding: 10px 16px; font-size: 13px; font-weight: 700;
+            cursor: pointer; white-space: nowrap;
+        }
+        .coupon-btn:hover { background: #3f5efb; color: #fff; }
+
+        /* price display */
+        .final-price {
+            text-align: center; margin-bottom: 16px;
+        }
+        .final-price .amount {
+            font-size: 32px; font-weight: 800; color: #1a1a6e;
+        }
+        .final-price .original {
+            font-size: 15px; color: #bbb; text-decoration: line-through; margin-left: 8px;
+        }
+        .final-price .save-tag {
+            display: inline-block; margin-top: 6px;
+            background: #e8f5e9; color: #2e7d32;
+            font-size: 12px; font-weight: 700;
+            padding: 4px 12px; border-radius: 20px;
+        }
+
+        /* buy button */
+        .buy-btn {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, #ffd700, #ffb300);
+            color: #1a1a6e; border: none; border-radius: 10px;
+            font-size: 16px; font-weight: 800; cursor: pointer;
+            margin-bottom: 10px; transition: opacity 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .buy-btn:hover { opacity: 0.9; }
+
+        .guarantee {
+            text-align: center; font-size: 12px; color: #aaa; margin-top: 12px;
+            line-height: 1.6;
+        }
+        .guarantee strong { color: #555; }
+
+        /* payment icons */
+        .payment-icons {
+            display: flex; justify-content: center; gap: 10px;
+            margin-top: 14px; flex-wrap: wrap;
+        }
+        .pay-icon {
+            background: #f5f5f5; border: 1px solid #e0e0e0;
+            border-radius: 6px; padding: 5px 10px;
+            font-size: 11px; font-weight: 700; color: #555;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #1a1a6e; color: #cdd3f0;
+            padding: 28px 60px; margin-top: 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px;
+        }
+        footer a { color: #ffd700; text-decoration: none; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 14px 20px; }
+            .nav-links { display: none; }
+            .breadcrumb-bar { padding: 10px 20px; }
+            .page-wrapper { grid-template-columns: 1fr; padding: 0 16px; margin: 24px auto; }
+            .payment-card { position: static; }
+            footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Edu<span>Pro</span></div>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="nav-btn">My Account</button>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+    <a href="#">Home</a>
+    <span class="sep">›</span>
+    <a href="#">Courses</a>
+    <span class="sep">›</span>
+    <a href="#">Accountancy</a>
+    <span class="sep">›</span>
+    <span>Purchase</span>
+</div>
+
+<!-- MAIN -->
+<div class="page-wrapper">
+
+    <!-- LEFT: ORDER SUMMARY -->
+    <div class="order-summary">
+        <div class="order-summary-header">
+            <h2>Order Summary</h2>
+            <p>You're one step away from unlocking this course</p>
+        </div>
+        <div class="order-body">
+
+            <!-- Course Row -->
+            <div class="course-row">
+                <div class="course-icon">📚</div>
+                <div class="course-info">
+                    <h3>Accountancy – Complete Course</h3>
+                    <p>Financial accounting principles, bookkeeping, and preparation of financial statements.</p>
+                    <div class="course-tags">
+                        <span class="course-tag">5 Modules</span>
+                        <span class="course-tag">18 Topics</span>
+                        <span class="course-tag">Lifetime Access</span>
+                        <span class="course-tag">Certificate</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What's Included -->
+            <div class="includes-title">What's Included</div>
+            <ul class="includes-list">
+                <li>Full video curriculum (all 18 topics)</li>
+                <li>Downloadable notes and resources</li>
+                <li>Module-wise quizzes and assignments</li>
+                <li>Certificate of completion</li>
+                <li>Lifetime access on all devices</li>
+                <li>30-day money-back guarantee</li>
+            </ul>
+
+            <!-- Price Breakdown -->
+            <div class="price-breakdown">
+                <div class="price-row">
+                    <span>Original Price</span>
+                    <span class="strike">₹3,999</span>
+                </div>
+                <div class="price-row">
+                    <span>Discount (87% off)</span>
+                    <span class="discount">− ₹3,500</span>
+                </div>
+                <div class="price-row">
+                    <span>Coupon</span>
+                    <span class="discount">− ₹0</span>
+                </div>
+                <div class="price-row total">
+                    <span>Total</span>
+                    <span>₹499</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RIGHT: PAYMENT FORM -->
+    <div class="payment-card">
+        <div class="payment-header">
+            <h3>Complete Your Purchase</h3>
+            <p>Secure checkout · 256-bit SSL encryption</p>
+        </div>
+        <div class="payment-body">
+
+            <div class="secure-badge">
+                🔒 Your payment is 100% secure and encrypted
+            </div>
+
+            <div class="final-price">
+                <span class="amount">₹499</span>
+                <span class="original">₹3,999</span>
+                <br>
+                <span class="save-tag">You save ₹3,500 today!</span>
+            </div>
+
+            <!-- Coupon Code -->
+            <div class="divider">Have a coupon?</div>
+            <div class="coupon-row">
+                <input type="text" placeholder="Enter coupon code">
+                <button class="coupon-btn">Apply</button>
+            </div>
+
+            <!-- Payment Form -->
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="divider">Payment Details</div>
+
+                <div class="form-group">
+                    <label>Cardholder Name</label>
+                    <input type="text" name="card_name" placeholder="As on your card" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" name="card_number" placeholder="1234  5678  9012  3456" maxlength="19" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Expiry Date</label>
+                        <input type="text" name="expiry" placeholder="MM / YY" maxlength="7" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="text" name="cvv" placeholder="•••" maxlength="3" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Billing Mobile Number</label>
+                    <input type="text" name="phone" placeholder="+91 00000 00000" required>
+                </div>
+
+                <button type="submit" class="buy-btn">
+                    🔒 Pay ₹499 &amp; Enroll Now
+                </button>
+            </form>
+
+            <div class="guarantee">
+                <strong>30-Day Money-Back Guarantee</strong><br>
+                Not satisfied? Get a full refund within 30 days, no questions asked.
+            </div>
+
+            <div class="payment-icons">
+                <span class="pay-icon">VISA</span>
+                <span class="pay-icon">MasterCard</span>
+                <span class="pay-icon">UPI</span>
+                <span class="pay-icon">Razorpay</span>
+                <span class="pay-icon">Paytm</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo" style="font-size:20px;">Edu<span>Pro</span></div>
+    <div>© 2024 EduPro. All rights reserved.</div>
+    <div><a href="#">Privacy Policy</a> · <a href="#">Terms</a></div>
+</footer>
+
+</body>
+</html>
