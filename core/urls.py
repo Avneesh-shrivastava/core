@@ -44,7 +44,8 @@ urlpatterns = [
     path('enrollment/', enrollment_form, name='enrollment_form'),
     path('logout', log_out, name='logout'),
     path('curriculum/<int:id>/', curriculum, name='curriculum'),
-    path('videos/<int:topic_id>',videos,name='videos')
+    path('videos/<int:topic_id>',videos,name='videos'),
+    path('purchase/',purchase,name='purchase')
 ]
 
 if settings.DEBUG:
