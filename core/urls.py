@@ -45,12 +45,12 @@ urlpatterns = [
     path('logout', log_out, name='logout'),
     path('curriculum/<int:id>/', curriculum, name='curriculum'),
     path('videos/<int:topic_id>',videos,name='videos'),
-    path('purchase/',purchase,name='purchase')
+    path('purchase/',purchase,name='purchase'),
 
-    path('purchase/<int:course_id>/', views.purchase, name='purchase'),
-    path('payment/verify/', views.verify_payment, name='verify_payment'),
-    path('payment/success/', views.payment_success, name='payment_success'),
-    path('payment/failed/', views.payment_failed, name='payment_failed'),
+    path('purchase/<int:course_id>/', purchase, name='purchase'),
+    path('payment/verify/', verify_payment, name='verify_payment'),
+    path('payment/success/', payment_success, name='payment_success'),
+    path('payment/failed/', payment_failed, name='payment_failed')
 ]
 
 if settings.DEBUG:

@@ -5,6 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+import razorpay
+
+client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
 # Create your views here.
 # def student_login(request):
@@ -288,6 +293,77 @@ def videos(request, topic_id):
     
     return render(request, 'videos.html', context)
 
-def purchase(request):
+def purchase(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    amount = 49900  # ₹499 in paise
 
-    return render(request, 'purchase.html')
+    razorpay_order = client.order.create({
+        'amount': amount,
+        'currency': 'INR',
+        'payment_capture': 1
+    })
+
+    Order.objects.create(
+        user=request.user,
+        course=course,
+        amount_paid=499,
+        original_price=3999,
+        discount=3500,
+        status='pending',
+        razorpay_order_id=razorpay_order['id']
+    )
+
+    context = {
+        'course': course,
+        'razorpay_order_id': razorpay_order['id'],
+        'razorpay_key_id': settings.RAZORPAY_KEY_ID,
+        'amount': amount,
+    }
+    return render(request, 'purchase.html', context)
+
+    
+
+
+@csrf_exempt
+def verify_payment(request):
+    if request.method == 'POST':
+        payment_id = request.POST.get('razorpay_payment_id')
+        razorpay_order_id = request.POST.get('razorpay_order_id')
+        signature = request.POST.get('razorpay_signature')
+
+        params = {
+            'razorpay_order_id': razorpay_order_id,
+            'razorpay_payment_id': payment_id,
+            'razorpay_signature': signature,
+        }
+
+        try:
+            client.utility.verify_payment_signature(params)
+
+            order = Order.objects.get(razorpay_order_id=razorpay_order_id)
+            order.status = 'completed'
+            order.save()
+
+            # create enrollment so user can access the course
+            user_n_course.objects.get_or_create(
+                user=order.user,
+                course=order.course,
+            )
+
+            return redirect('/payment/success/')
+
+        except:
+            order = Order.objects.get(razorpay_order_id=razorpay_order_id)
+            order.status = 'failed'
+            order.save()
+            return redirect('/payment/failed/')
+
+
+@login_required(login_url='/student-login/')
+def payment_success(request):
+    return render(request, 'payment_success.html')
+
+
+@login_required(login_url='/student-login/')
+def payment_failed(request):
+    return render(request, 'payment_failed.html')

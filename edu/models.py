@@ -65,3 +65,28 @@ class user_n_course(models.Model): # This model stores the user_id and course_id
 class topic_links(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='topics_links')
     url = models.CharField()
+
+
+class Order(models.Model):
+
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+        ('refunded', 'Refunded'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='orders')
+    
+    amount_paid = models.DecimalField(max_digits=8, decimal_places=2)
+    original_price = models.DecimalField(max_digits=8, decimal_places=2)
+    discount = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    coupon_code = models.CharField(max_length=50, blank=True, null=True)
+    razorpay_order_id = models.CharField(max_length=100, blank=True, null=True)
+
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    ordered_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.course.subject_name} - {self.status}"
