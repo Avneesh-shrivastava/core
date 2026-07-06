@@ -46,6 +46,11 @@ urlpatterns = [
     path('curriculum/<int:id>/', curriculum, name='curriculum'),
     path('videos/<int:topic_id>',videos,name='videos'),
     path('purchase/',purchase,name='purchase')
+
+    path('purchase/<int:course_id>/', views.purchase, name='purchase'),
+    path('payment/verify/', views.verify_payment, name='verify_payment'),
+    path('payment/success/', views.payment_success, name='payment_success'),
+    path('payment/failed/', views.payment_failed, name='payment_failed'),
 ]
 
 if settings.DEBUG:

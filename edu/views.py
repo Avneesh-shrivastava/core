@@ -257,8 +257,7 @@ def curriculum(request, id):
     course = Course.objects.get(id=id)
     subject_enrolled = enrollment_data.objects.values_list('course', flat=True)
     print(subject_enrolled)
-    topic_link = topic_links.objects.get(id=1)
-
+    topic_link = topic_links.objects.get(id=1)                                                                                                                                              
 
     context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link}
 
