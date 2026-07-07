@@ -267,7 +267,7 @@
 
 <!-- NAVBAR -->
 <nav>
-    <div class="logo">Edu<span>Pro</span></div>
+    <div class="logo">CLARITY <span>EDGE</span></div>
     <ul class="nav-links">
         <li><a href="/home-page">Home</a></li>
         <li><a href="/course">Courses</a></li>
@@ -279,11 +279,11 @@
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb-bar">
-    <a href="/home=page">Home</a>
+    <a href="/home-page">Home</a>
     <span class="sep">›</span>
     <a href="/course">Courses</a>
     <span class="sep">›</span>
-    <a href="#">Accountancy</a>
+    <a href="/curriculum/{{course.id}}">{{course.subject_name}}</a>
     <span class="sep">›</span>
     <span>Purchase</span>
 </div>
@@ -303,8 +303,8 @@
             <div class="course-row">
                 <div class="course-icon">📚</div>
                 <div class="course-info">
-                    <h3>Accountancy – Complete Course</h3>
-                    <p>Financial accounting principles, bookkeeping, and preparation of financial statements.</p>
+                    <h3>{{course.subject_name}} – Complete Course</h3>
+                    <p>{{course.subject_desc}}</p>
                     <div class="course-tags">
                         <span class="course-tag">5 Modules</span>
                         <span class="course-tag">18 Topics</span>
@@ -375,7 +375,7 @@
             </div>
 
             <!-- Payment Form -->
-            <form method="POST">
+            <!-- <form method="POST">
                 {% csrf_token %}
 
                 <div class="divider">Payment Details</div>
@@ -409,6 +409,17 @@
                 <button type="submit" class="buy-btn">
                     🔒 Pay ₹499 &amp; Enroll Now
                 </button>
+            </form> -->
+            <!-- Button that opens Razorpay popup -->
+
+            <button id="pay-btn" class="buy-btn">🔒 Pay ₹499 &amp; Enroll Now</button>
+
+            <!-- Hidden form — submits automatically after payment -->
+            <form id="razorpay-form" method="POST" action="{% url 'verify_payment' %}">
+                {% csrf_token %}
+                <input type="hidden" id="payment_id" name="razorpay_payment_id">
+                <input type="hidden" id="order_id" name="razorpay_order_id">
+                <input type="hidden" id="signature" name="razorpay_signature">
             </form>
 
             <div class="guarantee">
@@ -436,6 +447,39 @@
     <div>© 2024 EduPro. All rights reserved.</div>
     <div><a href="#">Privacy Policy</a> · <a href="#">Terms</a></div>
 </footer>
+
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ razorpay_key_id }}",
+        "amount": "{{ amount }}",
+        "currency": "INR",
+        "name": "Clarity Edge",
+        "description": "{{ course.subject_name }} Course",
+        "order_id": "{{ razorpay_order_id }}",
+        "handler": function(response) {
+            document.getElementById('payment_id').value = response.razorpay_payment_id;
+            document.getElementById('order_id').value = response.razorpay_order_id;
+            document.getElementById('signature').value = response.razorpay_signature;
+            document.getElementById('razorpay-form').submit();
+        },
+        "prefill": {
+            "name": "{{ request.user.get_full_name }}",
+            "email": "{{ request.user.email }}",
+        },
+        "theme": {
+            "color": "#3f5efb"
+        }
+    };
+
+    document.getElementById('pay-btn').onclick = function(e) {
+        var rzp = new Razorpay(options);
+        rzp.open();
+        e.preventDefault();
+    }
+</script>
 
 </body>
 </html>

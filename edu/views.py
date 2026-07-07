@@ -294,6 +294,7 @@ def videos(request, topic_id):
     return render(request, 'videos.html', context)
 
 def purchase(request, course_id):
+    
     course = get_object_or_404(Course, id=course_id)
     amount = 49900  # ₹499 in paise
 
@@ -321,7 +322,6 @@ def purchase(request, course_id):
     }
     return render(request, 'purchase.html', context)
 
-    
 
 
 @csrf_exempt

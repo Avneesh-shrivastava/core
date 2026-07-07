@@ -305,15 +305,18 @@
     <span class="sep">›</span>
     <a href="/course">Courses</a>
     <span class="sep">›</span>
+    <!-- <a href="/curriculum/{c.id}">{{c.subject_name}}</a>
+    <span class="sep">›</span> -->
     
-    <select onchange="window.location.href = this.value" class="breadcrumb-select">
+    <!-- <select onchange="window.location.href = this.value" class="breadcrumb-select">
         <option value="">Select a course</option>
         {% for c in course %}
             <option value="/curriculum/{{c.id}}">{{c.subject_name}}</option>
         {% endfor %}
-    </select>
+    </select> -->
+
         
-    <span class="sep">›</span>
+    <!-- <span class="sep">›</span> -->
     <span id="breadcrumb-topic">{{topic_link.topic.name}}</span>
 </div>
 
