@@ -296,7 +296,8 @@ def videos(request, topic_id):
 def purchase(request, course_id):
     
     course = get_object_or_404(Course, id=course_id)
-    amount = 49900  # ₹499 in paise
+    
+    amount = int(course.price * 100)  # ₹499 in paise
 
     razorpay_order = client.order.create({
         'amount': amount,
@@ -307,9 +308,9 @@ def purchase(request, course_id):
     Order.objects.create(
         user=request.user,
         course=course,
-        amount_paid=499,
-        original_price=3999,
-        discount=3500,
+        amount_paid=course.price,
+        original_price=course.original_price,
+        discount=  (course.original_price) - (course.price),
         status='pending',
         razorpay_order_id=razorpay_order['id']
     )
@@ -319,6 +320,7 @@ def purchase(request, course_id):
         'razorpay_order_id': razorpay_order['id'],
         'razorpay_key_id': settings.RAZORPAY_KEY_ID,
         'amount': amount,
+        'discount' : (course.original_price) - (course.price)
     }
     return render(request, 'purchase.html', context)
 

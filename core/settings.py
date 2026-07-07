@@ -142,5 +142,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # SESSION_SAVE_EVERY_REQUEST = True
 
-RAZORPAY_KEY_ID = 'rzp_test_xxxxxxxxxxxxxxx'   # starts with rzp_test_
-RAZORPAY_KEY_SECRET = 'your_secret_here'
+RAZORPAY_KEY_ID = 'rzp_test_TA70ZxYzF16XpB'   # starts with rzp_test_
+RAZORPAY_KEY_SECRET = 'jhcoUvy3sT9XJkw63YsC4caz'

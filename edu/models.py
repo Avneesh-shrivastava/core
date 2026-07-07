@@ -41,6 +41,8 @@ class Course(models.Model): # This model is used to show the subject and skill d
     subject_desc = models.TextField()
     skills = models.CharField(max_length=300)
     skills_desc = models.TextField()
+    price = models.DecimalField(max_digits=8, decimal_places=2, default=5000) 
+    original_price = models.DecimalField(max_digits=8, decimal_places=2, default=3999)
 
 class Module(models.Model): #This model is used to show the topic title on the course curriculum block  
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
