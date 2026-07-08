@@ -439,12 +439,19 @@
             
             <div class="module-body">
                 {% for topic in module.topics.all %}
-                <div class="topic-row">
-                    <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
-                    </a>
-                <div class="topic-right"><span class="free-badge">FREE</span> 8:30</div>
-                    
+                    {% if request.user.id in purchased_course_list.user_id %}
+                        <div class="topic-row">
+                            <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">
+                            <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
+                            </a>
+                        <div class="topic-right"><span class="free-badge">FREE</span> 8:30</div>
+                    {% else %}
+                        <div class="topic-row">
+                            <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">
+                            <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
+                            </a>
+                        <div class="topic-right"><span class="free-badge">Buy course</span> 8:30</div>
+                    {% endif %}
                     
 
                 

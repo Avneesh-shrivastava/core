@@ -262,9 +262,11 @@ def curriculum(request, id):
     course = Course.objects.get(id=id)
     subject_enrolled = enrollment_data.objects.values_list('course', flat=True)
     print(subject_enrolled)
-    topic_link = topic_links.objects.get(id=1)                                                                                                                                              
-
-    context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link}
+    topic_link = topic_links.objects.get(id=1)   
+    purchased_course_list = Order.objects.all()                                                                                                                                           
+    print(purchased_course_list)
+    
+    context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link, 'purchased_course_list': purchased_course_list}
 
     return render(request, 'curriculum.html', context)
 
@@ -350,7 +352,7 @@ def verify_payment(request):
                 user=order.user,
                 course=order.course,
             )
-
+            print(Order.objects.values())
             return redirect('/payment/success/')
 
         except:
