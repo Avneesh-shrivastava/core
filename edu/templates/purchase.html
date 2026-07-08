@@ -413,7 +413,7 @@
             </form> -->
             <!-- Button that opens Razorpay popup -->
 
-            <button id="pay-btn" class="buy-btn">🔒 Pay ₹499 &amp; Enroll Now</button>
+            <button id="pay-btn" class="buy-btn">🔒 Pay ₹{{course.price}} &amp; Enroll Now</button>
 
             <!-- Hidden form — submits automatically after payment -->
             <form id="razorpay-form" method="POST" action="{% url 'verify_payment' %}">
@@ -428,13 +428,13 @@
                 Not satisfied? Get a full refund within 30 days, no questions asked.
             </div>
 
-            <div class="payment-icons">
+            <!-- <div class="payment-icons">
                 <span class="pay-icon">VISA</span>
                 <span class="pay-icon">MasterCard</span>
                 <span class="pay-icon">UPI</span>
                 <span class="pay-icon">Razorpay</span>
                 <span class="pay-icon">Paytm</span>
-            </div>
+            </div> -->
 
         </div>
     </div>
@@ -444,8 +444,8 @@
 
 <!-- FOOTER -->
 <footer>
-    <div class="logo" style="font-size:20px;">Edu<span>Pro</span></div>
-    <div>© 2024 EduPro. All rights reserved.</div>
+    <div class="logo" style="font-size:20px;">CLARITY <span>EDGE</span></div>
+    <div>© 2024 CLARITY EDGE. All rights reserved.</div>
     <div><a href="#">Privacy Policy</a> · <a href="#">Terms</a></div>
 </footer>
 

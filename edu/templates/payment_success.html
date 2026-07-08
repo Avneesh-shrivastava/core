@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | EduPro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f0f4ff; color: #333; }
+
+        nav {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+        .logo span { color: #ffd700; }
+
+        .container {
+            max-width: 500px;
+            margin: 80px auto;
+            text-align: center;
+            padding: 0 24px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #e0e0e0;
+            padding: 50px 40px;
+        }
+        .icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1a1a6e;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffb300);
+            color: #1a1a6e;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #3f5efb;
+            border: 2px solid #3f5efb;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+        }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-secondary:hover { background: #f0f4ff; }
+
+        .success-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background: #1a1a6e; color: #cdd3f0;
+            padding: 24px 60px; margin-top: 60px;
+            display: flex; justify-content: space-between;
+            align-items: center; font-size: 13px;
+        }
+        footer a { color: #ffd700; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Edu<span>Pro</span></div>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <div class="icon">🎉</div>
+        <span class="success-badge">✔ Payment Successful</span>
+        <h2>You're Enrolled!</h2>
+        <p>Your payment was successful and you now have full access to the course. Start learning right away!</p>
+        <a href="/courses/" class="btn-primary">Go to My Courses</a>
+        <a href="/home-page/" class="btn-secondary">Back to Home</a>
+    </div>
+</div>
+
+<footer>
+    <div class="logo" style="font-size:20px;">Edu<span>Pro</span></div>
+    <div>© 2024 EduPro. All rights reserved.</div>
+    <div><a href="#">Privacy Policy</a> · <a href="#">Terms</a></div>
+</footer>
+
+</body>
+</html>

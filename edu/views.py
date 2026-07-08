@@ -325,7 +325,6 @@ def purchase(request, course_id):
     return render(request, 'purchase.html', context)
 
 
-
 @csrf_exempt
 def verify_payment(request):
     if request.method == 'POST':
@@ -364,7 +363,6 @@ def verify_payment(request):
 @login_required(login_url='/student-login/')
 def payment_success(request):
     return render(request, 'payment_success.html')
-
 
 @login_required(login_url='/student-login/')
 def payment_failed(request):
