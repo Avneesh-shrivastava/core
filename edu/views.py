@@ -115,26 +115,26 @@ def courses(request):
 
     subjects = Subjects_details.objects.all().filter(course_name__icontains = sub)   
 
-    print("Subjects_details = ",Course.objects.values_list('subject_name', flat=True))
+    # print("Subjects_details = ",Course.objects.values_list('subject_name', flat=True))
     print('\n')
     enrolled_subject = enrollment_data.objects.values_list('course', flat=True)
-    print("enrollment_data = ",enrolled_subject.values())
+    # print("enrollment_data = ",enrolled_subject.values())
     print('\n')
     courses = Course.objects.all()
-    print("Course = ",courses.values())
+    # print("Course = ",courses.values())
     print('\n')
-    print("user_n_courses = ", user_n_course.objects.values())
+    # print("user_n_courses = ", user_n_course.objects.values())
     print('\n')
     # list = []
     enrolled_course_ids = user_n_course.objects.filter(user_id=request.user).values_list('course_id', flat=True)
     print('enrolled_course_ids = ',enrolled_course_ids)
     print('\n')
 
-    print("Modules = ", Module.objects.values())
-    print("\n")
-    print("Topic = ", Topic.objects.values())
-    print("\n")
-    print("Topic_link = ", topic_links.objects.values())
+    # print("Modules = ", Module.objects.values())
+    # print("\n")
+    # print("Topic = ", Topic.objects.values())
+    # print("\n")
+    # print("Topic_link = ", topic_links.objects.values())
 
     context = {'subjects': subjects, "enrolled_subject" : enrolled_subject, 'enrolled_course_ids': enrolled_course_ids , 'courses' : courses}
 
