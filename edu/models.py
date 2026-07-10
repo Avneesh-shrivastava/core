@@ -67,6 +67,7 @@ class user_n_course(models.Model): # This model stores the user_id and course_id
 class topic_links(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='topics_links')
     url = models.CharField()
+    is_free = models.BooleanField(default=False)
 
 
 class Order(models.Model):

@@ -271,6 +271,9 @@ def curriculum(request, id):
     return render(request, 'curriculum.html', context)
 
 def videos(request, topic_id):
+    # topic_link = topic_links.objects.get(id=topic_id)
+    # course = topic_link.topic.module.course
+
     # topic = get_object_or_404(Topic, topic_id)
     topic_link = topic_links.objects.get(id=topic_id)
     course = Course.objects.all()
