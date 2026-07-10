@@ -435,181 +435,39 @@
                 
             </div>
         
-            
-            
             <div class="module-body">
                 {% for topic in module.topics.all %}
-                   
-                        {% if topic_link.is_free == True %}
+                    {% for link in topic.topics_links.all %}
+                        {% if link.is_free %}
                             <div class="topic-row">
                                 <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">
                                 <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
                                 </a>
+                            
                             <div class="topic-right"><span class="free-badge">FREE</span> 8:30</div>
+                            </div>
                         {% else %}
                             <div class="topic-row">
                                 <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">
                                 <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
                                 </a>
                             <div class="topic-right"><span class="free-badge">Buy course</span> 8:30</div>
+                            </div>
                         {% endif %}
-                    
-
-                
-                </div>
-            
-            
-                 <!-- <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span>{{v}}</div>
-                    <div class="topic-right"><span class="free-badge">FREE</span> 12:00</div>
-                </div>  -->
-            
-                <!-- <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> HTML Document Structure & Semantic Tags</div>
-                    <div class="topic-right">45:10</div>
-                </div>
-                <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> CSS Selectors, Box Model & Specificity</div>
-                    <div class="topic-right">52:40</div>
-                </div>
-                <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> Flexbox – Deep Dive</div>
-                    <div class="topic-right">1:10:00</div>
-                </div>
-                <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> CSS Grid – Complete Guide</div>
-                    <div class="topic-right">1:05:20</div>
-                </div>
-                <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon video">▶</span> Responsive Design & Media Queries</div>
-                    <div class="topic-right">48:00</div>
-                </div>
-                <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon quiz">❓</span> Module 1 Quiz</div>
-                    <div class="topic-right">15 questions</div>
-                </div>
-                <div class="topic-row">
-                    <div class="topic-left"><span class="topic-icon code">💻</span> Project: Build a Portfolio Page</div>
-                    <div class="topic-right">Assignment</div>
-                </div> -->   
+                    {% endfor %}
                 {% endfor %}
+                
             </div>
-            
-        </div> 
+             
+                
+        </div>
         {% endfor %}
+            
+    </div> 
+        
 
-                            
-        <!-- Module 2 -->
-        <!-- <div class="module">
-            <div class="module-header" onclick="toggleModule(this)">
-                <div class="module-left">
-                    <div class="module-num">02</div>
-                    <div>
-                        <div class="module-title">JavaScript Core Concepts</div>
-                        <div class="module-sub">18 lectures · 14 hrs</div>
-                    </div>
-                </div>
-                <div class="module-right">
-                    <button class="toggle-btn">▾</button>
-                </div>
-            </div>
-            <div class="module-body">
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Variables, Data Types & Operators</div><div class="topic-right">42:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Functions, Scope & Closures</div><div class="topic-right">1:02:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Arrays & Objects In Depth</div><div class="topic-right">58:30</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> DOM Manipulation & Events</div><div class="topic-right">1:15:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> ES6+ – Arrow Functions, Destructuring, Spread</div><div class="topic-right">55:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Asynchronous JS – Callbacks, Promises, Async/Await</div><div class="topic-right">1:30:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon quiz">❓</span> Module 2 Quiz</div><div class="topic-right">20 questions</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon code">💻</span> Project: To-Do App with LocalStorage</div><div class="topic-right">Assignment</div></div>
-            </div>
-        </div> -->
-
-        <!-- Module 3 -->
-        <!-- <div class="module">
-            <div class="module-header" onclick="toggleModule(this)">
-                <div class="module-left">
-                    <div class="module-num">03</div>
-                    <div>
-                        <div class="module-title">React.js – From Zero to Pro</div>
-                        <div class="module-sub">20 lectures · 16 hrs</div>
-                    </div>
-                </div>
-                <div class="module-right"><button class="toggle-btn">▾</button></div>
-            </div>
-            <div class="module-body">
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Introduction to React & JSX</div><div class="topic-right">30:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Components, Props & State</div><div class="topic-right">1:10:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> React Hooks – useState, useEffect, useRef</div><div class="topic-right">1:25:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> React Router – SPA Navigation</div><div class="topic-right">55:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Context API & State Management</div><div class="topic-right">1:00:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon quiz">❓</span> Module 3 Quiz</div><div class="topic-right">18 questions</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon code">💻</span> Project: Movie Search App (React + API)</div><div class="topic-right">Assignment</div></div>
-            </div>
-        </div> -->
-
-        <!-- Module 4 -->
-        <!-- <div class="module">
-            <div class="module-header" onclick="toggleModule(this)">
-                <div class="module-left">
-                    <div class="module-num">04</div>
-                    <div>
-                        <div class="module-title">Backend – Node.js & Express.js</div>
-                        <div class="module-sub">16 lectures · 14 hrs</div>
-                    </div>
-                </div>
-                <div class="module-right"><button class="toggle-btn">▾</button></div>
-            </div>
-            <div class="module-body">
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Node.js Fundamentals & npm</div><div class="topic-right">40:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Express.js – Routing & Middleware</div><div class="topic-right">1:10:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> REST API Design & Best Practices</div><div class="topic-right">55:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Authentication with JWT & bcrypt</div><div class="topic-right">1:20:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon quiz">❓</span> Module 4 Quiz</div><div class="topic-right">15 questions</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon code">💻</span> Project: REST API for Blog App</div><div class="topic-right">Assignment</div></div>
-            </div>
-        </div> -->
-
-        <!-- Module 5 -->
-        <!-- <div class="module">
-            <div class="module-header" onclick="toggleModule(this)">
-                <div class="module-left">
-                    <div class="module-num">05</div>
-                    <div>
-                        <div class="module-title">Database – MongoDB & Mongoose</div>
-                        <div class="module-sub">12 lectures · 10 hrs</div>
-                    </div>
-                </div>
-                <div class="module-right"><button class="toggle-btn">▾</button></div>
-            </div>
-            <div class="module-body">
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> MongoDB Basics & Atlas Setup</div><div class="topic-right">35:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Mongoose Schemas & Models</div><div class="topic-right">50:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> CRUD Operations & Querying</div><div class="topic-right">1:00:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon code">💻</span> Project: Full E-Commerce Backend</div><div class="topic-right">Assignment</div></div>
-            </div>
-        </div> -->
-
-        <!-- Module 6 -->
-        <!-- <div class="module">
-            <div class="module-header" onclick="toggleModule(this)">
-                <div class="module-left">
-                    <div class="module-num">06</div>
-                    <div>
-                        <div class="module-title">Full-Stack Capstone Project</div>
-                        <div class="module-sub">8 lectures · 9 hrs</div>
-                    </div>
-                </div>
-                <div class="module-right"><button class="toggle-btn">▾</button></div>
-            </div>
-            <div class="module-body">
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Project Planning & Architecture</div><div class="topic-right">45:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Building the Full-Stack App</div><div class="topic-right">3:00:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon video">▶</span> Deployment to Production</div><div class="topic-right">1:00:00</div></div>
-                <div class="topic-row"><div class="topic-left"><span class="topic-icon code">💻</span> Final Project Submission</div><div class="topic-right">Assignment</div></div>
-            </div>
-        </div> -->
-
+                        
+    
     </div><!-- /.curriculum-wrap -->
 </section>
 
