@@ -385,3 +385,9 @@ def payment_success(request):
 @login_required(login_url='/student-login/')
 def payment_failed(request):
     return render(request, 'payment_failed.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')

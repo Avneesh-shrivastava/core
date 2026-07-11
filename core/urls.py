@@ -27,8 +27,8 @@ from edu.views import *
 
 urlpatterns = [
     path('', home, name='home'),
-    path('about-page/', about, name='about'),
-    path('contact-page/', contact, name='contact'),
+    # path('about-page/', about, name='about'),
+    # path('contact-page/', contact, name='contact'),
     path('receipes/' ,receipes,name='receipes'),
     path('students/', students, name='students'),
     path('admin/', admin.site.urls),
@@ -48,7 +48,9 @@ urlpatterns = [
     path('purchase/<int:course_id>/', purchase, name='purchase'),
     path('payment/verify/', verify_payment, name='verify_payment'),
     path('payment/success/', payment_success, name='payment_success'),
-    path('payment/failed/', payment_failed, name='payment_failed')
+    path('payment/failed/', payment_failed, name='payment_failed'),
+    path('about/', about, name='about'),
+    path('contact/', contact, name='contact')
 ]
 
 if settings.DEBUG:

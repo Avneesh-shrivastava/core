@@ -182,3 +182,5 @@ cython_debug/
 core/settings.py
 core/settings.py
 core/settings.py
+/home/templates
+/home
