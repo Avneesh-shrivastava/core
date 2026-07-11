@@ -310,17 +310,17 @@ def purchase(request, course_id):
         'currency': 'INR',
         'payment_capture': 1
     })
-    discount =  (course.original_price) - (course.price),
+    discount =  
     
 
     Order.objects.create(
         user=request.user,
         course=course,
-        amount_paid=course.price,
-        discount =  discount,
-        discount_percentage = (discount / course.original_price) * 100,
+        amount_paid = course.price,
+        original_price = course.original_price,
+        discount = (course.original_price) - (course.price),
         status='pending',
-        razorpay_order_id=razorpay_order['id']
+        razorpay_order_id = razorpay_order['id']
     )
 
     context = {
