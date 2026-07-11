@@ -404,7 +404,7 @@
             </div>
         </div> -->
     </div>
-    
+{{course.purchased_course_list.status}}    
 </section>
 
 <!-- CURRICULUM -->
@@ -415,8 +415,6 @@
     </div>
     <div class="curriculum-wrap">
 
-
-        
         {% for module in course.modules.all %}
         <!-- Module 1 -->
         <div class="module">
@@ -434,28 +432,30 @@
                 </div>
                 
             </div>
-        
+            
             <div class="module-body">
-                {% for topic in module.topics.all %}
-                    {% for link in topic.topics_links.all %}
-                        {% if link.is_free %}
+                {% for topic in module.topics.all %}  
                             <div class="topic-row">
-                                <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">
-                                <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
+                                {% if order_status.status == 'completed' %}
+                                    <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">
+                                {% else %}
+                                    <a href=""  style="text-decoration: none; color: inherit;">
+                                {% endif %}    
+                                        <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
                                 </a>
                             
-                            <div class="topic-right"><span class="free-badge">FREE</span> 8:30</div>
+                            <div class="topic-right"><span class="free-badge">
+                            {% if order_status.status == 'completed' %}
+                                FREE
+                            {% else %}
+                                BUY NOW
+                            {% endif %}
+                            </span> 8:30</div>
                             </div>
-                        {% else %}
-                            <div class="topic-row">
-                                <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">
-                                <div class="topic-left"><span class="topic-icon video">▶</span> {{ topic.name }} </div>
-                                </a>
-                            <div class="topic-right"><span class="free-badge">Buy course</span> 8:30</div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                        
+                    
                 {% endfor %}
+                
                 
             </div>
              

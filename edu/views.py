@@ -132,9 +132,9 @@ def courses(request):
 
     # print("Modules = ", Module.objects.values())
     # print("\n")
-    # print("Topic = ", Topic.objects.values())
+    print("Topic = ", Topic.objects.values())
     # print("\n")
-    # print("Topic_link = ", topic_links.objects.values())
+    print("Topic_link = ", topic_links.objects.values())
 
     context = {'subjects': subjects, "enrolled_subject" : enrolled_subject, 'enrolled_course_ids': enrolled_course_ids , 'courses' : courses}
 
@@ -263,10 +263,11 @@ def curriculum(request, id):
     subject_enrolled = enrollment_data.objects.values_list('course', flat=True)
     print(subject_enrolled)
     topic_link = topic_links.objects.get(id=1)   
-    purchased_course_list = Order.objects.all()                                                                                                                                           
-    print(purchased_course_list)
+    purchased_course_list = Order.objects.all()
+    order_status = Order.objects.filter(user=request.user, course=course).first()                                                                                                                                           
+    print(purchased_course_list.values())
     
-    context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link, 'purchased_course_list': purchased_course_list}
+    context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link, 'purchased_course_list': purchased_course_list, 'order_status':order_status}
 
     return render(request, 'curriculum.html', context)
 
