@@ -320,8 +320,8 @@
     <div class="enroll-card">
         <div class="price-box">
             <span class="price">₹{{course.price}}</span>
-            <span class="original">₹3,999</span>
-            <span class="discount">87% OFF</span>
+            <span class="original">₹{{course.original_price}}</span>
+            <span class="discount">{{discount_percentage}}% OFF</span>
         </div>
         <p style="font-size:12px;color:#e74c3c;font-weight:700;margin-bottom:16px;">⏰ Offer ends in 2 days!</p>
         <a href="{% url 'purchase' course.id %}"><button class="btn-primary">Buy Now</button></a>
