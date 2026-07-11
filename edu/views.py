@@ -267,7 +267,18 @@ def curriculum(request, id):
     order_status = Order.objects.filter(user=request.user, course=course).first()                                                                                                                                           
     print(purchased_course_list.values())
     
-    context = {"students_enrolled" : students_enrolled, "course" : course, "topic_link" : topic_link, 'purchased_course_list': purchased_course_list, 'order_status':order_status}
+    price = course.price
+    original_price = course.original_price
+    discount = original_price - price
+    discount_percentage = ( discount / original_price ) * 100
+    discount_percentage = int(discount_percentage)
+    context = {"students_enrolled" : students_enrolled, 
+               "course" : course, 
+               "topic_link" : topic_link, 
+               'purchased_course_list': purchased_course_list, 
+               'order_status':order_status,
+               'discount_percentage' : discount_percentage
+               }
 
     return render(request, 'curriculum.html', context)
 
@@ -309,8 +320,7 @@ def purchase(request, course_id):
         'amount': amount,
         'currency': 'INR',
         'payment_capture': 1
-    })
-    discount =  
+    }) 
     
 
     Order.objects.create(
