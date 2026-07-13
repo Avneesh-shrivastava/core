@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import razorpay
+from django.core.mail import send_mail
 
 client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
@@ -232,6 +233,13 @@ def enrollment_form(request):
                 print("\n")
 
                 print(enrollment_data.objects.values())
+
+                send_mail(
+                    'Enrollment Confirmed – Clarity Edge',
+                    f'Hi {first_name}, you are now enrolled in {course.subject_name}.',
+                    'noreply@clarityedge.in',
+                    [email],
+                )
             
             else:
                 messages.info(request, "This user has already enrolled in this course")
