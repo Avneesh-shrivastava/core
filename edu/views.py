@@ -234,13 +234,13 @@ def enrollment_form(request):
 
                 print(enrollment_data.objects.values())
 
-                send_mail(
-                    'Enrollment Confirmed – Clarity Edge',
-                    f'Hi {first_name}, you are now enrolled in {course.subject_name}.',
-                    'noreply@clarityedge.in',
-                    [email],
-                )
-            
+                # send_mail(
+                #     'Enrollment Confirmed – Clarity Edge',
+                #     f'Hi {first_name}, you are now enrolled in {course.subject_name}.',
+                #     'noreply@clarityedge.in',
+                #     [email],
+                # )
+
             else:
                 messages.info(request, "This user has already enrolled in this course")
                 return redirect('/enrollment/') 
