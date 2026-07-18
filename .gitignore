@@ -186,3 +186,4 @@ cython_debug/
 
 /staticfiles
 data.json
+.vscode
