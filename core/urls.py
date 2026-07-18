@@ -23,6 +23,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from edu.views import *
 
 urlpatterns = [
+    path('', home_page, name='home_page'),
     path('admin/', admin.site.urls),
     path('student-login/', student_login, name='student_login'),
     path('student-signup/', student_signup, name='student_signup'),
