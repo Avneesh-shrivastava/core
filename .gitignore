@@ -183,4 +183,4 @@ cython_debug/
 
 /home/templates
 /home
-*.json
+data.json
