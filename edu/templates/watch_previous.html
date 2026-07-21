@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch Previous Video First</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f4ff; }
+        nav {
+            background: linear-gradient(135deg, #1a1a6e, #3f5efb);
+            padding: 16px 60px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 24px; font-weight: 700; color: #fff; }
+        .logo span { color: #ffd700; }
+        .container {
+            max-width: 500px; margin: 80px auto;
+            text-align: center; padding: 0 24px;
+        }
+        .card {
+            background: #fff; border-radius: 16px;
+            border: 1px solid #e0e0e0; padding: 50px 40px;
+        }
+        .icon { font-size: 70px; margin-bottom: 20px; }
+        h2 { font-size: 24px; font-weight: 800; color: #1a1a6e; margin-bottom: 10px; }
+        p { font-size: 14px; color: #888; line-height: 1.7; margin-bottom: 28px; }
+        .btn-primary {
+            display: block; background: linear-gradient(135deg, #ffd700, #ffb300);
+            color: #1a1a6e; padding: 14px 32px; border-radius: 8px;
+            font-size: 15px; font-weight: 700; text-decoration: none;
+            margin-bottom: 12px;
+        }
+        .btn-secondary {
+            display: block; background: transparent; color: #3f5efb;
+            border: 2px solid #3f5efb; padding: 12px 32px;
+            border-radius: 8px; font-size: 15px; font-weight: 600;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="logo">Clarity <span>Edge</span></div>
+</nav>
+<div class="container">
+    <div class="card">
+        <div class="icon">🔒</div>
+        <h2>Watch Previous Video First</h2>
+        <p>You need to complete the previous video before unlocking this one. Please watch it first to continue.</p>
+        <a href="{% url 'videos' prev.id %}" class="btn-primary">
+            ▶ Watch Previous Video
+        </a>
+        <a href="/courses/" class="btn-secondary">Back to Courses</a>
+    </div>
+</div>
+</body>
+</html>

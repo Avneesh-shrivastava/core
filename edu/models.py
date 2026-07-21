@@ -93,3 +93,15 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.course.subject_name} - {self.status}"
+
+class VideoProgress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progress')
+    topic_link = models.ForeignKey(topic_links, on_delete=models.CASCADE, related_name='progress')
+    watched = models.BooleanField(default=False)
+    watched_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'topic_link')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.topic_link.topic.name} - {self.watched}"
