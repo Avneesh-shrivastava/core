@@ -439,7 +439,7 @@
             </div>
             
             <div class="module-body">
-                {% for topic in module.topics.all %}  
+                {% for topic in module.topics.all %} 
                             <div class="topic-row">
                                 {% if order_status.status == 'completed' %}
                                     <a href="{% url 'videos' topic.id %}"  style="text-decoration: none; color: inherit;">

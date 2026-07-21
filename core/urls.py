@@ -41,7 +41,8 @@ urlpatterns = [
     path('payment/success/', payment_success, name='payment_success'),
     path('payment/failed/', payment_failed, name='payment_failed'),
     path('about/', about, name='about'),
-    path('contact/', contact, name='contact')
+    path('contact/', contact, name='contact'),
+    
 ]
 
 if settings.DEBUG:
