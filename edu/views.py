@@ -280,12 +280,20 @@ def curriculum(request, id):
     discount = original_price - price
     discount_percentage = ( discount / original_price ) * 100
     discount_percentage = int(discount_percentage)
+
+    watched_ids = VideoProgress.objects.filter(
+        user=request.user,
+        watched=True
+    ).values_list('topic_link_id', flat=True)
+
+
     context = {"students_enrolled" : students_enrolled, 
                "course" : course, 
                "topic_link" : topic_link, 
                'purchased_course_list': purchased_course_list, 
                'order_status':order_status,
-               'discount_percentage' : discount_percentage
+               'discount_percentage' : discount_percentage,
+               'watched_ids': watched_ids
                }
 
     return render(request, 'curriculum.html', context)
@@ -301,6 +309,30 @@ def videos(request, topic_id):
     next = topic_links.objects.filter(id__gt = topic_id).order_by('id').first()
     prev = topic_links.objects.filter(id__lt = topic_id).order_by('-id').first()
 
+    # check if previous video was watched
+    if prev:
+        prev_watched = VideoProgress.objects.filter(
+            user=request.user,
+            topic_link=prev,
+            watched=True
+        ).exists()
+    else:
+        prev_watched = True  # first video — no previous, always accessible
+
+    if not prev_watched:
+        return render(request, 'watch_previous.html', {
+            'prev': prev,
+            'course': course
+        })
+    
+    # mark current video as watched when user opens it
+    VideoProgress.objects.get_or_create(
+        user=request.user,
+        topic_link=topic_link,
+        defaults={'watched': True}
+    )
+
+
     total_topics = topic_links.objects.count()
     current_position = topic_links.objects.filter(id__lte=topic_id).count()
     progress = int((current_position / total_topics) * 100)
@@ -315,7 +347,8 @@ def videos(request, topic_id):
                 "current_position": current_position,
                 "total_topics": total_topics
             }
-    
+    print(VideoProgress.objects.values())
+
     return render(request, 'videos.html', context)
 
 def purchase(request, course_id):
