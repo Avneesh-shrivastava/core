@@ -269,11 +269,11 @@ def curriculum(request, id):
     students_enrolled = len(students_enrolled)
     course = Course.objects.get(id=id)
     subject_enrolled = enrollment_data.objects.values_list('course', flat=True)
-    print(subject_enrolled)
+    # print(subject_enrolled)
     topic_link = topic_links.objects.get(id=1)   
     purchased_course_list = Order.objects.all()
     order_status = Order.objects.filter(user=request.user, course=course).first()                                                                                                                                           
-    print(purchased_course_list.values())
+    # print(purchased_course_list.values())
     
     price = course.price
     original_price = course.original_price
@@ -295,7 +295,7 @@ def curriculum(request, id):
                'discount_percentage' : discount_percentage,
                'watched_ids': watched_ids
                }
-
+    print(watched_ids)
     return render(request, 'curriculum.html', context)
 
 def videos(request, topic_id):

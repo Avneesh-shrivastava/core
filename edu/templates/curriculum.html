@@ -459,6 +459,16 @@
                                         🔐
                                     </span>
                                 {% endif %}
+
+                                {% if topic.id in watched_ids %}
+                                    <span class="free-badge_unlocked">
+                                        ✅
+                                    </span>    
+                                {% else %}
+                                    <!-- <span class="free-badge_locked">
+                                        
+                                    </span> -->
+                                {% endif %}
                                  
                                     8:30</div>
                             </div>
