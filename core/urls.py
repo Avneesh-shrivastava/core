@@ -42,7 +42,7 @@ urlpatterns = [
     path('payment/failed/', payment_failed, name='payment_failed'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
-    
+    path('profile/', profile, name='profile'),
 ]
 
 if settings.DEBUG:
