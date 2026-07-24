@@ -51,16 +51,16 @@ def student_signup(request):
         return redirect('/student-login/')
     return render(request, 'signup.html')
 
-def show_data(request):
-    queryset = User.objects.all()
-    context = {'students_data' : queryset}
+# def show_data(request):
+#     queryset = User.objects.all()
+#     context = {'students_data' : queryset}
 
-    return render(request, 'show_data.html', context)
+#     return render(request, 'show_data.html', context)
 
-def delete_data(request, id):
-    that_data = User.objects.get(id=id)
-    that_data.delete()
-    return redirect('/show-data/')
+# def delete_data(request, id):
+#     that_data = User.objects.get(id=id)
+#     that_data.delete()
+#     return redirect('/show-data/')
 
 def student_login(request):
     if request.method == 'POST':
@@ -264,6 +264,7 @@ def log_out(request):
     logout(request)
     return redirect('/student-login/')
 
+@login_required(login_url='/student-login/')
 def curriculum(request, id):
     students_enrolled = enrollment_data.objects.all()
     students_enrolled = len(students_enrolled)
@@ -298,6 +299,7 @@ def curriculum(request, id):
     print(watched_ids)
     return render(request, 'curriculum.html', context)
 
+@login_required(login_url='/student-login/')
 def videos(request, topic_id):
     # topic_link = topic_links.objects.get(id=topic_id)
     # course = topic_link.topic.module.course
@@ -338,6 +340,10 @@ def videos(request, topic_id):
     progress = int((current_position / total_topics) * 100)
 
 
+    Attendance.objects.create(
+        present = 'present'
+    )
+
     context = {
                 "topic_link" : topic_link, 
                 "course" : course, 
@@ -351,6 +357,7 @@ def videos(request, topic_id):
 
     return render(request, 'videos.html', context)
 
+@login_required(login_url='/student-login/')
 def purchase(request, course_id):
     
     course = get_object_or_404(Course, id=course_id)
@@ -383,7 +390,7 @@ def purchase(request, course_id):
     }
     return render(request, 'purchase.html', context)
 
-
+@login_required(login_url='/student-login/')
 @csrf_exempt
 def verify_payment(request):
     if request.method == 'POST':
@@ -427,11 +434,20 @@ def payment_success(request):
 def payment_failed(request):
     return render(request, 'payment_failed.html')
 
+@login_required(login_url='/student-login/')
 def about(request):
     return render(request, 'about.html')
 
+@login_required(login_url='/student-login/')
 def contact(request):
     return render(request, 'contact.html')
 
+@login_required(login_url='/student-login/')
 def profile(request):
-    return render(request, 'profile.html')
+    box = Attendance.objects.all()
+
+    context = {
+        'box' : box
+        
+    }
+    return render(request, 'profile.html', context)
