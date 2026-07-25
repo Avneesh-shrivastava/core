@@ -105,3 +105,7 @@ class VideoProgress(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.topic_link.topic.name} - {self.watched}"
+
+class Attendance(models.Model):
+    date = models.DateField(auto_now_add=True)
+    present = models.CharField(default='day')
