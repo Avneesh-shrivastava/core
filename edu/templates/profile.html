@@ -499,6 +499,60 @@
         .stat-item { flex: 1 1 50%; }
         footer { flex-direction: column; gap: 10px; text-align: center; }
     }
+
+
+
+
+
+
+.calendar-scroll {
+    max-width: 500px;
+    overflow-x: auto;
+    direction: rtl;
+    padding: 6px 4px;   /* small breathing room inside the scroll area */
+}
+
+.calendar {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(7, 11px);
+    grid-auto-columns: 11px;
+    gap: 8px;           /* increased from 3px for more spacing between boxes */
+    direction: ltr;     /* keeps boxes in correct oldest -> newest order */
+    width: fit-content;
+}
+
+.day {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    background-color: #ebedf0;
+}
+
+.day.present {
+    background-color: #ffd60a;
+}
+
+.day.absent {
+    background-color: #e5484d;
+}
+
+/* Scrollbar styling */
+.calendar-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.calendar-scroll::-webkit-scrollbar-thumb {
+    background: #b0b0b0;
+    border-radius: 4px;
+}
+
+.calendar-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -507,12 +561,12 @@
     <nav>
         <div class="logo">Clarity<span>Edge</span></div>
         <ul class="nav-links">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">My Courses</a></li>
+            <li><a href="/home-page">Home</a></li>
+            <li><a href="/course">My Courses</a></li>
             <li><a href="#">Certificates</a></li>
             <li><a href="#">Settings</a></li>
         </ul>
-        <button class="nav-btn">Log Out</button>
+        <a href='/logout'><button class="nav-btn">Log Out</button></a>
     </nav>
 
     <!-- ── PAGE HEADER ── -->
@@ -550,15 +604,15 @@
                 <p class="avatar-note">Choose a new photo, or remove the current one. No page reload needed.</p>
             </div>
 
-            <div class="profile-info">
-                <h2>Avneesh Kumar</h2>
-                <p class="role">BCA Student · Aspiring Data Engineer</p>
-                <p class="bio">
+    <div class="profile-info">
+        <h2>{{request.user.first_name}}</h2>
+                <!-- <p class="role">BCA Student · Aspiring Data Engineer</p> -->
+                <!-- <p class="bio">
                     Self-taught Python developer based in India, building hands-on projects across
                     backend development and data engineering. Currently documenting the journey publicly
                     under #LearnInPublic while preparing for a career in Data Engineering.
-                </p>
-                <div class="tag-list">
+                </p> -->
+                <!-- <div class="tag-list">
                     <span class="tag">Python</span>
                     <span class="tag">Django</span>
                     <span class="tag">Kafka</span>
@@ -566,9 +620,29 @@
                     <span class="tag">PostgreSQL</span>
                     <span class="tag">Docker</span>
                     <span class="tag">Git &amp; GitHub</span>
+                </div> -->
+            
+            <div class="calendar-scroll">
+                {% for i in box %}
+                    {% if i.present == 'present' %}
+                        <div class="day present"></div>
+                    {% else %}
+                        <div class="day"></div>
+                    {% endif %}
+                {% endfor %}
+                
+                <!-- <div class="calendar">
+                <div class="day"></div>
+                <div class="day present"></div>
+                <div class="day absent"></div>
+                <div class="day"></div>
+                <div class="day present"></div>
+                <div class="day"></div>
+                <div class="day absent"></div> -->
                 </div>
             </div>
-        </div>
+            
+    </div>
 
         <!-- ── STATS ── -->
         <div class="stats">
