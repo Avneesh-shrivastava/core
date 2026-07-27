@@ -447,10 +447,12 @@ def profile(request):
     box = Attendance.objects.all()
     nick_name = request.user.first_name
     nick_name = str(nick_name)
-    nick_name = nick_name[0].upper() 
+
+    if nick_name : 
+        nick_name = nick_name[0]
+           
     context = {
         'box' : box,
-        'nick_name' : nick_name
-        
+        'nick_name' : nick_name,
     }
     return render(request, 'profile.html', context)

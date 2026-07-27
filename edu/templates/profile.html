@@ -566,6 +566,7 @@
             <li><a href="#">Certificates</a></li>
             <li><a href="#">Settings</a></li>
         </ul>
+        <span style="color:white">{{request.user}}</span>
         <a href='/logout'><button class="nav-btn">Log Out</button></a>
     </nav>
 
@@ -585,7 +586,10 @@
 
                 <div class="avatar-circle">
                     <div class="avatar-photo">
-                        <span>{{nick_name}}</span>
+                        <span>
+                                    {{nick_name}}
+
+                        </span>
                     </div>
                     <div class="avatar-placeholder">
                         <span class="cam-icon">📷</span>
@@ -605,7 +609,12 @@
             </div>
 
     <div class="profile-info">
-        <h2>{{request.user.first_name}}</h2>
+        <h2>{% if request.user.first_name  %}
+                {{request.user.first_name}}
+            {% else %}
+                {{request.user}}
+            {% endif %}
+        </h2>
                 <!-- <p class="role">BCA Student · Aspiring Data Engineer</p> -->
                 <!-- <p class="bio">
                     Self-taught Python developer based in India, building hands-on projects across
@@ -629,7 +638,9 @@
                     {% else %}
                         <div class="day"></div>
                     {% endif %}
+            
                 {% endfor %}
+
                 
                 <!-- <div class="calendar">
                 <div class="day"></div>
@@ -678,7 +689,7 @@
                     <div class="detail-icon icon-blue">✉️</div>
                     <div>
                         <h4>Email Address</h4>
-                        <p>avneesh.kumar@example.com</p>
+                        <p>avneesh.@example.com</p>
                     </div>
                 </div>
             </div>
