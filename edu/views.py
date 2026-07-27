@@ -449,7 +449,7 @@ def profile(request):
     nick_name = str(nick_name)
 
     if nick_name : 
-        nick_name = nick_name[0]
+        nick_name = nick_name[0].upper()
            
     context = {
         'box' : box,
