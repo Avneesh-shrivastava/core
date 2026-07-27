@@ -322,25 +322,27 @@
 
 
     <!-- ENROLL CARD -->
-    <div class="enroll-card">
-        <div class="price-box">
-            <span class="price">₹{{course.price}}</span>
-            <span class="original">₹{{course.original_price}}</span>
-            <span class="discount">{{discount_percentage}}% OFF</span>
+    {% if order_status.status != 'completed' %}
+        <div class="enroll-card">
+            <div class="price-box">
+                <span class="price">₹{{course.price}}</span>
+                <span class="original">₹{{course.original_price}}</span>
+                <span class="discount">{{discount_percentage}}% OFF</span>
+            </div>
+            <p style="font-size:12px;color:#e74c3c;font-weight:700;margin-bottom:16px;">⏰ Offer ends in 2 days!</p>
+            <a href="{% url 'purchase' course.id %}"><button class="btn-primary">Buy Now</button></a>
+            <!-- <button class="btn-secondary">Try Free Preview</button> -->
+            <ul class="includes-list">
+                <li>72 hours on-demand video</li>
+                <li>15 real-world projects</li>
+                <li>Downloadable resources & code</li>
+                <li>Lifetime access</li>
+                <li>Certificate of completion</li>
+                <li>Community Discord access</li>
+                <li>30-day money-back guarantee</li>
+            </ul>
         </div>
-        <p style="font-size:12px;color:#e74c3c;font-weight:700;margin-bottom:16px;">⏰ Offer ends in 2 days!</p>
-        <a href="{% url 'purchase' course.id %}"><button class="btn-primary">Buy Now</button></a>
-        <!-- <button class="btn-secondary">Try Free Preview</button> -->
-        <ul class="includes-list">
-            <li>72 hours on-demand video</li>
-            <li>15 real-world projects</li>
-            <li>Downloadable resources & code</li>
-            <li>Lifetime access</li>
-            <li>Certificate of completion</li>
-            <li>Community Discord access</li>
-            <li>30-day money-back guarantee</li>
-        </ul>
-    </div>
+    {% endif %}
 </section>
 
 <!-- STATS -->
