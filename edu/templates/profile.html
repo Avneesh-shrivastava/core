@@ -615,6 +615,7 @@
                 {{request.user}}
             {% endif %}
         </h2>
+
                 <!-- <p class="role">BCA Student · Aspiring Data Engineer</p> -->
                 <!-- <p class="bio">
                     Self-taught Python developer based in India, building hands-on projects across
@@ -631,15 +632,7 @@
                     <span class="tag">Git &amp; GitHub</span>
                 </div> -->
             
-            <div class="calendar-scroll">
-                {% for i in box %}
-                    {% if i.present == 'present' %}
-                        <div class="day present"></div>
-                    {% else %}
-                        <div class="day"></div>
-                    {% endif %}
-            
-                {% endfor %}
+
 
                 
                 <!-- <div class="calendar">
@@ -650,10 +643,24 @@
                 <div class="day present"></div>
                 <div class="day"></div>
                 <div class="day absent"></div> -->
+                <div class="calendar-scroll">
+                {% for i in box %}
+                    {% if i.present == 'present' %}
+                        <div class="day present"></div>
+                    {% else %}
+                        <div class="day"></div>
+                    {% endif %}
+                {% endfor %}
                 </div>
-            </div>
-            
+
+                
     </div>
+
+
+            
+                
+            
+        </div>
 
         <!-- ── STATS ── -->
         <div class="stats">
