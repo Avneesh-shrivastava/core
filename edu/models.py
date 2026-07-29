@@ -110,6 +110,6 @@ class Attendance(models.Model):
     date = models.DateField(auto_now_add=True)
     present = models.CharField(max_length=10,default='day')
 
-# class update_photo(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+class update_photo(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
