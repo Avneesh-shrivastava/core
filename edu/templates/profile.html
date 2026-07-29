@@ -598,11 +598,12 @@
                 </div>
 
                 <div class="avatar-actions">
-                    <form method="POST" action="{% url 'update_profile' %}" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'update' %}" enctype="multipart/form-data" id="photo-form">
                     {% csrf_token %}
-                    <label for="upload-photo" class="avatar-btn btn-update">Update Photo</label>
-                    <input type="file" id="upload-photo" accept="image/*" hidden  onchange="document.getElementById('photo-form').submit()">
-                    </form>
+                    <!-- <label for="upload-photo" class="avatar-btn btn-update">Update Photo</label> -->
+                    <input type="file" id="photo-upload" accept="image/*" hidden>
+                    <button class="avatar-btn btn-update">Update Photo</button>
+                </form>   
 
                     <label for="photo-removed" class="avatar-btn btn-remove">Remove Photo</label>
                     <label for="photo-removed" class="avatar-btn btn-restore">Restore Photo</label>
