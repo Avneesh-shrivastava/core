@@ -456,3 +456,10 @@ def profile(request):
         'nick_name' : nick_name,
     }
     return render(request, 'profile.html', context)
+
+def update(request):
+    if request.method == 'POST':
+            data = request.POST
+            profile_pic = data.get('profile_picture')
+            print(profile_pic)
+    return render(request)
