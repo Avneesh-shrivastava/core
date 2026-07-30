@@ -94,7 +94,12 @@ def home_page(request):
     subjects = Subjects_details.objects.values_list('course_name', flat=True)
     enrolled_subjects = enrollment_data.objects.values_list('course', flat=True)
 
-    context = {"no_of_enrolled" : no_of_enrolled, "subjects" : subjects, "enrolled_subjects": enrolled_subjects}
+    photo = update_photo.objects.filter(user=request.user).first()
+
+    context = {"no_of_enrolled" : no_of_enrolled, 
+               "subjects" : subjects, 
+               "enrolled_subjects": enrolled_subjects,
+               "photo": photo}
     return render(request, 'home_page.html', context)
 
 
@@ -450,16 +455,37 @@ def profile(request):
 
     if nick_name : 
         nick_name = nick_name[0].upper()
-           
+
+    photo = update_photo.objects.filter(user=request.user).first()
+
     context = {
         'box' : box,
         'nick_name' : nick_name,
+        'photo' : photo
     }
     return render(request, 'profile.html', context)
 
+# def select_file(request):
+#     from plyer import filechooser
+#         # Opens the native OS file selection window
+#     file_paths = filechooser.open_file(
+#         title="Pick a file",
+#         filters=[("Text Files", "*.txt"), ("All Files", "*.*")]
+#     )
+
+#     # It returns a list of paths, or an empty list if cancelled
+#     if file_paths:
+#         print(f"User selected: {file_paths[0]}")
+#     else:
+#         print("User cancelled the selection.")
+
 def update(request):
     if request.method == 'POST':
-            data = request.POST
-            profile_pic = data.get('profile_picture')
-            print(profile_pic)
-    return render(request)
+            profile_pic = request.FILES.get('profile_picture')
+
+            if profile_pic:
+                photo_obj, created = update_photo.objects.get_or_create(user=request.user)
+                photo_obj.profile_picture = profile_pic
+                photo_obj.save()
+    
+    return redirect('profile')
