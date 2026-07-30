@@ -487,5 +487,6 @@ def update(request):
                 photo_obj, created = update_photo.objects.get_or_create(user=request.user)
                 photo_obj.profile_picture = profile_pic
                 photo_obj.save()
+
     
     return redirect('profile')
