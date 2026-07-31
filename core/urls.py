@@ -44,6 +44,9 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('profile/', profile, name='profile'),
     path('update/', update, name='update'),
+    path('remove-photo/', remove_photo,name='remove_photo'),
+    # path('restore-photo/', restore_photo,name='restore_photo')
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

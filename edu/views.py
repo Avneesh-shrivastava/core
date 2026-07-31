@@ -472,6 +472,24 @@ def update(request):
 
             if profile_pic:
                 photo_obj, created = update_photo.objects.get_or_create(user=request.user)
+
+            # Delete old image if it exists
+                if photo_obj.profile_picture:
+                    photo_obj.profile_picture.delete(save=False)
+
                 photo_obj.profile_picture = profile_pic
+                photo_obj.rm_photo = False
                 photo_obj.save()   
     return redirect('profile')
+
+def remove_photo(request):
+    delete = update_photo.objects.get(user=request.user)
+    delete.rm_photo = True
+    delete.save()
+    return redirect('profile')
+
+# def restore_photo(request):
+#     delete = update_photo.objects.get(user=request.user)
+#     delete.rm_photo = False
+#     delete.save()
+#     return redirect('profile')

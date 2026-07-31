@@ -585,22 +585,31 @@
 
             <!-- Avatar: circle photo with pure CSS update / remove, no JS -->
             <div class="avatar-block">
-                <input type="checkbox" id="photo-removed" class="photo-toggle">
+                <!-- <input type="checkbox" id="photo-removed" class="photo-toggle"> -->
 
-                <div class="avatar-circle"> 
-                    <div class="avatar-photo">
-                        <span>{% if photo and photo.profile_picture %}
+                <!-- <div class="avatar-circle">  -->
+                    
+                    <div style="width: 160px; height: 160px; border-radius: 50%; overflow: hidden; border: 0px solid #ffd700;">
+                        {% if photo and photo.profile_picture and not photo.rm_photo %}
+                        <span>
                                 <img src="{{photo.profile_picture.url}}" alt="Profile photo" style="width: 100%; height: 100%; object-fit: cover;">
-                              {% else %}      
-                                {{nick_name}}
-                              {% endif %}
                         </span>
+                        {% else %}
+                            <div class="avatar-photo">
+                                <span>{{nick_name}}</span>
+                            </div>
+                        {% endif %}
                     </div>
-                    <div class="avatar-placeholder">
+
+                    
+
+                   
+
+                    <!-- <div class="avatar-placeholder">
                         <span class="cam-icon">📷</span>
                         <p>No Photo</p>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
                     
 
                 <div class="avatar-actions">
@@ -610,8 +619,11 @@
                     <input type="file" id="photo-upload" name="profile_picture" accept="image/*" hidden onchange="document.getElementById('photo-form').submit()">
                 </form>
 
-                    <label for="photo-removed" class="avatar-btn btn-remove">Remove Photo</label>
-                    <label for="photo-removed" class="avatar-btn btn-restore">Restore Photo</label>
+                
+                    <a href="/remove-photo"><button class="avatar-btn btn-remove">Remove Photo</button></a>
+                   
+                    <a href="#"><button  class="avatar-btn btn-restore">Restore Photo</button></a>
+                    
                 </div>
 
                 <p class="avatar-note">Choose a new photo, or remove the current one. No page reload needed.</p>

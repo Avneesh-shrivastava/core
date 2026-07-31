@@ -113,4 +113,5 @@ class Attendance(models.Model):
 class update_photo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    rm_photo = models.BooleanField(default=False)
     
