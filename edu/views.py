@@ -465,19 +465,6 @@ def profile(request):
     }
     return render(request, 'profile.html', context)
 
-# def select_file(request):
-#     from plyer import filechooser
-#         # Opens the native OS file selection window
-#     file_paths = filechooser.open_file(
-#         title="Pick a file",
-#         filters=[("Text Files", "*.txt"), ("All Files", "*.*")]
-#     )
-
-#     # It returns a list of paths, or an empty list if cancelled
-#     if file_paths:
-#         print(f"User selected: {file_paths[0]}")
-#     else:
-#         print("User cancelled the selection.")
 
 def update(request):
     if request.method == 'POST':
