@@ -6,7 +6,7 @@
     <title>Courses — Clarity Edge Coaching Classes</title>
 
     <style>
-        * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -410,6 +410,280 @@
         .button:hover {
         background-color: #2748e8;
         }
+
+/* ============================================================
+   RESPONSIVE / MOBILE STYLES
+   Everything above is untouched — these overrides kick in on
+   smaller screens only, so desktop looks exactly the same.
+   ============================================================ */
+
+/* ── TABLET (1024px and down) ── */
+@media (max-width: 1024px) {
+
+    nav {
+        padding: 16px 32px;
+    }
+
+    .page-hero {
+        padding: 50px 32px;
+    }
+
+    .filter-bar {
+        padding: 16px 32px;
+    }
+
+    .courses-section {
+        padding: 40px 32px;
+    }
+
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .cta-banner {
+        margin: 0 32px 50px;
+        padding: 44px 32px;
+    }
+
+    footer {
+        padding: 24px 32px;
+    }
+}
+
+/* ── SMALL TABLET / NAV WRAP (900px and down) ── */
+@media (max-width: 900px) {
+
+    nav {
+        flex-wrap: wrap;
+        padding: 14px 20px;
+        gap: 12px;
+        row-gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-links li form {
+        margin-top: 6px;
+    }
+
+    .curved-search {
+        width: 130px;
+    }
+
+    .profile-container {
+        width: 40px;
+        height: 40px;
+    }
+
+    .page-hero {
+        padding: 44px 24px;
+    }
+
+    .page-hero h1 {
+        font-size: 30px;
+    }
+
+    .page-hero p {
+        font-size: 15px;
+        padding: 0 8px;
+    }
+
+    .filter-bar {
+        padding: 16px 20px;
+        gap: 10px;
+    }
+
+    .courses-section {
+        padding: 36px 20px;
+    }
+
+    .section-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin-bottom: 22px;
+    }
+
+    .cta-banner {
+        margin: 0 20px 40px;
+        padding: 40px 24px;
+    }
+
+    .cta-banner h2 {
+        font-size: 24px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        padding: 22px 20px;
+    }
+}
+
+/* ── PHONE (560px and down) ── */
+@media (max-width: 560px) {
+
+    nav {
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .curved-search {
+        width: 100px;
+        font-size: 12px;
+    }
+
+    .button {
+        width: 60px;
+        font-size: 11px;
+    }
+
+    .nav-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .profile-container {
+        width: 34px;
+        height: 34px;
+    }
+
+    .page-hero h1 {
+        font-size: 24px;
+    }
+
+    .page-hero p {
+        font-size: 14px;
+    }
+
+    .filter-bar {
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card-body {
+        padding: 18px 18px 14px;
+    }
+
+    .card-body h3 {
+        font-size: 16px;
+    }
+
+    .card-footer {
+        padding: 12px 18px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .enroll-btn, .enroll-btn_view_course {
+        width: 100%;
+        text-align: center;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+
+    .cta-banner {
+        margin: 0 16px 32px;
+        padding: 34px 20px;
+        border-radius: 12px;
+    }
+
+    .cta-banner h2 {
+        font-size: 20px;
+    }
+
+    .cta-banner p {
+        font-size: 14px;
+    }
+
+    .cta-btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 20px;
+    }
+}
+
+/* ── SMALL PHONE (380px and down) ──
+   Extra tier for very narrow devices so text and tags don't overflow. */
+@media (max-width: 380px) {
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .page-hero h1 {
+        font-size: 21px;
+    }
+
+    .page-hero p {
+        font-size: 13px;
+    }
+
+    .card-top-row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .card-tags {
+        gap: 6px;
+    }
+
+    .tag {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    .card-stats {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
 
     </style>
 </head>
