@@ -849,7 +849,13 @@
 
     <a href="/profile">
     <div class="profile-container">
-    <img src="{{photo.profile_picture.url}}" class="profile-icon">
+    <img src=
+    {% if not photo.rm_photo %}
+        "{{photo.profile_picture.url}}"
+    {% else %}
+        ""
+    {% endif %}
+    class="profile-icon">
     <span class="status-dot"></span>
     </div>
     </a>
