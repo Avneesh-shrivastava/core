@@ -6,7 +6,7 @@
     <title>ClarityEdge Coaching Classes</title>
 
     <style>
-        * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -504,6 +504,55 @@
    smaller screens only, so desktop looks exactly the same.
    ============================================================ */
 
+/* ── TABLET (1024px and down) ──
+   Desktop is 3/4-column grids on a max-width:1100px container, which
+   gets cramped once the viewport drops under ~1024px. Step grids down
+   to 2 columns early so cards don't squeeze before the nav even wraps. */
+@media (max-width: 1024px) {
+
+    nav {
+        padding: 16px 32px;
+    }
+
+    .hero {
+        padding: 80px 40px;
+    }
+
+    .section {
+        padding: 60px 32px;
+    }
+
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .why-section {
+        padding: 60px 32px;
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .testimonials {
+        padding: 60px 32px;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .cta {
+        padding: 60px 40px;
+    }
+}
+
+/* ── SMALL TABLET / NAV WRAP (900px and down) ──
+   This is where the navbar can no longer fit on one line, so it wraps
+   and the rest of the sections start shrinking their padding/type. */
 @media (max-width: 900px) {
 
     nav {
@@ -527,6 +576,11 @@
 
     .curved-search {
         width: 130px;
+    }
+
+    .profile-container {
+        width: 40px;
+        height: 40px;
     }
 
     .hero {
@@ -557,13 +611,20 @@
         padding: 50px 20px;
     }
 
+    .section-title {
+        margin-bottom: 30px;
+    }
+
     .section-title h2 {
         font-size: 26px;
     }
 
     .courses-grid {
-        grid-template-columns: repeat(2, 1fr);
         gap: 18px;
+    }
+
+    .card-top {
+        padding: 22px 20px 16px;
     }
 
     .why-section {
@@ -571,7 +632,6 @@
     }
 
     .why-grid {
-        grid-template-columns: repeat(2, 1fr);
         gap: 16px;
     }
 
@@ -600,14 +660,16 @@
     }
 }
 
+/* ── PHONE (560px and down) ── */
 @media (max-width: 560px) {
 
     nav {
         padding: 12px 16px;
+        gap: 8px;
     }
 
     .logo {
-        font-size: 20px;
+        font-size: 19px;
     }
 
     .nav-links {
@@ -618,9 +680,28 @@
         font-size: 13px;
     }
 
+    .curved-search {
+        width: 100px;
+        font-size: 12px;
+    }
+
+    .button {
+        width: 60px;
+        font-size: 11px;
+    }
+
     .nav-btn {
         padding: 8px 16px;
         font-size: 13px;
+    }
+
+    .profile-container {
+        width: 34px;
+        height: 34px;
+    }
+
+    .hero {
+        padding: 50px 20px;
     }
 
     .hero h1 {
@@ -634,19 +715,29 @@
     .hero-btns {
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 
     .btn-primary, .btn-secondary {
         width: 100%;
-        max-width: 260px;
+        max-width: 280px;
     }
 
     .stat-item {
         flex: 1 1 100%;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .stat-item:last-child {
+        border-bottom: none;
     }
 
     .stat-item h3 {
         font-size: 26px;
+    }
+
+    .section-title h2 {
+        font-size: 22px;
     }
 
     .courses-grid {
@@ -655,6 +746,18 @@
 
     .why-grid {
         grid-template-columns: 1fr;
+    }
+
+    .why-card {
+        padding: 22px 18px;
+    }
+
+    .testimonial-card {
+        padding: 22px 18px;
+    }
+
+    .cta {
+        padding: 44px 20px;
     }
 
     .cta h2 {
@@ -668,6 +771,47 @@
     }
 }
 
+/* ── SMALL PHONE (380px and down) ──
+   Extra tier for very narrow devices (older/compact phones) so text
+   never overflows or forces horizontal scroll. */
+@media (max-width: 380px) {
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    .stat-item h3 {
+        font-size: 22px;
+    }
+
+    .stat-item p {
+        font-size: 12px;
+    }
+
+    .card-top {
+        padding: 18px 16px 14px;
+    }
+
+    .card-footer {
+        padding: 12px 16px;
+    }
+}
     </style>
 </head>
 <body>
